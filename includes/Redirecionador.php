@@ -12,9 +12,10 @@ class Redirecionador {
             if (self::getParametro('pg') == 'escola'){
                 $oController = new ControllerEscola();
                 $oController->processa();
+            } else {
+                $oController = new ControllerLogin();
+                $oController->processa();
             }
-            $oController = new ControllerLogin();
-            $oController->processa();
         }
     }
     

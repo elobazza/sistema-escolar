@@ -6,8 +6,7 @@ body {
 
 .container{
 	width: 60%;
-	margin: auto;
-	
+	margin: auto;	
 }
 
 
@@ -30,17 +29,17 @@ body {
 }
 
 .link-cabecalho:hover{
-	background-color: #5E5A46;
+	background-color: #3b5375;
 	color: white;
 	text-decoration: none;
 }
 
 .dropdown:hover .drop-botao {
-  background-color:  #5E5A46;
+  background-color:  #3b5375;
 }
 
 .cabecalho {
-	background-color:#807B65;
+	background-color:#4a6891;
 	width: 100%;
 	list-style-type: none;
 	margin: 0;
@@ -65,8 +64,8 @@ body {
 	text-align: center;
 	padding: 20px 30px;
 	text-decoration: none;
-	background-color:#807B65;
-	border:#807B65;
+	background-color:#4a6891;
+	border:#4a6891;
 	
 	outline: none;
 
@@ -75,7 +74,7 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #807B65;
+  background-color: #4a6891;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -110,7 +109,7 @@ body {
 }
 
 .table_listagem tr td, .table_listagem th {
-    border: 1px solid #807B65;
+    border: 1px solid #4a6891;
     padding: 5px;
     text-align: center;
     font-size: 15px;
@@ -118,7 +117,7 @@ body {
 }
 
 .table_listagem tr th{
-    background-color: #807B65;
+    background-color: #4a6891;
     color: white;
     
     
@@ -154,15 +153,25 @@ body {
 	float: left;
 }
 
+.titulo-formulario{
+	margin-top: 20px;
+	margin-left: 20%;
+	font-size: 25px;
+	color:  #4a6891;
+        font-weight: bold;
+        font-family: Calibri;
+	float: left;
+}
+
 .campo{
 	width: 60%;
 	padding: 8px;	
 	margin-left: 20%; 
-	margin-top: 10px;
+	margin-top: 12px;
 	font-size: 12px;
         font-weight: lighter;
 	color:  #5E5A46;
-	border: 1px solid #5E5A46;
+	border: 1px solid #C0C0C0;
 }
 
 .campo-pequeno{
@@ -179,15 +188,15 @@ body {
 .cadastrar{
 	float: left;
 	position: relative;
-	margin-top: 30px;
-	margin-left: 20px;
+	margin-top: 20px;
+        margin-left: 20%;
 	width: 150px;
 	font-size: 15px;
 	font-family: Calibri;
 	padding: 15px;
 	margin-bottom: 50px;
-	background-color:#807B65;
-	border: #807B65;
+	background-color:#4a6891;
+	border: #4a6891;
 	color: #FFFFFF;
 }
 
@@ -199,8 +208,8 @@ body {
     font-size: 15px;
     font-family: Calibri;
     padding: 7px;
-    background-color:#807B65;
-    border: #807B65;
+    background-color:#4a6891;
+    border: #4a6891;
     color: #FFFFFF;
 }
 
@@ -217,8 +226,8 @@ body {
 	font-family: Calibri;
 	padding: 15px;
 	margin-bottom: 50px;
-	background-color:#807B65;
-	border: #807B65;
+	background-color:#4a6891;
+	border: #4a6891;
 	color: #FFFFFF;
 	display: none;
 }
@@ -233,15 +242,15 @@ body {
 	font-family: Calibri;
 	padding: 15px;
 	margin-bottom: 10px;
-	background-color:#807B65;
-	border: #807B65;
+	background-color:#4a6891;
+	border: #4a6891;
 	color: #FFFFFF;
 
 }
 	
 .limpar:hover, .cadastrar:hover, .enviar-filtro:hover{
-	background-color:#5E5A46;
-	border: #5E5A46;
+	background-color:#3b5375;
+	border: #3b5375;
 }
 
 .selecao{
@@ -378,22 +387,22 @@ body {
 
 #footer{
 	width: 100%;
-	min-height: 300px;
+	min-height: 80px;
         height: auto;
-	background-color: #5E5A46;
+	background-color: #4a6891;
 	color: #FFFFFE;
 	position: relative;
 	clear: both;
-	padding-bottom: 50px;
-	margin-top: 100px;
-
+	padding-bottom: 10px;
+	margin-top: 10px;
 }
 
 .tabela-rodape{
-	padding-top: 40px;
+	padding-top: 20px;
 	list-style-type: none;
 	float: left;
 	position: relative;
+        text-align: center;
 }
 
 .coluna{
@@ -567,9 +576,77 @@ a:hover{
              
          }
          
-         
- 
 }
 
 
 
+
+
+
+
+/*BOTSTREP*/
+
+    .tela_login {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #4a6891 !important;
+    }
+    .user_card {
+        height: 400px;
+        width: 350px;
+        margin-top: auto;
+        margin-bottom: auto;
+        background: #ffffff;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 5px;
+    }
+    .brand_logo_container {
+        position: absolute;
+        height: 170px;
+        width: 170px;
+        top: -75px;
+        border-radius: 50%;
+        background: #4a6891;
+        padding: 10px;
+        text-align: center;
+    }
+    .brand_logo {
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+    .form_container {
+        margin-top: 100px;
+    }
+    .login_btn {
+        width: 100%;
+        background: #4a6891 !important;
+        color: white !important;
+    }
+    .login_btn:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+    .login_container {
+        padding: 0 2rem;
+    }
+    .input-group-text {
+        background: #4a6891 !important;
+        color: white !important;
+        border: 0 !important;
+        border-radius: 0.25rem 0 0 0.25rem !important;
+    }
+    .input_user,
+    .input_pass:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }

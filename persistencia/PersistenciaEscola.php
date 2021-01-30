@@ -1,6 +1,14 @@
 <?php
 
+/**
+ * Classe de Persistência de Escola.
+ * 
+ * @author  Eloísa Bazzanella, Maria Eduarda Buzana
+ * @package persistencia
+ * @sinse   29/12/2020
+ */
 class PersistenciaEscola extends PersistenciaPadrao{
+    
     /** @var ModelEscola $ModelEscola */
     private $ModelEscola;
     
@@ -13,135 +21,112 @@ class PersistenciaEscola extends PersistenciaPadrao{
     }
 
     public function alterarRegistro() {
-        $sUpdate = 'UPDATE SISTEMAESCOLA.TBESCOLA
-                       SET escnome = \''.$this->ModelEscola->getNome().'\' ,
-                           escendereco = \''.$this->ModelEscola->getEndereco().'\' ,
-                           esccontato = \''.$this->ModelEscola->getContato().'\' ,
-                           esclogin = '.$this->ModelEscola->getLogin().',
-                           escsenha = '.md5($this->ModelEscola->getSenha()).',
-                           cidcodigo = '.$this->ModelEscola->getCidade()->getCodigo().'
-                     WHERE esccodigo ='.$this->ModelEscola->getCodigo().' ';
+        $sUpdate = 'UPDATE ESCOLA
+                       SET nome      = \''.$this->ModelEscola->getNome().'\' ,
+                           contato   = \''.$this->ModelEscola->getContato().'\' 
+                     WHERE id_escola ='.$this->ModelEscola->getUsuario()->getCodigo().' ';
         
          pg_query($this->conexao, $sUpdate); 
     }
 
     public function excluirRegistro($codigo) {
-        $sDelete = 'DELETE FROM SISTEMAESCOLA.TBPROFESSORESCOLA WHERE ESCCODIGO = '.$codigo.'';
+        $sDelete = 'DELETE FROM ESCOLA WHERE ID_ESCOLA = '.$codigo.'';
         pg_query($this->conexao, $sDelete);
-        $sDeleteDois = 'DELETE FROM SISTEMAESCOLA.TBSALA WHERE ESCCODIGO = '.$codigo.'';
-        pg_query($this->conexao, $sDeleteDois);
-        $sDeleteFinal = 'DELETE FROM SISTEMAESCOLA.TBESCOLA WHERE ESCCODIGO = '.$codigo.'';
-        pg_query($this->conexao, $sDeleteFinal);
     }
 
-    public function inserirRegistro() {
-        
+    public function inserirRegistro() {        
         $aColunas = [
-            'escnome',
-            'escendereco',
-            'esccontato',
-            'esclogin',
-            'escsenha',
-            'cidcodigo'
+            'nome',
+            'contato'
         ];
         
         $aValores = [
             $this->ModelEscola->getNome(),
-            $this->ModelEscola->getEndereco(),
-            $this->ModelEscola->getContato(),
-            $this->ModelEscola->getLogin(),
-            md5($this->ModelEscola->getSenha()),
-            $this->ModelEscola->getCidade()->getCodigo()
+            $this->ModelEscola->getContato()
         ];
         
-        parent::inserir('tbescola', $aColunas, $aValores);
+        parent::inserir('escola', $aColunas, $aValores);
     }
 
     public function listarRegistros() {
         $sSelect = 'SELECT *  
-                      FROM SISTEMAESCOLA.TBESCOLA';
+                      FROM ESCOLA
+                      JOIN USUARIO
+                        ON id_escola = id_usuario';
         $oResultado = pg_query($this->conexao, $sSelect);
         $aEscolas = [];
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            $oEscola = new ModelEscola();
-            $oCidade = new ModelCidade();
-            $oEscola->setCodigo($aLinha['esccodigo']);
-            $oEscola->setNome($aLinha['escnome']);
-            $oEscola->setEndereco($aLinha['escendereco']);
-            $oEscola->setContato($aLinha['esccontato']);
-            $oEscola->setLogin($aLinha['esclogin']);
-            $oEscola->setSenha($aLinha['escsenha']);
+            $oEscola  = new ModelEscola();
+            $oUsuario = new ModelUsuario();
             
-            $oCidade->setCodigo($aLinha['cidcodigo']);
-            $oEscola->setCidade($oCidade);
+            $oEscola->setContato($aLinha['contato']);
+            $oEscola->setNome($aLinha['nome']);
+            
+            $oUsuario->setCodigo($aLinha['id_escola']);
+            $oUsuario->setLogin($aLinha['login']);
+            $oUsuario->setSenha($aLinha['senha']);
+            $oUsuario->setTipo($aLinha['tipo']);
+            
+            $oEscola->setUsuario($oUsuario);
             
             $aEscolas[] = $oEscola;
         }
         return $aEscolas;
     }
     
-    public function listarTudo() {
-        $sSelect = 'SELECT esccodigo, 
-                           escnome, 
-                           escendereco, 
-                           esccontato, 
-                           cidnome, 
-                           esclogin 
-                      FROM SISTEMAESCOLA.TBESCOLA 
-                      JOIN SISTEMAESCOLA.TBCIDADE ON 
-                           tbcidade.cidcodigo = tbescola.cidcodigo;';
-        $oResultado = pg_query($this->conexao, $sSelect);
-        $aEscolas = [];
-        
-        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            $oEscola = new ModelEscola();
-            $oCidade = new ModelCidade();
-            $oEscola->setCodigo($aLinha['esccodigo']);
-            $oEscola->setNome($aLinha['escnome']);
-            $oEscola->setEndereco($aLinha['escendereco']);
-            $oEscola->setContato($aLinha['esccontato']);
-            $oEscola->setLogin($aLinha['esclogin']);
-            
-            $oCidade->setNome($aLinha['cidnome']);
-            $oEscola->setCidade($oCidade);
-            
-            $aEscolas[] = $oEscola;
-        }
-        
-        return $aEscolas;
-    }
     public function listarComFiltro($sIndice, $sValor) {
-        $sSelect = 'SELECT esccodigo, 
-                           escnome, 
-                           escendereco, 
-                           esccontato, 
-                           cidnome, 
-                           esclogin 
-                      FROM SISTEMAESCOLA.TBESCOLA 
-                      JOIN SISTEMAESCOLA.TBCIDADE ON 
-                           tbcidade.cidcodigo = tbescola.cidcodigo
-                      WHERE '.$sIndice.' = \''.$sValor.'\';' ;
+        $sSelect = 'SELECT *
+                      FROM ESCOLA 
+                      JOIN USUARIO
+                        ON id_usuario = id_escola
+                     WHERE '.$sIndice.' = \''.$sValor.'\';' ;
         $oResultado = pg_query($this->conexao, $sSelect);
         $aEscolas = [];
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            $oEscola = new ModelEscola();
-            $oCidade = new ModelCidade();
-            $oEscola->setCodigo($aLinha['esccodigo']);
-            $oEscola->setNome($aLinha['escnome']);
-            $oEscola->setEndereco($aLinha['escendereco']);
-            $oEscola->setContato($aLinha['esccontato']);
-            $oEscola->setLogin($aLinha['esclogin']);
+            $oEscola  = new ModelEscola();
+            $oUsuario = new ModelUsuario();
             
-            $oCidade->setNome($aLinha['cidnome']);
-            $oEscola->setCidade($oCidade);
+            $oEscola->setContato($aLinha['contato']);
+            $oEscola->setNome($aLinha['nome']);
+            
+            $oUsuario->setCodigo($aLinha['id_escola']);
+            $oUsuario->setLogin($aLinha['login']);
+            $oUsuario->setSenha($aLinha['senha']);
+            $oUsuario->setTipo($aLinha['tipo']);
+            
+            $oEscola->setUsuario($oUsuario);
             
             $aEscolas[] = $oEscola;
-        }
-        
+        }        
         return $aEscolas;
     }
+    
+    public function selecionar($codigo) {
+        $sSelect = 'SELECT * 
+                      FROM ESCOLA 
+                     WHERE id_escola = '.$codigo.'';
+        
+        $oResultadoEscola = pg_query($this->conexao, $sSelect);
+        $oEscola          = new ModelEscola();
+        $oUsuario         = new ModelUsuario();
+        
+        while ($aLinha = pg_fetch_array($oResultadoEscola, null, PGSQL_ASSOC)){
+            $oEscola->setContato($aLinha['contato']);
+            $oEscola->setNome($aLinha['nome']);
+            
+            $oUsuario->setCodigo($aLinha['id_escola']);
+            $oUsuario->setLogin($aLinha['login']);
+            $oUsuario->setSenha($aLinha['senha']);
+            $oUsuario->setTipo($aLinha['tipo']);
+            
+            $oEscola->setUsuario($oUsuario);
+        }
+        return $oEscola;
+    }
+    
+    //FALTANTES
     
     public function listarEscolasPorProfessor($codigo) {
         $sSelect = 'SELECT TBESCOLA.*
@@ -170,48 +155,4 @@ class PersistenciaEscola extends PersistenciaPadrao{
         return $aEscolas;
     }
     
-    public function selecionarLogin($login, $senha) {
-       
-        $sSelect = 'SELECT * 
-                      FROM SISTEMAESCOLA.TBESCOLA 
-                     WHERE ESCLOGIN = \''.$login.'\' 
-                       AND ESCSENHA = \''.md5($senha).'\' ;';
-        
-        $oResultado = pg_query($this->conexao, $sSelect);
-        $xEscola = false;
-        
-        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            
-            $xEscola = new ModelEscola();
-            $xEscola->setCodigo($aLinha['esccodigo']);
-            $xEscola->setNome($aLinha['escnome']);
-            $xEscola->setEndereco($aLinha['escendereco']);
-            $xEscola->setContato($aLinha['esccontato']);
-            $xEscola->setLogin($aLinha['esclogin']);
-            
-        }
-        
-        return $xEscola;
-    }
-
-    public function selecionar($codigo) {
-        $sSelect = 'SELECT * 
-                      FROM SISTEMAESCOLA.TBESCOLA 
-                     WHERE ESCCODIGO = '.$codigo.'';
-        $oResultadoEscola = pg_query($this->conexao, $sSelect);
-        $oEscola = new ModelEscola();
-        
-        while ($aLinha = pg_fetch_array($oResultadoEscola, null, PGSQL_ASSOC)){
-            $oCidade = new ModelCidade();
-            $oEscola->setCodigo($aLinha['esccodigo']);
-            $oEscola->setNome($aLinha['escnome']);
-            $oEscola->setEndereco($aLinha['escendereco']);
-            $oEscola->setContato($aLinha['esccontato']);
-            $oEscola->setLogin($aLinha['esclogin']);
-            $oEscola->setSenha($aLinha['escsenha']);
-            $oCidade->setCodigo($aLinha['cidcodigo']);
-            $oEscola->setCidade($oCidade);
-           }
-        return $oEscola;
-    }
 }

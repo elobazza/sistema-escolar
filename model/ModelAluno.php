@@ -1,62 +1,39 @@
 <?php
 
-class ModelAluno {
-    private $codigo;
-    
+/**
+ * Classe de Modelo de Aluno.
+ * 
+ * @author  Eloísa Bazzanella, Maria Eduarda Buzana
+ * @package model
+ * @sinse   29/12/2020
+ */
+class ModelAluno extends ModelPessoa {
+        
     /** @var Turma $turma*/
     private $turma;
     
-    private $nome;
-    private $cpf;
-    private $contato;
+    private $matricula;
     
-    function getCodigo() {
-        return $this->codigo;
-    }
     /**
-     * 
      * @return ModelTurma
      */
     function getTurma() {
         if(empty($this->turma)) {
             $this->turma = new ModelTurma();
-        }
-        
+        }        
         return $this->turma;
     }
-
-    function getNome() {
-        return $this->nome;
-    }
-
-    function getCpf() {
-        return $this->cpf;
-    }
-
-    function getContato() {
-        return $this->contato;
-    }
-
-    function setCodigo($codigo) {
-        $this->codigo = $codigo;
+    
+    function getMatricula() {
+        return $this->matricula;
     }
 
     function setTurma(ModelTurma $turma) {
         $this->turma = $turma;
     }
 
-    function setNome($nome) {
-        $this->nome = $nome;
+    function setMatricula($matricula) {
+        $this->matricula = $matricula;
     }
-
-    function setCpf($cpf) {
-        $this->cpf = $cpf;
-    }
-
-    function setContato($contato) {
-        $this->contato = $contato;
-    }
-
-
     
 }

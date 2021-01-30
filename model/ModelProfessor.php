@@ -1,79 +1,31 @@
 <?php
 
-class ModelProfessor {
-    private $codigo;
-    private $nome;
-    private $cpf;
-    private $contato;
+/**
+ * Classe de Modelo de Professor.
+ * 
+ * @author  Eloísa Bazzanella, Maria Eduarda Buzana
+ * @package model
+ * @sinse   29/12/2020
+ */
+class ModelProfessor extends ModelPessoa {
+    
     private $especialidade;
     private $salario;
-    /** @var ModelDisciplina */
-    private $disciplina = [];
-    private $escola;
     
-    function getCodigo() {
-        return $this->codigo;
-    }
-
-     function getNome() {
-        return $this->nome;
-    }
-
-     function getCpf() {
-        return $this->cpf;
-    }
-
-     function getContato() {
-        return $this->contato;
-    }
-
-     function getEspecialidade() {
+    function getEspecialidade() {
         return $this->especialidade;
     }
 
-     function getSalario() {
+    function getSalario() {
         return $this->salario;
     }
 
-     function getDisciplina() {
-        return $this->disciplina;
-    }
-
-     function getEscola() {
-        return $this->escola;
-    }
-
-     function setCodigo($codigo) {
-        $this->codigo = $codigo;
-    }
-
-     function setNome($nome) {
-        $this->nome = $nome;
-    }
-
-     function setCpf($cpf) {
-         $this->cpf = $cpf;
-    }
-
-     function setContato($contato) {
-        $this->contato = $contato;
-    }
-
-     function setEspecialidade($especialidade) {
+    function setEspecialidade($especialidade) {
         $this->especialidade = $especialidade;
     }
 
-     function setSalario($salario) {
+    function setSalario($salario) {
          $this->salario = $salario;
     }
-
-     function setDisciplina(array $disciplina) {
-        $this->disciplina = $disciplina;
-    }
-
-     function setEscola($escola) {
-      $this->escola = $escola;
-    }
-
 
 }

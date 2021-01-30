@@ -107,20 +107,12 @@ abstract class ViewPadrao {
         } 
         else {
             return '<div class="cabecalho">
-                    <div class="container">
-                            
-                        <div class="dropdown">
-                            <a href="index.php?pg=login"><button class="drop-botao">Login
-                            </button></a>
+                        <div class="container">
+                            <div class="dropdown">
+                                <a href="index.php?pg=login"><img src="../images/logo-titulo.png" style="width: 200px; margin-top:5px; margin-bottom: 5px"></a>
+                            </div>
                         </div>
-                        <div class="dropdown">
-                            <a href="index.php?pg=escola"><button class="drop-botao">Cadastro
-                            </button></a>
-                        </div>
-                        
-                        </div>
-                    </div>
-                </div>';
+                    </div>';
         }
         
     }
@@ -180,27 +172,11 @@ abstract class ViewPadrao {
                 </div>';
         } else {
             return '<div id="footer">
-                    <div class="container">
-                        
+                    <div class="container">                        
                         <table class="tabela-rodape">
                             <tr>
-                                <th class="titulo-footer" >Sobre</th>
+                                <td class="coluna" style="font-family: Calibri; text-align: center; font-size: 15px;">Eloísa Bazzanella e Maria Eduarda Sandner Buzana</td> 
                             </tr>
-                            <tr>
-                                <td class="coluna" style="font-family: Calibri; font-size: 15px;" >Eloísa Bazzanella</td> 
-                            </tr>
-                            <tr>
-                                <td class="coluna" style="font-family: Calibri; font-size: 15px;" >elobazzanella@gmail.com</td> 
-                            </tr>
-                            <tr>
-                                <td class="coluna" style="font-family: Calibri; font-size: 15px;" >Estagiária - <a target="_blank" href="https://www.ipm.com.br/">IPM Sistemas</a></td> 
-                            </tr>
-                            <tr>
-                                <td class="coluna" style="font-family: Calibri; font-size: 15px;" >Programa Jovens Talentos</td> 
-                            </tr>
-                        </table>
-                        
-                        
                     </div>
                 </div>';
         }

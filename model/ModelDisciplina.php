@@ -1,10 +1,17 @@
 <?php
 
-
+/**
+ * Classe de Modelo de Disciplina.
+ * 
+ * @author  Eloísa Bazzanella, Maria Eduarda Buzana
+ * @package model
+ * @sinse   29/12/2020
+ */
 class ModelDisciplina {
+    
     private $codigo;
     private $nome;
-    private $credito;
+    private $cargaHoraria;
     
     function getCodigo() {
         return $this->codigo;
@@ -14,8 +21,8 @@ class ModelDisciplina {
         return $this->nome;
     }
 
-    function getCredito() {
-        return $this->credito;
+    function getCargaHoraria() {
+        return $this->cargaHoraria;
     }
 
     function setCodigo($codigo) {
@@ -26,9 +33,8 @@ class ModelDisciplina {
         $this->nome = $nome;
     }
 
-    function setCredito($credito) {
-        $this->credito = $credito;
+    function setCargaHoraria($cargaHoraria) {
+        $this->cargaHoraria = $cargaHoraria;
     }
-
 
 }

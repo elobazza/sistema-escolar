@@ -50,13 +50,13 @@ class ControllerEscola extends ControllerPadrao{
 
     public function processaExibir() {
         $oPersistenciaCidade = new PersistenciaCidade();   
-        $this->ViewCadastroEscola->setCidades($oPersistenciaCidade->listarRegistros());
+//        $this->ViewCadastroEscola->setCidades($oPersistenciaCidade->listarRegistros());
         if(Redirecionador::getParametro('indice') && Redirecionador::getParametro('valor')){
             $sIndice = Redirecionador::getParametro('indice');
             $sValor = Redirecionador::getParametro('valor'); 
             $this->ViewCadastroEscola->setEscolas($this->PersistenciaEscola->listarComFiltro($sIndice, $sValor));   
         } else {
-            $this->ViewCadastroEscola->setEscolas($this->PersistenciaEscola->listarTudo());
+            $this->ViewCadastroEscola->setEscolas($this->PersistenciaEscola->listarRegistros());
         }
         $this->ViewCadastroEscola->imprime();
     }

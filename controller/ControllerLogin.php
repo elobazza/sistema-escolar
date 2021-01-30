@@ -1,18 +1,19 @@
 <?php
 
-class ControllerLogin extends ControllerPadrao{ 
-     /** @var ModelEscola $ModelEscola */
-    private $ModelEscola;
+class ControllerLogin extends ControllerPadrao {
     
-    /** @var PersistenciaEscola $PersistenciaEscola */
-    private $PersistenciaEscola;
+     /** @var ModelUsuario $ModelUsuario */
+    private $ModelUsuario;
+    
+    /** @var PersistenciaUsuario $PersistenciaUsuario */
+    private $PersistenciaUsuario;
     
     /** @var ViewLogin $ViewLogin */
     private $ViewLogin;
         
     function __construct() {
-        $this->ModelEscola = new ModelEscola();
-        $this->PersistenciaEscola = new PersistenciaEscola();
+        $this->ModelUsuario = new ModelUsuario();
+        $this->PersistenciaUsuario = new PersistenciaUsuario();
         $this->ViewLogin = new ViewLogin();
     }
     
@@ -36,19 +37,16 @@ class ControllerLogin extends ControllerPadrao{
         }
     }
     
-    public function processaLogar() {
-       
+    public function processaLogar() {       
         if(Redirecionador::getParametro('nome') && Redirecionador::getParametro('senha')) {
-            $xEscola = $this->PersistenciaEscola->selecionarLogin(Redirecionador::getParametro('nome'), Redirecionador::getParametro('senha'));
-           
-            if($xEscola){
-                $_SESSION['id']   = $xEscola->getCodigo();
-                $_SESSION['nome'] = $xEscola->getNome();
-                $_SESSION['endereco'] = $xEscola->getEndereco();
-                $_SESSION['contato'] = $xEscola->getContato();
-                $_SESSION['login'] = $xEscola->getLogin();
+            $xUsuario = $this->PersistenciaUsuario->selecionarLogin(Redirecionador::getParametro('nome'), Redirecionador::getParametro('senha'));           
+            if($xUsuario){
+                $_SESSION['id']       = $xUsuario->getCodigo();
+//                $_SESSION['nome']     = $xUsuario->getNome();
+//                $_SESSION['endereco'] = $xUsuario->getEndereco();
+//                $_SESSION['contato']  = $xUsuario->getContato();
+                $_SESSION['login']    = $xUsuario->getLogin();
                
-                
                 header('Location:index.php?pg=escola');
             }
             else {

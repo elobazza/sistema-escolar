@@ -1,40 +1,45 @@
 <?php
 
+/**
+ * Classe de Modelo de Nota.
+ * 
+ * @author  Eloísa Bazzanella, Maria Eduarda Buzana
+ * @package model
+ * @sinse   29/12/2020
+ */
 class ModelNota {
+    
     /** @var ModelAluno $aluno */
     private $aluno;
-    /** @var ModelDisciplina $disciplina */
-    private $disciplina;
-    private $nota;
+    
+    /** @var ModelDisciplinaProfessorTurma $disciplina */
+    private $disciplinaProfessorTurma;
+    
     private $codigo;
+    private $nota;
+
     /**
-     * 
      * @return ModelAluno
      */
-    
-    function getCodigo() {
-        return $this->codigo;
-    }
-
-    function setCodigo($codigo) {
-        $this->codigo = $codigo;
-    }
-
-        function getAluno() {
+    function getAluno() {
         if(empty($this->aluno)) {
             $this->aluno = new ModelAluno();
         }
         return $this->aluno;
     }
+    
     /**
-     * 
-     * @return ModelDisciplina
+     * @return ModelDisciplinaProfessorTurma
      */
-    function getDisciplina() {
-        if(empty($this->disciplina)) {
-            $this->disciplina = new ModelDisciplina();
+    function getDisciplinaProfessorTurma() {
+        if(empty($this->disciplinaProfessorTurma)) {
+            $this->disciplinaProfessorTurma = new ModelDisciplinaProfessorTurma();
         }
-        return $this->disciplina;
+        return $this->disciplinaProfessorTurma;
+    }
+    
+    function getCodigo() {
+        return $this->codigo;
     }
 
     function getNota() {
@@ -45,13 +50,16 @@ class ModelNota {
         $this->aluno = $aluno;
     }
 
-    function setDisciplina(ModelDisciplina $disciplina) {
-        $this->disciplina = $disciplina;
+    function setDisciplinaProfessorTurma(ModelDisciplinaProfessorTurma $disciplinaProfessorTurma) {
+        $this->disciplinaProfessorTurma = $disciplinaProfessorTurma;
+    }
+
+    function setCodigo($codigo) {
+        $this->codigo = $codigo;
     }
 
     function setNota($nota) {
         $this->nota = $nota;
     }
-
-
+    
 }

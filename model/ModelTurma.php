@@ -1,12 +1,17 @@
 <?php
 
+/**
+ * Classe de Modelo de Turma.
+ * 
+ * @author  Eloísa Bazzanella, Maria Eduarda Buzana
+ * @package model
+ * @sinse   29/12/2020
+ */
 class ModelTurma {
+    
     private $codigo;
     private $nome;
-    
-    /** @var array $disciplina */
-    private $disciplina = [];
-    
+        
     function getCodigo() {
         return $this->codigo;
     }
@@ -23,11 +28,4 @@ class ModelTurma {
         $this->nome = $nome;
     }
     
-    function getDisciplina() {
-        return $this->disciplina;
-    }
-
-    function setDisciplina(array $disciplina) {
-        $this->disciplina = $disciplina;
-    }
 }
