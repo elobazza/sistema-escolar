@@ -29,7 +29,7 @@ class PersistenciaUsuario extends PersistenciaPadrao {
         
         $aValores = [
             $this->ModelUsuario->getLogin(),
-            $this->ModelUsuario->getSenha(),
+            md5($this->ModelUsuario->getSenha()),
             $this->ModelUsuario->getTipo()
         ];
         
@@ -123,8 +123,7 @@ class PersistenciaUsuario extends PersistenciaPadrao {
         $sSelect = 'SELECT * 
                       FROM USUARIO
                      WHERE LOGIN = \''.$login.'\' 
-                       AND SENHA = \''.$senha.'\' ;';
-//                       AND SENHA = \''.md5($senha).'\' ;';
+                       AND SENHA = \''.md5($senha).'\' ;';
         
         $oResultado = pg_query($this->conexao, $sSelect);
         $xUsuario   = false;

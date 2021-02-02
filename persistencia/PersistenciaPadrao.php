@@ -26,7 +26,7 @@ abstract class PersistenciaPadrao {
      * @param Array  $valores
      */
     protected function inserir($nomeTabela, $colunas, $valores) {        
-        $sInsert = 'INSERT INTO escola.'.$nomeTabela.' ('. implode(',', $colunas).') VALUES (\''. implode('\',\'', $valores).'\');';
+        $sInsert = 'INSERT INTO '.$nomeTabela.' ('. implode(',', $colunas).') VALUES (\''. implode('\',\'', $valores).'\');';
         
         pg_query($this->conexao, $sInsert);
     }
