@@ -157,20 +157,7 @@ nav {
 	border: 1px solid #5E5A46;
 }
 
-.cadastrar{
-	float: left;
-	position: relative;
-	margin-top: 20px;
-        margin-left: 20%;
-	width: 150px;
-	font-size: 15px;
-	font-family: Calibri;
-	padding: 15px;
-	margin-bottom: 120px;
-	background-color:#4a6891;
-	border: #4a6891;
-	color: #FFFFFF;
-}
+
 
 .enviar-filtro{
     margin-left: 3%; 
@@ -204,10 +191,25 @@ nav {
 	display: none;
 }
 
+.cadastrar{
+	float: left;
+	position: relative;
+	margin-top: 20px;
+        margin-left: 20%;
+	width: 150px;
+	font-size: 15px;
+	font-family: Calibri;
+	padding: 15px;
+	margin-bottom: 120px;
+	background-color:#4a6891;
+	border: #4a6891;
+	color: #FFFFFF;
+}
+
 .limpar {
 	float: left;
 	position: relative;
-	margin-top: 30px;
+	margin-top: 20px;
 	margin-left: 20%;
 	width: 150px;
 	font-size: 15px;

@@ -62,37 +62,25 @@ class ControllerTurma extends ControllerPadrao{
         $this->processaExibir();
     }
 
-    public function processaExibir() {
-        $oPersistenciaDisciplina = new PersistenciaDisciplina();
-        $this->ViewCadastroTurma->setDisciplinas($oPersistenciaDisciplina->listarRegistros());
-        
+    public function processaExibir() {        
         if(Redirecionador::getParametro('indice') && Redirecionador::getParametro('valor')){
             $sIndice = Redirecionador::getParametro('indice');
             $sValor = Redirecionador::getParametro('valor'); 
             $this->ViewCadastroTurma->setTurmas($this->PersistenciaTurma->listarComFiltro($sIndice, $sValor));   
-        } else {
-            $this->ViewCadastroTurma->setTurmas($this->PersistenciaTurma->listarTudo());
-        }
+        } 
+//        else {
+//            $this->ViewCadastroTurma->setTurmas($this->PersistenciaTurma->listarTudo());
+//        }
         $this->ViewCadastroTurma->imprime();
     }
 
     public function processaInserir() {
         if(!empty(Redirecionador::getParametro('nome'))){
-            $aDisciplina = [];
-
-            foreach (Redirecionador::getParametro('disciplinas') as $iCodigoDisciplina) {
-                $oDisciplina = new ModelDisciplina();
-                $oDisciplina->setCodigo($iCodigoDisciplina);
-
-                $aDisciplina[] = $oDisciplina;
-            }
-
-
             $this->ModelTurma->setNome(Redirecionador::getParametro('nome'));
-            $this->ModelTurma->setDisciplina($aDisciplina);
 
             $this->PersistenciaTurma->setModelTurma($this->ModelTurma);
             $this->PersistenciaTurma->inserirRegistro();
+            header('Location:index.php?pg=consultaTurma');
         }
         $this->processaExibir();
     }

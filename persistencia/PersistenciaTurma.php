@@ -18,21 +18,13 @@ class PersistenciaTurma extends PersistenciaPadrao {
 
     public function inserirRegistro() {
         $aColunas = [
-            'turnome'
+            'nome'
         ];
         $aValores = [
             $this->ModelTurma->getNome()
         ];
         
-        parent::inserir('tbturma', $aColunas, $aValores);
-        
-        $oResource = pg_query($this->conexao, 'SELECT MAX(turcodigo) as turcodigo FROM SISTEMAESCOLA.TBTURMA');
-        
-        if($aDadosTurma = pg_fetch_array($oResource)) {
-            $this->ModelTurma->setCodigo($aDadosTurma['turcodigo']);
-        }
-        
-        $this->inserirDisciplinasRelacionadas();
+        parent::inserir('turma', $aColunas, $aValores);
     }
     
     private function inserirDisciplinasRelacionadas() {

@@ -4,8 +4,10 @@
 class PersistenciaProfessor extends PersistenciaPadrao{
     /** @var ModelProfessor $ModelProfessor */
     private $ModelProfessor;
+    
     /** @var ModelDisciplina $ModelDisciplina */
     private $ModelDisciplina;
+    
     /** @var ModelEscola $ModelEscola */
     private $ModelEscola;
     
@@ -18,32 +20,20 @@ class PersistenciaProfessor extends PersistenciaPadrao{
     }
     public function inserirRegistro() {
         $aColunas = [
-            'pronome', 
-            'procpf',
-            'procontato',
-            'proespecialidade',
-            'prosalario',
+            'id_professor', 
+            'especialidade',
+            'salario'
         ];
         
         $aValores = [
-            $this->ModelProfessor->getNome(),
-            $this->ModelProfessor->getCpf(),
-            $this->ModelProfessor->getContato(),
+            $this->ModelProfessor->getUsuario()->getCodigo(),
             $this->ModelProfessor->getEspecialidade(),
-            $this->ModelProfessor->getSalario()
-            
+            $this->ModelProfessor->getSalario()            
         ];
-            
-        parent::inserir('tbprofessor', $aColunas, $aValores);
+//        echo 'INSERT INTO professor ('. implode(',', $aColunas).') VALUES (\''. implode('\',\'', $aValores).'\');';
+//        die();
         
-        $oResource = pg_query($this->conexao, 'SELECT MAX(procodigo) as procodigo FROM SISTEMAESCOLA.TBPROFESSOR');
-        
-        if($aDadosProfessor = pg_fetch_array($oResource)) {
-            $this->ModelProfessor->setCodigo($aDadosProfessor['procodigo']);
-        }
-        
-        $this->inserirDisciplinasRelacionadas();
-        $this->inserirEscolasRelacionadas();
+        parent::inserir('professor', $aColunas, $aValores);
     }
     
     private function inserirDisciplinasRelacionadas() {
@@ -140,19 +130,21 @@ class PersistenciaProfessor extends PersistenciaPadrao{
 
     public function listarRegistros() {
         $sSelect = 'SELECT * 
-                      FROM SISTEMAESCOLA.TBPROFESSOR
+                      FROM PROFESSOR
+                      JOIN PESSOA ON id_professor = id_pessoa 
                       ';
         $oResultado = pg_query($this->conexao, $sSelect);
         $aProfessores = [];
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
             $oProfessor = new ModelProfessor();
-            $oProfessor->setCodigo($aLinha['procodigo']);
-            $oProfessor->setNome($aLinha['pronome']);
-            $oProfessor->setCpf($aLinha['procpf']);
-            $oProfessor->setContato($aLinha['procontato']);
-            $oProfessor->setEspecialidade($aLinha['proespecialidade']);
-            $oProfessor->setSalario($aLinha['prosalario']);
+            $oProfessor->getUsuario()->setCodigo($aLinha['id_professor']);
+            $oProfessor->setNome($aLinha['nome']);
+            $oProfessor->setCpf($aLinha['cpf']);
+            $oProfessor->setContato($aLinha['contato']);
+            $oProfessor->setEspecialidade($aLinha['especialidade']);
+            $oProfessor->setSalario($aLinha['salario']);
+            $oProfessor->setData_nascimento($aLinha['data_nascimento']);
             
             $aProfessores[] = $oProfessor;
         }

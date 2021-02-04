@@ -1,30 +1,11 @@
 <?php
 
 
-class ViewCadastroProfessor extends ViewPadrao{
-    private $escolas = [];
-    private $disciplinas = [];
-    private $escolasProfessor = [];
-    private $disciplinasProfessor = [];
+class ViewCadastroProfessor extends ViewPadrao {
+    
     private $professores;
     private $professor;
     
-    function getEscolasProfessor() {
-        return $this->escolasProfessor;
-    }
-
-    function getDisciplinasProfessor() {
-        return $this->disciplinasProfessor;
-    }
-
-    function setEscolasProfessor($escolasProfessor) {
-        $this->escolasProfessor = $escolasProfessor;
-    }
-
-    function setDisciplinasProfessor($disciplinasProfessor) {
-        $this->disciplinasProfessor = $disciplinasProfessor;
-    }
-
     function getProfessor() {
         return $this->professor;
     }
@@ -42,146 +23,30 @@ class ViewCadastroProfessor extends ViewPadrao{
         $this->professores = $professores;
     }
 
-        
-    function getEscolas() {
-        return $this->escolas;
-    }
-
-    function getDisciplinas() {
-        return $this->disciplinas;
-    }
-
-    function setEscolas(array $escolas) {
-        $this->escolas = $escolas;
-    }
-
-    function setDisciplinas(array $disciplinas) {
-        $this->disciplinas = $disciplinas;
-    }
-
     function getConteudoCadastrar(){
-        return '<form action="index.php?pg=professor&acao=insere" method="POST">
-                <div class="container">
-                    <label class="desc-formulario">Nome do Professor</label>
-                    <input class="campo" type="text" name="nome" id="nome-professor" maxlength="50">
-                    <label class="desc-formulario">CPF</label>
-                    <input class="campo" type="text" name="cpf" id="cpf-professor" maxlength="14">
-                    <label class="desc-formulario" >Contato</label>
-                    <input class="campo" type="text" name="contato" id="contato-professor" maxlength="30">
-                    <label class="desc-formulario">Especialidade</label>
-                    <input class="campo" type="text" name="especialidade" id="especialidade-professor" maxlength="50">
-                    <label class="desc-formulario" >Salário </label>
-                    <input class="campo" type="text" name="salario" id="salario-professor" maxlength="12">
-                    <label class="desc-formulario" >Disciplinas </label>
-                    <table id="tabela-disciplina" class="tabela-adiciona">
-                        <tr>
-                            '.$this->createSelectCadastro().'
-                        </tr>
-                    </table>
-
-                    <label class="desc-formulario" >Escolas</label>
-                    <table id="tabela-escola" class="tabela-adiciona">
-                        <tr>
-                            '.$this->createSelectDoisCadastro().'
-                        </tr>
-                    </table>
-
-
-                    <button class="limpar" id="limpar-professor">
-                                    Limpar
-                    </button>
-                    <input type="submit" value="Cadastrar" class="cadastrar" id="cadastrar-professor">
-
-                    <input type="submit" value="Cadastrar" class="cadastrar-peq" id="cadastrar-professor">
-
-                </div>
+        return '<div id="cadastro">
+            <form id="form" action="index.php?pg=professor&acao=insere" method="POST">
+                    <div class="container">
+                        <label class="titulo-formulario">CADASTRO DE PROFESSOR</label>
+                        <input class="campo" type="text" name="nome" placeholder="Nome" id="nome" maxlength="50">
+                        <input class="campo" type="text" name="cpf" placeholder="CPF" id="cpf" maxlength="14">
+                        <input class="campo" type="text" name="data_nascimento" placeholder="Data de Nascimento" id="data_nascimento" maxlength="10">
+                        <input class="campo" type="text" name="contato" placeholder="Contato" id="contato" maxlength="30">
+                        <input class="campo" type="text" name="especialidade" placeholder="Especialidade" id="especialidade" maxlength="30">
+                        <input class="campo" type="text" name="salario" placeholder="Salario" id="salario" maxlength="30">
+                        <input class="campo" type="text" name="login" placeholder="Login" id="login" maxlength="30">
+                        <input class="campo" type="password" name="senha" placeholder="Senha" id="senha" maxlength="30">
+                    
+                        <button class="limpar" id="limpar-professor">
+                            Limpar
+                        </button>
+                        <input type="submit" class="cadastrar" id="cadastrar-professor" value="Cadastrar">                    
+                        <input type="submit" class="cadastrar-peq" id="cadastrar-professor" value="Cadastrar">
+                    </div>
                 </form>
-                <div class="container">
-                    <form action="index.php?pg=professor" method="POST">
-                        <select name="indice" id="indice" class="selecao-filtro">
-
-                        '.$this->buscaIndice().'  
-                        </select>
-                        <input type="text" name="valor" class="selecao-valor">
-                        <input type="submit" value="Filtrar" class="enviar-filtro">
-                     </form>
-                 </div>
-
-                    '.$this->montaTabela().'';
-    }
-
-    function getConteudoAlterar(){
-          return '<form action="index.php?pg=professor&acao=altera&efetiva=1" method="POST">
-                <div class="container">
-
-                    <label class="desc-formulario">Código</label>
-                    <input class="campo" name="codigo" type="text" id="codigo-professor" value="'.$this->professor->getCodigo().'" >
-                    <label class="desc-formulario">Nome do Professor</label>
-                    <input class="campo" type="text" name="nome" id="nome-professor" maxlength="50"  value="'.$this->professor->getNome().'">
-                    <label class="desc-formulario">CPF</label>
-                    <input class="campo" type="text" name="cpf" id="cpf-professor" maxlength="14"  value="'.$this->professor->getCpf().'">
-                    <label class="desc-formulario" >Contato</label>
-                    <input class="campo" type="text" name="contato" id="contato-professor" maxlength="30"  value="'.$this->professor->getContato().'">
-                    <label class="desc-formulario">Especialidade</label>
-                    <input class="campo" type="text" name="especialidade" id="especialidade-professor" maxlength="50"  value="'.$this->professor->getEspecialidade().'">
-                    <label class="desc-formulario" >Salário </label>
-                    <input class="campo" type="text" name="salario" id="salario-professor" maxlength="12"  value="'.$this->professor->getSalario().'">
-
-
-                     <label class="desc-formulario" >Disciplinas </label>
-
-
-                      <table id="tabela-disciplina" class="tabela-adiciona">
-
-                            '.$this->createSelect().'
-
-                    </table>
-                    <label class="desc-formulario" >Escolas</label>
-                    <table id="tabela-escola" class="tabela-adiciona">
-                        <tr>
-                            '.$this->createSelectDoisCadastro().'
-                        </tr>
-                    </table>
-
-                    <button class="limpar" id="limpar-professor">
-                                    Limpar
-                    </button>
-                    <input type="submit" value="Cadastrar" class="cadastrar" id="cadastrar-professor">
-
-                    <input type="submit" value="Cadastrar" class="cadastrar-peq" id="cadastrar-professor">
-
-            </div>
-            </form>
-            <div class="container">
-                <form action="index.php?pg=professor" method="POST">
-                    <select name="indice" id="indice" class="selecao-filtro">
-
-                    '.$this->buscaIndice().'  
-                    </select>
-                    <input type="text" name="valor" class="selecao-valor">
-                    <input type="submit" value="Filtrar" class="enviar-filtro">
-                 </form>
-             </div>
-
-            '.$this->montaTabela().''
+             </div>'
          ;
-      }    
-    public function montaTabela(){
-        return '<table class="table_listagem" style="clear:both">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>CPF</th>
-                        <th>Contato</th>
-                        <th>Especialidade</th>
-                        <th>Sálario</th>
-                        <th>Disciplinas</th>
-                        <th>Escolas</th>
-                        <th>Ações</th>
-                    </tr>
-                    '.$this->createSelectListagem().'
-                </table>';
-    }
+    }    
     
     private function createSelectListagem() {
         $sResult = "";

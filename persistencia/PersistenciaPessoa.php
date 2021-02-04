@@ -28,6 +28,7 @@ class PersistenciaPessoa extends PersistenciaPadrao {
 
     public function inserirRegistro() {
         $aColunas = [
+            'id_pessoa',
             'nome',
             'cpf',
             'contato',
@@ -36,6 +37,7 @@ class PersistenciaPessoa extends PersistenciaPadrao {
         ];
         
         $aValores = [
+            $this->ModelPessoa->getUsuario()->getCodigo(),
             $this->ModelPessoa->getNome(),
             $this->ModelPessoa->getCpf(),
             $this->ModelPessoa->getContato(),

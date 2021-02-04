@@ -2,6 +2,7 @@
 
 
 class ViewCadastroTurma extends ViewPadrao{
+    
     private $disciplinas;
     private $disciplinasTurma;
     private $turmas;
@@ -40,38 +41,18 @@ class ViewCadastroTurma extends ViewPadrao{
     }
 
     function getConteudoCadastrar(){
-        return '<form action="index.php?pg=turma&acao=insere" method="POST">
-            <div class="container">
-                <label class="desc-formulario">Nome da Turma</label>
-                <input class="campo" name="nome" type="text" id="nome-turma" maxlength="50">
-                <label class="desc-formulario">Disciplinas</label>
-                <table id="tabela-disciplina" class="tabela-adiciona">
-                <tr>
-                '.$this->createSelectCadastro().'
-                </tr>
-                </table>
-               
-                <button class="limpar" id="limpar-turma">
-                                Limpar
-                </button>
-                <input type="submit" value="Cadastrar" class="cadastrar" id="cadastrar-turma">
-
-                <input type="submit" value="Cadastrar" class="cadastrar-peq" id="cadastrar-turma">
-
-           </div>
-         </form>
-        <div class="container">
-                <form action="index.php?pg=turma" method="POST">
-                    <select name="indice" id="indice" class="selecao-filtro">
-
-                    '.$this->buscaIndice().'  
-                    </select>
-                    <input type="text" name="valor" class="selecao-valor">
-                    <input type="submit" value="Filtrar" class="enviar-filtro">
-                 </form>
-             </div> 
-
-        '.$this->montaTabela().'';
+        return '<div id="cadastro">
+            <form id="form" action="index.php?pg=turma&acao=insere" method="POST">
+                    <div class="container">
+                        <label class="titulo-formulario">CADASTRO DE TURMA</label>
+                        <input class="campo" type="text" name="nome" placeholder="Nome" id="nome" maxlength="50">
+                    
+                        <input type="submit" class="cadastrar" id="cadastrar-turma" value="Cadastrar">                    
+                        <input type="submit" class="cadastrar-peq" id="cadastrar-turma" value="Cadastrar">
+                    </div>
+                </form>
+             </div>'
+         ;
     }
     
     

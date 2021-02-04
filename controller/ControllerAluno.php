@@ -65,8 +65,7 @@ class ControllerAluno extends ControllerPadrao {
     }
 
     public function processaExibir() { 
-        $oPersistenciaTurma = new PersistenciaTurma();
-        
+        $oPersistenciaTurma = new PersistenciaTurma();        
         $this->ViewCadastroAluno->setTurmas($oPersistenciaTurma->listarRegistros());
         if(Redirecionador::getParametro('indice') && Redirecionador::getParametro('valor')){
             $sIndice = Redirecionador::getParametro('indice');
@@ -80,7 +79,7 @@ class ControllerAluno extends ControllerPadrao {
         
     }
 
-    public function processaInserir() {      
+    public function processaInserir() { 
         if(!empty(Redirecionador::getParametro('nome')) && !empty(Redirecionador::getParametro('cpf')) 
         && !empty(Redirecionador::getParametro('contato')) && !empty(Redirecionador::getParametro('turma'))
         && !empty(Redirecionador::getParametro('senha')) && !empty(Redirecionador::getParametro('matricula'))
@@ -96,20 +95,23 @@ class ControllerAluno extends ControllerPadrao {
             $this->ModelPessoa->setContato(Redirecionador::getParametro('contato'));        
             $this->ModelPessoa->setCpf(Redirecionador::getParametro('cpf'));        
             $this->ModelPessoa->setData_nascimento(Redirecionador::getParametro('data_nascimento'));        
-            $this->ModelPessoa->setNome(Redirecionador::getParametro('nome'));        
-//            $this->ModelPessoa->getEscola()->getUsuario()->setCodigo($_SESSION['id']);        
+            $this->ModelPessoa->setNome(Redirecionador::getParametro('nome'));
+            $this->ModelPessoa->getEscola()->getUsuario()->setCodigo($_SESSION['id']);        
+            
+            $oUsuarioPessoa = $this->PersistenciaUsuario->selecionarLogin($this->ModelUsuario->getLogin(), $this->ModelUsuario->getSenha());
+            $this->ModelPessoa->setUsuario($oUsuarioPessoa);
             
             $this->PersistenciaPessoa->setModelPessoa($this->ModelPessoa);
             $this->PersistenciaPessoa->inserirRegistro();
             
             $this->ModelAluno->getTurma()->setCodigo(Redirecionador::getParametro('turma'));
             $this->ModelAluno->setMatricula(Redirecionador::getParametro('matricula'));
+            $this->ModelAluno->setUsuario($oUsuarioPessoa);
 
             $this->PersistenciaAluno->setModelAluno($this->ModelAluno);
             $this->PersistenciaAluno->inserirRegistro();
             header('Location:index.php?pg=consultaAluno');
         }
-        
         $this->processaExibir();
     }
 }

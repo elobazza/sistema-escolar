@@ -15,11 +15,13 @@ class PersistenciaAluno extends PersistenciaPadrao{
 
     public function inserirRegistro() {
         $aColunas = [
+            'id_aluno',
             'matricula',
             'id_turma'
         ];
         
         $aValores = [
+            $this->ModelAluno->getUsuario()->getCodigo(),
             $this->ModelAluno->getMatricula(),
             $this->ModelAluno->getTurma()->getCodigo()
         ];
@@ -44,7 +46,10 @@ class PersistenciaAluno extends PersistenciaPadrao{
     }
     
     public function listarRegistros() {
-        $sSelect = 'SELECT * FROM ALUNO JOIN PESSOA ON id_aluno = id_pessoa';
+        $sSelect = 'SELECT ALUNO.*, PESSOA.*, TURMA.nome AS turma
+                      FROM ALUNO 
+                      JOIN PESSOA ON id_aluno = id_pessoa 
+                      JOIN TURMA ON ALUNO.id_turma = TURMA.id_turma';
         $oResultadoAluno = pg_query($this->conexao, $sSelect);
         $aAlunos = [];
         
@@ -59,6 +64,7 @@ class PersistenciaAluno extends PersistenciaPadrao{
             $oAluno->setNome($aLinha['nome']);
             $oAluno->setData_nascimento($aLinha['data_nascimento']);
             $oTurma->setCodigo($aLinha['id_turma']);
+            $oTurma->setNome($aLinha['turma']);
             $oAluno->setTurma($oTurma);
             
             $aAlunos[] = $oAluno;
