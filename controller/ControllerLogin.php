@@ -47,7 +47,7 @@ class ControllerLogin extends ControllerPadrao {
 //                $_SESSION['contato']  = $xUsuario->getContato();
                 $_SESSION['login']    = $xUsuario->getLogin();
                
-                header('Location:index.php?pg=escola');
+                header('Location:index.php?pg=telaPrincipal');
             }
             else {
                 header('Location:index.php?pg=login');

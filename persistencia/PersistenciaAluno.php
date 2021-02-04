@@ -1,6 +1,7 @@
 <?php
 
 class PersistenciaAluno extends PersistenciaPadrao{
+    
     /** @var ModelAluno $ModelAluno */
     private $ModelAluno;
         
@@ -14,42 +15,36 @@ class PersistenciaAluno extends PersistenciaPadrao{
 
     public function inserirRegistro() {
         $aColunas = [
-            'alunome',
-            'alucpf', 
-            'alucontato',
-            'turcodigo'
+            'matricula',
+            'id_turma'
         ];
         
         $aValores = [
-            $this->ModelAluno->getNome(),
-            $this->ModelAluno->getCpf(),
-            $this->ModelAluno->getContato(),
+            $this->ModelAluno->getMatricula(),
             $this->ModelAluno->getTurma()->getCodigo()
         ];
         
-        parent::inserir('tbaluno', $aColunas, $aValores);
+        parent::inserir('aluno', $aColunas, $aValores);
     }
     
     public function alterarRegistro() {
-        $sUpdate = 'UPDATE SISTEMAESCOLA.TBALUNO
-                       SET alunome = \''.$this->ModelAluno->getNome().'\' ,
-                           alucpf = \''.$this->ModelAluno->getCpf().'\' ,
-                           alucontato = \''.$this->ModelAluno->getContato().'\' ,
-                           turcodigo = '.$this->ModelAluno->getTurma()->getCodigo().'
-                     WHERE alucodigo ='.$this->ModelAluno->getCodigo().' ';
+        $sUpdate = 'UPDATE ALUNO
+                       SET matricula = \''.$this->ModelAluno->getMatricula().'\' ,
+                           id_turma = '.$this->ModelAluno->getTurma()->getCodigo().'
+                     WHERE id_aluno ='.$this->ModelAluno->getCodigo().' ';
         
          pg_query($this->conexao, $sUpdate); 
     }
 
     public function excluirRegistro($codigo) {
-        $sDelete = 'DELETE FROM SISTEMAESCOLA.TBNOTA WHERE ALUCODIGO = '.$codigo.'';
+        $sDelete = 'DELETE FROM NOTA WHERE ID_ALUNO = '.$codigo.'';
         pg_query($this->conexao, $sDelete);
-        $sDeleteFinal = 'DELETE FROM SISTEMAESCOLA.TBALUNO WHERE ALUCODIGO = '.$codigo.'';
+        $sDeleteFinal = 'DELETE FROM ALUNO WHERE ID_ALUNO = '.$codigo.'';
         pg_query($this->conexao, $sDeleteFinal);
     }
     
     public function listarRegistros() {
-        $sSelect = 'SELECT * FROM SISTEMAESCOLA.TBALUNO';
+        $sSelect = 'SELECT * FROM ALUNO JOIN PESSOA ON id_aluno = id_pessoa';
         $oResultadoAluno = pg_query($this->conexao, $sSelect);
         $aAlunos = [];
         
@@ -57,11 +52,13 @@ class PersistenciaAluno extends PersistenciaPadrao{
             
             $oAluno = new ModelAluno();
             $oTurma = new ModelTurma();
-            $oAluno->setCodigo($aLinha['alucodigo']);
-            $oAluno->setNome($aLinha['alunome']);
-            $oAluno->setCpf($aLinha['alucpf']);
-            $oAluno->setContato($aLinha['alucontato']);
-            $oTurma->setCodigo($aLinha['turcodigo']);
+            $oAluno->getUsuario()->setCodigo($aLinha['id_aluno']);
+            $oAluno->setMatricula($aLinha['matricula']);
+            $oAluno->setCpf($aLinha['cpf']);
+            $oAluno->setContato($aLinha['contato']);
+            $oAluno->setNome($aLinha['nome']);
+            $oAluno->setData_nascimento($aLinha['data_nascimento']);
+            $oTurma->setCodigo($aLinha['id_turma']);
             $oAluno->setTurma($oTurma);
             
             $aAlunos[] = $oAluno;
@@ -70,17 +67,19 @@ class PersistenciaAluno extends PersistenciaPadrao{
     }
     
     public function selecionar($codigo) {
-        $sSelect = 'SELECT * FROM SISTEMAESCOLA.TBALUNO WHERE ALUCODIGO = '.$codigo.'';
+        $sSelect = 'SELECT * FROM ALUNO WHERE ID_ALUNO = '.$codigo.'';
         $oResultadoAluno = pg_query($this->conexao, $sSelect);
         $oAluno = new ModelAluno();
         
         while ($aLinha = pg_fetch_array($oResultadoAluno, null, PGSQL_ASSOC)){
             $oTurma = new ModelTurma();
-            $oAluno->setCodigo($aLinha['alucodigo']);
-            $oAluno->setNome($aLinha['alunome']);
-            $oAluno->setCpf($aLinha['alucpf']);
-            $oAluno->setContato($aLinha['alucontato']);
-            $oTurma->setCodigo($aLinha['turcodigo']);
+            $oAluno->getUsuario()->setCodigo($aLinha['id_aluno']);
+            $oAluno->setMatricula($aLinha['matricula']);
+            $oAluno->setCpf($aLinha['cpf']);
+            $oAluno->setContato($aLinha['contato']);
+            $oAluno->setNome($aLinha['nome']);
+            $oAluno->setData_nascimento($aLinha['data_nascimento']);
+            $oTurma->setCodigo($aLinha['turma']);
             $oAluno->setTurma($oTurma);
            }
         return $oAluno;
@@ -99,7 +98,7 @@ class PersistenciaAluno extends PersistenciaPadrao{
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
             $oAluno = new ModelAluno();
             $oTurma = new ModelTurma();
-            $oAluno->setCodigo($aLinha['alucodigo']);
+            $oAluno->getUsuario()->setCodigo($aLinha['alucodigo']);
             $oAluno->setNome($aLinha['alunome']);
             $oAluno->setCpf($aLinha['alucpf']);
             $oAluno->setContato($aLinha['alucontato']);
@@ -113,7 +112,20 @@ class PersistenciaAluno extends PersistenciaPadrao{
     }
     
     public function listarTudo() {
-        $sSelect = 'SELECT alucodigo, alunome, alucpf, alucontato, turnome FROM sistemaescola.tbaluno JOIN sistemaescola.tbturma ON tbturma.turcodigo = tbaluno.turcodigo ORDER BY 1;' ;
+        $sSelect = 'SELECT id_aluno,
+                           pessoa.nome,  
+                           cpf,
+                           data_nascimento,
+                           matricula,
+                           contato,
+                           turma.nome,
+                           turma.id_turma
+                      FROM aluno 
+                      JOIN pessoa
+                        ON id_aluno = id_pessoa
+                      JOIN turma 
+                        ON turma.id_turma = aluno.id_turma
+                     ORDER BY 1;';
         
         $oResultadoAluno = pg_query($this->conexao, $sSelect);
         
@@ -121,13 +133,16 @@ class PersistenciaAluno extends PersistenciaPadrao{
         
         while ($aLinha = pg_fetch_array($oResultadoAluno, null, PGSQL_ASSOC)) {
             $oTurma = new ModelTurma();
-            $oTurma->setNome($aLinha['turnome']);
+            $oTurma->setNome($aLinha['nome']);
+            $oTurma->setCodigo($aLinha['id_turma']);
             
             $oAluno = new ModelAluno();
-            $oAluno->setCodigo($aLinha['alucodigo']);
-            $oAluno->setNome($aLinha['alunome']);
-            $oAluno->setCpf($aLinha['alucpf']);
-            $oAluno->setContato($aLinha['alucontato']);
+            $oAluno->getUsuario()->setCodigo($aLinha['id_aluno']);
+            $oAluno->setNome($aLinha['nome']);
+            $oAluno->setCpf($aLinha['cpf']);
+            $oAluno->setContato($aLinha['contato']);
+            $oAluno->setData_nascimento($aLinha['data_nascimento']);
+            $oAluno->setMatricula($aLinha['matricula']);
             $oAluno->setTurma($oTurma);
             
             array_push($aAlunos, $oAluno);

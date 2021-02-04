@@ -20,8 +20,15 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/view/ViewCadastroEscola.php</file>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/controller/ControllerEscola.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/controller/ControllerAluno.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/controller/ControllerPadrao.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/estilo/estilo.css</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/model/ModelUsuario.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaAluno.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/model/ModelAluno.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/view/ViewConsultaAluno.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/view/ViewPadrao.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/model/ModelPessoa.php</file>
         </group>
     </open-files>
 </project-private>

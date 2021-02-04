@@ -6,7 +6,7 @@ body {
 
 .container{
 	width: 60%;
-	margin: auto;	
+	margin: auto;
 }
 
 
@@ -34,52 +34,20 @@ body {
 	text-decoration: none;
 }
 
-.dropdown:hover .drop-botao {
+/*.dropdown:hover .drop-botao {
   background-color:  #3b5375;
-}
+}*/
 
 .cabecalho {
-	background-color:#4a6891;
+	background-color: #4a6891;
 	width: 100%;
 	list-style-type: none;
 	margin: 0;
 	overflow: hidden;
 }
 
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-#menuzinho{
-    display: none;
-}
-
-.dropdown .drop-botao {
-	display: block;
-	float: left;
-	color: #FFFFFF;
-	font-family: Calibri;
-	font-size: 18px;
-	text-align: center;
-	padding: 20px 30px;
-	text-decoration: none;
-	background-color:#4a6891;
-	border:#4a6891;
-	
-	outline: none;
-
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #4a6891;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  margin-top: 60px;
-  
+nav {
+    background-color: #4a6891 !important;
 }
 
 .show {
@@ -102,24 +70,19 @@ body {
     border-collapse: separate;
 }
 
-.table_listagem tr th {
-    background-color: white;
-    color: #5E5A46;
-    
-}
-
 .table_listagem tr td, .table_listagem th {
-    border: 1px solid #4a6891;
     padding: 5px;
-    text-align: center;
-    font-size: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 17px;
     font-family: Calibri;
+    
 }
 
 .table_listagem tr th{
-    background-color: #4a6891;
-    color: white;
-    
+    background-color: white;
+    color: #5E5A46;
+    border-bottom: 1px solid black;
     
 }
 
@@ -164,20 +127,29 @@ body {
 }
 
 .campo{
-	width: 60%;
-	padding: 8px;	
-	margin-left: 20%; 
-	margin-top: 12px;
-	font-size: 12px;
-        font-weight: lighter;
-	color:  #5E5A46;
-	border: 1px solid #C0C0C0;
+    width: 60%;
+    padding: 8px;	
+    margin-left: 20%; 
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: lighter;
+    color:  #5E5A46;
+    border: 1px solid #C0C0C0;
+}
+
+.label-select {
+    width: 60%;	
+    margin-left: 20%; 
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: lighter;
+    color:  #5E5A46;
 }
 
 .campo-pequeno{
 	width: 80%;
         position: relative;
-	padding: 10px;	
+	padding-left: 10px;	
 	margin-top: 10px;
 	font-size: 12px;
         font-weight: lighter;
@@ -194,7 +166,7 @@ body {
 	font-size: 15px;
 	font-family: Calibri;
 	padding: 15px;
-	margin-bottom: 50px;
+	margin-bottom: 120px;
 	background-color:#4a6891;
 	border: #4a6891;
 	color: #FFFFFF;
@@ -257,10 +229,9 @@ body {
 	width: 60%;
 	padding: 7px;	
 	margin-left: 20%;
-	margin-top: 20px;
 	font-size: 12px;
 	color:  #5E5A46;
-	border: 1px solid #5E5A46;
+	border: 1px solid #C0C0C0;
 }
 
 .selecao-filtro{
@@ -386,24 +357,20 @@ body {
 /* ELEMENTOS DO FOOTER*/
 
 #footer{
-	width: 100%;
-	min-height: 80px;
-        height: auto;
-	background-color: #4a6891;
-	color: #FFFFFE;
-	position: relative;
-	clear: both;
-	padding-bottom: 10px;
-	margin-top: 10px;
+    width: 100%;
+    min-height: 80px;
+    height: auto;
+    background-color: #4a6891;
+    color: #FFFFFE;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 50px;
+    display: flex;
+    position: fixed;
+    align-items: center;
 }
 
-.tabela-rodape{
-	padding-top: 20px;
-	list-style-type: none;
-	float: left;
-	position: relative;
-        text-align: center;
-}
 
 .coluna{
 	padding-right: 50px;
@@ -423,9 +390,9 @@ a{
 	font-size: 15px;
 }
 
-a:hover{
+/*a:hover{
 	text-decoration: underline;
-}
+}*/
 
 .titulo-footer{
 	font-size: 20px;
@@ -649,4 +616,30 @@ a:hover{
     .input_pass:focus {
         box-shadow: none !important;
         outline: 0px !important;
+    }
+
+    /** TELA PRINCIPAL */
+    
+    .caixa-tela-principal{
+        width: 100%;
+        height: 150px;
+        margin-top: 60px;
+        
+    }
+    
+    .caixinha {
+        width: 23%;
+        height: 100%;
+        background-color: #4a6891;
+        float: left;
+        margin: 0 1% 0 1%;
+    }
+    
+    .titulo {
+        margin-top: 20px;
+        color: #4a6891;
+        font-family: Calibri;
+        font-size: 30px;
+        text-align: center;
+        
     }

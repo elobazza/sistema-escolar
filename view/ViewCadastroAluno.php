@@ -35,14 +35,17 @@ class ViewCadastroAluno extends ViewPadrao {
         return '<div id="cadastro">
             <form id="form" action="index.php?pg=aluno&acao=insere" method="POST">
                     <div class="container">
+                        <label class="titulo-formulario">CADASTRO DE ALUNO</label>
                         <input class="campo" name="codigo" type="hidden" id="codigo-aluno" >
-                        <label class="desc-formulario">Nome do Aluno</label>
-                        <input class="campo" name="nome" type="text" id="nome-aluno" maxlength="50" >
-                        <label class="desc-formulario">CPF</label>
-                        <input class="campo" name="cpf" type="text" id="cpf-aluno" maxlength="14">
-                        <label class="desc-formulario">Contato</label>
-                        <input class="campo" name="contato" type="text" id="contato-aluno"  maxlength="30">
-                        <label class="desc-formulario">Turma</label>
+                        <input class="campo" type="text" name="nome" placeholder="Nome" id="nome" maxlength="50">
+                        <input class="campo" type="text" name="matricula" placeholder="Matrícula" id="matricula" maxlength="50">
+                        <input class="campo" type="text" name="cpf" placeholder="CPF" id="cpf" maxlength="14">
+                        <input class="campo" type="text" name="contato" placeholder="Contato" id="contato" maxlength="30">
+                        <input class="campo" type="text" name="data_nascimento" placeholder="Data de Nascimento" id="data_nascimento" maxlength="10">
+                        <input class="campo" type="text" name="login" placeholder="Login" id="login" maxlength="30">
+                        <input class="campo" type="password" name="senha" placeholder="Senha" id="senha" maxlength="30">
+                    
+                        <label class="label-select">Turma</label>
                         '.$this->createSelectCadastro().'
                         <button class="limpar" id="limpar-aluno">
                             Limpar
@@ -51,19 +54,7 @@ class ViewCadastroAluno extends ViewPadrao {
                         <input type="submit" class="cadastrar-peq" id="cadastrar-aluno" value="Cadastrar">
                     </div>
                 </form>
-             </div>
-             <div class="container">
-            <form action="index.php?pg=aluno" method="POST">
-                <select name="indice" id="indice" class="selecao-filtro">
-
-                '.$this->buscaIndice().'  
-                </select>
-                <input type="text" name="valor" class="selecao-valor">
-                <input type="submit" value="Filtrar" class="enviar-filtro">
-             </form>
-             </div>
-             '.$this->montaTabela().'
-              ';
+             </div>';
     }
     
     protected function getConteudoAlterar() {
@@ -71,7 +62,7 @@ class ViewCadastroAluno extends ViewPadrao {
             <form id="form" action="index.php?pg=aluno&acao=altera&efetiva=1" method="POST">
                     <div class="container">
                         <label class="desc-formulario">Código</label>
-                        <input class="campo" name="codigo" type="text" id="codigo-aluno" value="'.$this->aluno->getCodigo().'" readonly>
+                        <input class="campo" name="id_pessoa" type="text" id="codigo-aluno" value="'.$this->aluno->getCodigo().'" readonly>
                 
                         <label class="desc-formulario">Nome</label>
                         <input class="campo" name="nome" type="text" id="nome-aluno" maxlength="50" value="'.$this->aluno->getNome().'" >
@@ -79,6 +70,12 @@ class ViewCadastroAluno extends ViewPadrao {
                         <input class="campo" name="cpf" type="text" id="cpf-aluno" maxlength="14" value="'.$this->aluno->getCpf().'">
                         <label class="desc-formulario">Contato</label>
                         <input class="campo" name="contato" type="text" id="contato-aluno"  maxlength="30" value="'.$this->aluno->getContato().'">
+                        <label class="desc-formulario">Data de Nascimento</label>
+                        <input class="campo" name="data_nascimento" type="text" id="data-nascimento-aluno"  maxlength="30" value="'.$this->aluno->getData_nascimento().'">
+                        <label class="desc-formulario">Login</label>
+                        <input class="campo" name="login" type="text" id="login-aluno"  maxlength="30" value="'.$this->aluno->getUsuario()->getLogin().'">
+                        <label class="desc-formulario">Senha</label>
+                        <input class="campo" name="senha" type="text" id="senha-aluno"  maxlength="30" value="'.$this->aluno->getUsuario()->getSenha().'">
                         <label class="desc-formulario">Turma</label>
                         '.$this->createSelect().'
                         <button class="limpar" id="limpar-aluno">
@@ -88,53 +85,9 @@ class ViewCadastroAluno extends ViewPadrao {
                         <input type="submit" class="cadastrar-peq" id="alterar-aluno" value="Alterar">
                     </div>
                 </form>
-             </div>
-             
-            <div class="container">
-                <form action="index.php?pg=aluno" method="POST">
-                    <select name="indice" id="indice" class="selecao-filtro">
-
-                    '.$this->buscaIndice().'  
-                    </select>
-                    <input type="text" name="valor" class="selecao-valor">
-                    <input type="submit" value="Filtrar" class="enviar-filtro">
-                 </form>
-             </div>
-             
-             '.$this->montaTabela().'
-              ';
+             </div>';
     }
     
-    public function montaTabela(){
-        return '<table class="table_listagem" style="clear:both">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>CPF</th>
-                        <th>Contato</th>
-                        <th>Turma</th>
-                        <th>Ações</th>
-                    </tr>
-                    '.$this->createSelectListagem().'
-                </table>';
-    }
-    
-    private function createSelectListagem() {
-        $sResult = "";
-        
-        foreach ($this->alunos as $oAluno) { 
-            $sResult .= ' <tr>
-                            <td>' . $oAluno->getCodigo() . '</td>
-                            <td>' . $oAluno->getNome() . '</td>
-                            <td>' . $oAluno->getCpf() . '</td>
-                            <td>' . $oAluno->getContato() . '</td>
-                            <td>' . $oAluno->getTurma()->getNome() . '</td>
-                            <td><a href="index.php?pg=aluno&acao=altera&codigo='.$oAluno->getCodigo().'&efetiva=0"><img src="../images/edit.png" width="20px"></a>
-                            <a href="index.php?pg=aluno&acao=exclui&codigo='.$oAluno->getCodigo().'"><img src="../images/garbage-2.png" style="cursor: pointer; width: 20px"></a></td>
-                          </tr>';
-        }
-        return $sResult;
-    }
     private function createSelectCadastro() {
         $aSelect = [];
         
@@ -163,13 +116,4 @@ class ViewCadastroAluno extends ViewPadrao {
                 </select>';
     }
     
-    public function buscaIndice() {
-        $aFiltros = ['alucodigo', 'alunome', 'alucpf', 'alucontato', 'turnome'];
-        $aValores = ['ID', 'Nome', 'CPF', 'Contato', 'Turma'];
-        $sOpcoes = "";
-        for ($i = 0; $i < sizeof($aValores); $i++) {
-            $sOpcoes .= '<option value="' . $aFiltros[$i] . '">'. $aValores[$i].'</option>';
-        }
-        return $sOpcoes;
-    }
 }

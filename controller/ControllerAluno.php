@@ -5,16 +5,32 @@ class ControllerAluno extends ControllerPadrao {
     /** @var ModelAluno $ModelAluno */
     private $ModelAluno;
     
+    /** @var ModelPessoa $ModelPessoa */
+    private $ModelPessoa;
+    
+    /** @var ModelUsuario $ModelUsuario */
+    private $ModelUsuario;
+    
     /** @var PersistenciaAluno $PersistenciaAluno */
     private $PersistenciaAluno;
+    
+    /** @var PersistenciaPessoa $PersistenciaPessoa */
+    private $PersistenciaPessoa;
+    
+    /** @var PersistenciaUsuario $PersistenciaUsuario */
+    private $PersistenciaUsuario;
     
     /** @var ViewCadastroAluno $ViewCadastroAluno */
     private $ViewCadastroAluno;
     
     function __construct() {
-        $this->ModelAluno        = new ModelAluno();
-        $this->PersistenciaAluno = new PersistenciaAluno();
-        $this->ViewCadastroAluno = new ViewCadastroAluno();
+        $this->ModelAluno          = new ModelAluno();
+        $this->ModelPessoa         = new ModelPessoa();
+        $this->ModelUsuario        = new ModelUsuario();
+        $this->PersistenciaAluno   = new PersistenciaAluno();
+        $this->PersistenciaPessoa  = new PersistenciaPessoa();
+        $this->PersistenciaUsuario = new PersistenciaUsuario();
+        $this->ViewCadastroAluno   = new ViewCadastroAluno();
     }
     
     public function processaAlterar() { 
@@ -66,15 +82,32 @@ class ControllerAluno extends ControllerPadrao {
 
     public function processaInserir() {      
         if(!empty(Redirecionador::getParametro('nome')) && !empty(Redirecionador::getParametro('cpf')) 
-        && !empty(Redirecionador::getParametro('contato')) && !empty(Redirecionador::getParametro('turma'))){
-            $this->ModelAluno->setNome(Redirecionador::getParametro('nome'));
-            $this->ModelAluno->setCpf(Redirecionador::getParametro('cpf'));
-            $this->ModelAluno->setContato(Redirecionador::getParametro('contato'));
+        && !empty(Redirecionador::getParametro('contato')) && !empty(Redirecionador::getParametro('turma'))
+        && !empty(Redirecionador::getParametro('senha')) && !empty(Redirecionador::getParametro('matricula'))
+         && !empty(Redirecionador::getParametro('data_nascimento')) && !empty(Redirecionador::getParametro('login'))){
+            $this->ModelUsuario->setLogin(Redirecionador::getParametro('login'));
+            $this->ModelUsuario->setSenha(Redirecionador::getParametro('senha'));
+            $this->ModelUsuario->setTipo(1);        
+
+            $this->PersistenciaUsuario->setModelUsuario($this->ModelUsuario);
+            $this->PersistenciaUsuario->inserirRegistro();
+            
+            $this->ModelPessoa->setUsuario($this->ModelUsuario);
+            $this->ModelPessoa->setContato(Redirecionador::getParametro('contato'));        
+            $this->ModelPessoa->setCpf(Redirecionador::getParametro('cpf'));        
+            $this->ModelPessoa->setData_nascimento(Redirecionador::getParametro('data_nascimento'));        
+            $this->ModelPessoa->setNome(Redirecionador::getParametro('nome'));        
+//            $this->ModelPessoa->getEscola()->getUsuario()->setCodigo($_SESSION['id']);        
+            
+            $this->PersistenciaPessoa->setModelPessoa($this->ModelPessoa);
+            $this->PersistenciaPessoa->inserirRegistro();
+            
             $this->ModelAluno->getTurma()->setCodigo(Redirecionador::getParametro('turma'));
+            $this->ModelAluno->setMatricula(Redirecionador::getParametro('matricula'));
 
             $this->PersistenciaAluno->setModelAluno($this->ModelAluno);
             $this->PersistenciaAluno->inserirRegistro();
-            header('Location:index.php?pg=aluno');
+            header('Location:index.php?pg=consultaAluno');
         }
         
         $this->processaExibir();
