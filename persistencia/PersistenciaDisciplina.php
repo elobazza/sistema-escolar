@@ -13,48 +13,48 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
     }
 
     public function alterarRegistro() {
-        $sUpdate = 'UPDATE SISTEMAESCOLA.TBDISCIPLINA
-                       SET disnome = \''.$this->ModelDisciplina->getNome().'\' ,
-                           discredito = \''.$this->ModelDisciplina->getCredito().'\' 
-                     WHERE discodigo ='.$this->ModelDisciplina->getCodigo().' ';
+        $sUpdate = 'UPDATE DISCIPLINA
+                       SET nome = \''.$this->ModelDisciplina->getNome().'\' ,
+                           carga_horaria = \''.$this->ModelDisciplina->getCargaHoraria().'\' 
+                     WHERE codigo ='.$this->ModelDisciplina->getCodigo().' ';
         
          pg_query($this->conexao, $sUpdate); 
     }
 
     public function excluirRegistro($codigo) {
-        $sDelete = 'DELETE FROM SISTEMAESCOLA.TBPROFESSORDISCIPLINA WHERE DISCODIGO = '.$codigo.'';
+        $sDelete = 'DELETE FROM PROFESSORDISCIPLINA WHERE ID_DISCIPLINA = '.$codigo.'';
         pg_query($this->conexao, $sDelete);
-        $sDeleteDois = 'DELETE FROM SISTEMAESCOLA.TBDISCIPLINATURMA WHERE DISCODIGO = '.$codigo.'';
+        $sDeleteDois = 'DELETE FROM DISCIPLINATURMA WHERE ID_DISCIPLINA = '.$codigo.'';
         pg_query($this->conexao, $sDeleteDois);
-        $sDeleteTres = 'DELETE FROM SISTEMAESCOLA.TBNOTA WHERE DISCODIGO = '.$codigo.'';
+        $sDeleteTres = 'DELETE FROM NOTA WHERE ID_DISCIPLINA = '.$codigo.'';
         pg_query($this->conexao, $sDeleteTres);
-        $sDeleteFinal = 'DELETE FROM SISTEMAESCOLA.TBDISCIPLINA WHERE DISCODIGO = '.$codigo.'';
+        $sDeleteFinal = 'DELETE FROM DISCIPLINA WHERE ID_DISCIPLINA = '.$codigo.'';
         pg_query($this->conexao, $sDeleteFinal);
     }
 
     public function inserirRegistro() {
         $aColunas = [
-            'disnome',
-            'discredito'
+            'nome',
+            'carga_horaria'
         ];
         $aValores = [
             $this->ModelDisciplina->getNome(),
-            $this->ModelDisciplina->getCredito()
+            $this->ModelDisciplina->getCargaHoraria()
         ];
         
-        parent::inserir('tbdisciplina', $aColunas, $aValores);
+        parent::inserir('disciplina', $aColunas, $aValores);
     }
 
     public function listarRegistros() {
-        $sSelect = 'SELECT * FROM SISTEMAESCOLA.TBDISCIPLINA ORDER BY 1';
+        $sSelect = 'SELECT * FROM DISCIPLINA ORDER BY 1';
         $oResultado = pg_query($this->conexao, $sSelect);
         $aDisciplinas = [];
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
             $oDisciplina = new ModelDisciplina();
-            $oDisciplina->setCodigo($aLinha['discodigo']);
-            $oDisciplina->setNome($aLinha['disnome']);
-            $oDisciplina->setCredito($aLinha['discredito']);
+            $oDisciplina->setCodigo($aLinha['id_disciplina']);
+            $oDisciplina->setNome($aLinha['nome']);
+            $oDisciplina->setCargaHoraria($aLinha['carga_horaria']);
             
             $aDisciplinas[] = $oDisciplina;
         }
@@ -62,7 +62,7 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
     }
     public function listarComFiltro($sIndice, $sValor) {
         $sSelect = 'SELECT * 
-                      FROM SISTEMAESCOLA.TBDISCIPLINA 
+                      FROM DISCIPLINA 
                      WHERE '.$sIndice.' = \''.$sValor.'\'
                     ORDER BY 1;';
         $oResultado = pg_query($this->conexao, $sSelect);
@@ -70,9 +70,9 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
             $oDisciplina = new ModelDisciplina();
-            $oDisciplina->setCodigo($aLinha['discodigo']);
-            $oDisciplina->setNome($aLinha['disnome']);
-            $oDisciplina->setCredito($aLinha['discredito']);
+            $oDisciplina->setCodigo($aLinha['id_disciplina']);
+            $oDisciplina->setNome($aLinha['nome']);
+            $oDisciplina->setCredito($aLinha['carga_horaria']);
             
             $aDisciplinas[] = $oDisciplina;
         }
@@ -80,19 +80,19 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
     }
     
     public function listarDisciplinasPorProfessor($codigo) {
-        $sSelect = 'SELECT TBDISCIPLINA.* 
-                      FROM SISTEMAESCOLA.TBDISCIPLINA 
-                      JOIN SISTEMAESCOLA.TBPROFESSORDISCIPLINA ON
-                           TBDISCIPLINA.DISCODIGO = TBPROFESSORDISCIPLINA.DISCODIGO
-                     WHERE TBPROFESSORDISCIPLINA.PROCODIGO = '.$codigo;
+        $sSelect = 'SELECT DISCIPLINA.* 
+                      FROM DISCIPLINA 
+                      JOIN PROFESSORDISCIPLINA ON
+                           TBDISCIPLINA.ID_DISCIPLINA = TBPROFESSORDISCIPLINA.ID_DISCIPLINA
+                     WHERE PROFESSORDISCIPLINA.ID_PROFESSOR = '.$codigo;
         $oResultado = pg_query($this->conexao, $sSelect);
         $aDisciplinas = [];
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
             $oDisciplina = new ModelDisciplina();
-            $oDisciplina->setCodigo($aLinha['discodigo']);
-            $oDisciplina->setNome($aLinha['disnome']);
-            $oDisciplina->setCredito($aLinha['discredito']);
+            $oDisciplina->setCodigo($aLinha['id_disciplina']);
+            $oDisciplina->setNome($aLinha['nome']);
+            $oDisciplina->setCredito($aLinha['carga_horaria']);
             
             $aDisciplinas[] = $oDisciplina;
         }
@@ -103,20 +103,20 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
     
     
     public function listarDisciplinasPorTurma($codigo) {
-        $sSelect = 'SELECT TBDISCIPLINA.* 
-                      FROM SISTEMAESCOLA.TBDISCIPLINA 
-                      JOIN SISTEMAESCOLA.TBDISCIPLINATURMA ON
-                           TBDISCIPLINA.DISCODIGO = TBDISCIPLINATURMA.DISCODIGO
-                     WHERE TBDISCIPLINATURMA.TURCODIGO = '.$codigo.'
+        $sSelect = 'SELECT DISCIPLINA.* 
+                      FROM DISCIPLINA 
+                      JOIN DISCIPLINATURMA ON
+                           DISCIPLINA.ID_DISCIPLINA = DISCIPLINATURMA.ID_DISCIPLINA 
+                     WHERE DISCIPLINATURMA.ID_TURMA = '.$codigo.'
                      ORDER BY 1';
         $oResultado = pg_query($this->conexao, $sSelect);
         $aDisciplinas = [];
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
             $oDisciplina = new ModelDisciplina();
-            $oDisciplina->setCodigo($aLinha['discodigo']);
-            $oDisciplina->setNome($aLinha['disnome']);
-            $oDisciplina->setCredito($aLinha['discredito']);
+            $oDisciplina->setCodigo($aLinha['id_disciplina']);
+            $oDisciplina->setNome($aLinha['nome']);
+            $oDisciplina->setCredito($aLinha['carga_horaria']);
             
             $aDisciplinas[] = $oDisciplina;
         }
@@ -124,15 +124,15 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
     }
 
     public function selecionar($codigo) {
-        $sSelect = 'SELECT * FROM SISTEMAESCOLA.TBDISCIPLINA WHERE DISCODIGO = '.$codigo.'';
+        $sSelect = 'SELECT * FROM DISCIPLINA WHERE ID_DISCIPLINA = '.$codigo.'';
         $oResultadoDisciplina = pg_query($this->conexao, $sSelect);
         $oDisciplina = new ModelDisciplina();
         
         while ($aLinha = pg_fetch_array($oResultadoDisciplina, null, PGSQL_ASSOC)){
             
-            $oDisciplina->setCodigo($aLinha['discodigo']);
-            $oDisciplina->setNome($aLinha['disnome']);
-            $oDisciplina->setCredito($aLinha['discredito']);
+            $oDisciplina->setCodigo($aLinha['id_disciplina']);
+            $oDisciplina->setNome($aLinha['nome']);
+            $oDisciplina->setCredito($aLinha['carga_horaria']);
            }
         return $oDisciplina;
     }

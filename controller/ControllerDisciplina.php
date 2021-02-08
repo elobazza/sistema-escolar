@@ -1,7 +1,7 @@
 <?php
 
 
-class ControllerDisciplina extends ControllerPadrao{
+class ControllerDisciplina extends ControllerPadrao {
      /** @var ModelDisciplina $ModelDisciplina */
     private $ModelDisciplina;
     
@@ -55,13 +55,13 @@ class ControllerDisciplina extends ControllerPadrao{
     }
 
     public function processaInserir() {
-         if(!empty(Redirecionador::getParametro('nome')) && !empty(Redirecionador::getParametro('credito'))){
+         if(!empty(Redirecionador::getParametro('nome')) && !empty(Redirecionador::getParametro('carga_horaria'))){
             $this->ModelDisciplina->setNome(Redirecionador::getParametro('nome'));
-            $this->ModelDisciplina->setCredito(Redirecionador::getParametro('credito'));
+            $this->ModelDisciplina->setCargaHoraria(Redirecionador::getParametro('carga_horaria'));
 
             $this->PersistenciaDisciplina->setModelDisciplina($this->ModelDisciplina);
             $this->PersistenciaDisciplina->inserirRegistro();
-            header('Location:index.php?pg=disciplina');
+            header('Location:index.php?pg=consultaDisciplina');
          }
         $this->processaExibir();
     }
