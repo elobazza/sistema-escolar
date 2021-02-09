@@ -20,37 +20,19 @@ class ControllerTurma extends ControllerPadrao{
     public function processaAlterar() {
         if(Redirecionador::getParametro('efetiva') == 1) {
             if(!empty(Redirecionador::getParametro('nome'))){
-                $aDisciplina = [];
-
-                foreach (Redirecionador::getParametro('disciplinas') as $iCodigoDisciplina) {
-                    $oDisciplina = new ModelDisciplina();
-                    $oDisciplina->setCodigo($iCodigoDisciplina);
-
-                    $aDisciplina[] = $oDisciplina;
-                }
-                $oPersistenciaDisciplina = new PersistenciaDisciplina();
-
                 $this->ModelTurma->setCodigo(Redirecionador::getParametro('codigo'));
                 $this->ModelTurma->setNome(Redirecionador::getParametro('nome'));
 
-                $this->ModelTurma->setDisciplina($aDisciplina);
-
                 $this->PersistenciaTurma->setModelTurma($this->ModelTurma);
                 $this->PersistenciaTurma->alterarRegistro();
-
-                $this->ViewCadastroTurma->setDisciplinas($oPersistenciaDisciplina->listarDisciplinasPorTurma($this->ModelTurma->getCodigo()));
-                header('Location:index.php?pg=turma');
+                header('Location:index.php?pg=consultaTurma');
             }
             $this->processaExibir();
         }
         else {
            $oTurma = $this->PersistenciaTurma->selecionar(Redirecionador::getParametro('codigo'));
            
-           $oPersistenciaDisciplina = new PersistenciaDisciplina();
-           
-           $this->ViewCadastroTurma->setTurma($oTurma);
-           $this->ViewCadastroTurma->setDisciplinasTurma($oPersistenciaDisciplina->listarDisciplinasPorTurma($oTurma->getCodigo()));
-            
+           $this->ViewCadastroTurma->setTurma($oTurma); 
            $this->ViewCadastroTurma->setAlterar(1);
            $this->processaExibir();
         }
@@ -58,7 +40,7 @@ class ControllerTurma extends ControllerPadrao{
 
     public function processaExcluir() {
         $this->PersistenciaTurma->excluirRegistro(Redirecionador::getParametro('codigo'));
-        header('Location:index.php?pg=turma');
+        header('Location:index.php?pg=consultaTurma');
         $this->processaExibir();
     }
 

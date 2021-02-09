@@ -45,19 +45,14 @@ class ViewCadastroDisciplina extends ViewPadrao{
     protected function getConteudoAlterar() {
         return '<form action="index.php?pg=disciplina&acao=altera&efetiva=1" method="POST">
             <div class="container">
-                <label class="desc-formulario">Código</label>
-                <input class="campo" name="codigo" type="text" id="codigo-disciplina" value="'.$this->disciplina->getCodigo().'" readonly>
+                <input class="campo" name="codigo" type="hidden" id="codigo" value="'.$this->disciplina->getCodigo() .'">
                 <label class="desc-formulario">Nome da Disciplina</label>
-                <input class="campo" name="nome" type="text" id="nome-disciplina" maxlength="50" value="'.$this->disciplina->getNome().'">
+                <input class="campo" name="nome" type="text" id="nome" maxlength="50" value="'.$this->disciplina->getNome().'">
 
-                <label class="desc-formulario">Créditos</label>
-                <input class="campo"  name="credito" type="number" id="credito-disciplina" max="20" value="'.$this->disciplina->getCredito().'">
+                <label class="desc-formulario">Carga Horária</label>
+                <input class="campo"  name="carga_horaria" type="number" id="carga_horaria" value="'.$this->disciplina->getCargaHoraria().'">
 
-                <button class="limpar" id="limpar-disciplina">
-                    Limpar
-                </button>
                 <input type="submit" class="cadastrar" id="alterar-disciplina" value="Alterar">
-
                 <input type="submit" class="cadastrar-peq" id="alterar-disciplina" value="Alterar">
 
             </div></form> ';

@@ -172,14 +172,14 @@ function limparCampoDisciplina(oImagem){
    document.getElementById("tabela-disciplina").deleteRow(oImagem.parentNode.parentNode.rowIndex);
 }
 
-function alterar() {
+function alterar(pagina) {
     var codigo = pegarCodigo();
-    window.open('index.php?pg=aluno&acao=altera&codigo='+ parseInt(codigo) +'&efetiva=0');
+    window.open('index.php?pg=' + pagina + '&acao=altera&codigo='+ parseInt(codigo) +'&efetiva=0');
 }
 
-function excluir() {
+function excluir(pagina) {
     var codigo = pegarCodigo();
-    window.open('index.php?pg=aluno&acao=exclui&codigo='+ parseInt(codigo));
+    window.open('index.php?pg=' + pagina + '&acao=exclui&codigo='+ parseInt(codigo));
 }
 
 

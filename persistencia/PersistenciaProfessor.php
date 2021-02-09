@@ -71,61 +71,17 @@ class PersistenciaProfessor extends PersistenciaPadrao{
     
   
     public function alterarRegistro() {
-        $sDeleteUm = 'DELETE 
-                      FROM SISTEMAESCOLA.TBSALAAULA
-                     WHERE EXISTS (SELECT 1
-                                    FROM SISTEMAESCOLA.TBPROFESSORDISCIPLINA
-                                   WHERE PROCODIGO = '.$this->ModelProfessor->getCodigo().');';
-        pg_query($this->conexao, $sDeleteUm);
-        
-        $sDelete = 'DELETE 
-                          FROM SISTEMAESCOLA.TBPROFESSORDISCIPLINA 
-                         WHERE PROCODIGO = '.$this->ModelProfessor->getCodigo().'';
-        pg_query($this->conexao, $sDelete);
-        
-//        $sDeleteFinal = 'DELETE 
-//                           FROM SISTEMAESCOLA.TBPROFESSORESCOLA
-//                          WHERE PROCODIGO = '.$this->ModelProfessor->getCodigo().'';
-//        pg_query($this->conexao, $sDeleteFinal);
-        
-        $sUpdate = 'UPDATE SISTEMAESCOLA.TBPROFESSOR
-                       SET pronome = \''.$this->ModelProfessor->getNome().'\' ,
-                           procpf = \''.$this->ModelProfessor->getCpf().'\' ,
-                           procontato = \''.$this->ModelProfessor->getContato().'\' ,
-                           proespecialidade = \''.$this->ModelProfessor->getEspecialidade().'\',
-                           prosalario = '.$this->ModelProfessor->getSalario().'
-                     WHERE procodigo ='.$this->ModelProfessor->getCodigo().' ';
+        $sUpdate = 'UPDATE PROFESSOR
+                       SET especialidade = \''.$this->ModelProfessor->getEspecialidade().'\',
+                           salario = '.$this->ModelProfessor->getSalario().'
+                     WHERE id_professor ='.$this->ModelProfessor->getUsuario()->getCodigo().' ';
         pg_query($this->conexao, $sUpdate);
-
-        
-        $this->inserirDisciplinasRelacionadas();
-        $this->inserirEscolasRelacionadas();
-             
-        
     }
 
     public function excluirRegistro($codigo) {
-//        $sDeleteUm = 'DELETE  
-//                        FROM SISTEMAESCOLA.TBSALAAULA 
-//                     WHERE TBSALAAULA.PDCODIGO IN(SELECT TBPROFESSORDISCIPLINA.PDCODIGO 
-//                                         FROM SISTEMAESCOLA.TBPROFESSORDISCIPLINA
-//                                        WHERE PROCODIGO = '.$codigo.');';
-//        pg_query($this->conexao, $sDeleteUm);
-//        
-        $sDelete = 'DELETE  
-                      FROM SISTEMAESCOLA.TBPROFESSORESCOLA 
-                     WHERE PROCODIGO = '.$codigo.'
-                       AND ESCCODIGO = '.$_SESSION['id'].'   ';
-        pg_query($this->conexao, $sDelete);
-//        
-//        $sDeleteDois = 'DELETE 
-//                          FROM SISTEMAESCOLA.TBPROFESSORDISCIPLINA 
-//                         WHERE PROCODIGO = '.$codigo.'';
-//        pg_query($this->conexao, $sDeleteDois);
-//        $sDeleteFinal = 'DELETE 
-//                           FROM SISTEMAESCOLA.TBPROFESSOR
-//                          WHERE PROCODIGO = '.$codigo.'';
-//        pg_query($this->conexao, $sDeleteFinal);
+        $sDeleteFinal = 'DELETE FROM PROFESSOR
+                          WHERE ID_PROFESSOR = '.$codigo.'';
+        pg_query($this->conexao, $sDeleteFinal);
     }
 
     public function listarRegistros() {
@@ -218,37 +174,28 @@ class PersistenciaProfessor extends PersistenciaPadrao{
         return $aProfessores;
     }
     
-    
     public function selecionar($codigo) {
         $sSelect = 'SELECT * 
-                      FROM SISTEMAESCOLA.TBPROFESSOR
-                      JOIN SISTEMAESCOLA.TBPROFESSORDISCIPLINA ON
-                           TBPROFESSOR.PROCODIGO = TBPROFESSORDISCIPLINA.PROCODIGO
-                      JOIN SISTEMAESCOLA.TBPROFESSORESCOLA ON
-                           TBPROFESSOR.PROCODIGO = TBPROFESSORESCOLA.PROCODIGO
-                     WHERE TBPROFESSOR.PROCODIGO = '.$codigo.'';
+                      FROM PROFESSOR 
+                      JOIN PESSOA 
+                        ON id_professor = id_pessoa 
+                      JOIN USUARIO
+                        ON id_pessoa = id_usuario 
+                     WHERE ID_PROFESSOR = '.$codigo.'';
         $oResultadoProfessor = pg_query($this->conexao, $sSelect);
         $oProfessor = new ModelProfessor();
         
         while ($aLinha = pg_fetch_array($oResultadoProfessor, null, PGSQL_ASSOC)){
-           
-            $oPersistenciaDisciplina = new PersistenciaDisciplina();
-            $oPersistenciaEscola = new PersistenciaEscola();
-            
-            
-            $oProfessor->setCodigo($aLinha['procodigo']);
-            $oProfessor->setNome($aLinha['pronome']);
-            $oProfessor->setCpf($aLinha['procpf']);
-            $oProfessor->setContato($aLinha['procontato']);
-            $oProfessor->setSalario($aLinha['prosalario']);
-            $oProfessor->setEspecialidade($aLinha['proespecialidade']);
-            
-            $oProfessor->setDisciplina($oPersistenciaDisciplina->listarDisciplinasPorProfessor($oProfessor->getCodigo()));
-            $oProfessor->setEscola($oPersistenciaEscola->listarEscolasPorProfessor($oProfessor->getCodigo()));
-           
-            
+            $oProfessor->getUsuario()->setCodigo($aLinha['id_professor']);
+            $oProfessor->setEspecialidade($aLinha['especialidade']);
+            $oProfessor->setCpf($aLinha['cpf']);
+            $oProfessor->setContato($aLinha['contato']);
+            $oProfessor->setNome($aLinha['nome']);
+            $oProfessor->setData_nascimento($aLinha['data_nascimento']);
+            $oProfessor->setSalario($aLinha['salario']);
            }
         return $oProfessor;
     }
+    
     
 }

@@ -18,14 +18,14 @@ class ControllerDisciplina extends ControllerPadrao {
     }
     public function processaAlterar() {
         if(Redirecionador::getParametro('efetiva') == 1) {
-            if(!empty(Redirecionador::getParametro('nome')) && !empty(Redirecionador::getParametro('credito'))){
+            if(!empty(Redirecionador::getParametro('nome')) && !empty(Redirecionador::getParametro('carga_horaria'))){
                 $this->ModelDisciplina->setCodigo(Redirecionador::getParametro('codigo'));
                 $this->ModelDisciplina->setNome(Redirecionador::getParametro('nome'));
-                $this->ModelDisciplina->setCredito(Redirecionador::getParametro('credito'));
+                $this->ModelDisciplina->setCargaHoraria(Redirecionador::getParametro('carga_horaria'));
 
                 $this->PersistenciaDisciplina->setModelDisciplina($this->ModelDisciplina);
                 $this->PersistenciaDisciplina->alterarRegistro();
-                header('Location:index.php?pg=disciplina');
+                header('Location:index.php?pg=consultaDisciplina');
             }
             $this->processaExibir();
         }
@@ -39,7 +39,7 @@ class ControllerDisciplina extends ControllerPadrao {
 
     public function processaExcluir() {
         $this->PersistenciaDisciplina->excluirRegistro(Redirecionador::getParametro('codigo'));
-        header('Location:index.php?pg=disciplina');
+        header('Location:index.php?pg=consultaDisciplina');
         $this->processaExibir();
     }
 

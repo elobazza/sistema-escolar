@@ -16,18 +16,12 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
         $sUpdate = 'UPDATE DISCIPLINA
                        SET nome = \''.$this->ModelDisciplina->getNome().'\' ,
                            carga_horaria = \''.$this->ModelDisciplina->getCargaHoraria().'\' 
-                     WHERE codigo ='.$this->ModelDisciplina->getCodigo().' ';
+                     WHERE id_disciplina ='.$this->ModelDisciplina->getCodigo().' ';
         
          pg_query($this->conexao, $sUpdate); 
     }
 
     public function excluirRegistro($codigo) {
-        $sDelete = 'DELETE FROM PROFESSORDISCIPLINA WHERE ID_DISCIPLINA = '.$codigo.'';
-        pg_query($this->conexao, $sDelete);
-        $sDeleteDois = 'DELETE FROM DISCIPLINATURMA WHERE ID_DISCIPLINA = '.$codigo.'';
-        pg_query($this->conexao, $sDeleteDois);
-        $sDeleteTres = 'DELETE FROM NOTA WHERE ID_DISCIPLINA = '.$codigo.'';
-        pg_query($this->conexao, $sDeleteTres);
         $sDeleteFinal = 'DELETE FROM DISCIPLINA WHERE ID_DISCIPLINA = '.$codigo.'';
         pg_query($this->conexao, $sDeleteFinal);
     }
@@ -128,12 +122,11 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
         $oResultadoDisciplina = pg_query($this->conexao, $sSelect);
         $oDisciplina = new ModelDisciplina();
         
-        while ($aLinha = pg_fetch_array($oResultadoDisciplina, null, PGSQL_ASSOC)){
-            
+        while ($aLinha = pg_fetch_array($oResultadoDisciplina, null, PGSQL_ASSOC)){            
             $oDisciplina->setCodigo($aLinha['id_disciplina']);
             $oDisciplina->setNome($aLinha['nome']);
-            $oDisciplina->setCredito($aLinha['carga_horaria']);
-           }
+            $oDisciplina->setCargaHoraria($aLinha['carga_horaria']);
+        }
         return $oDisciplina;
     }
     

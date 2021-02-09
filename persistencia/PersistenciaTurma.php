@@ -26,61 +26,16 @@ class PersistenciaTurma extends PersistenciaPadrao {
         
         parent::inserir('turma', $aColunas, $aValores);
     }
-    
-    private function inserirDisciplinasRelacionadas() {
-        foreach ($this->getModelTurma()->getDisciplina() as $oModelDisciplina) {
-            $aColunas = [
-                'turcodigo',
-                'discodigo',
-            ];
-            
-            $aValores = [
-                $this->ModelTurma->getCodigo(),
-                $oModelDisciplina->getCodigo(),
-            ];
-            
-            parent::inserir('tbdisciplinaturma', $aColunas, $aValores);
-        }
-    }
-    
+        
     public function alterarRegistro() {
-         $sUpdate = 'DELETE 
-                       FROM SISTEMAESCOLA.TBDISCIPLINATURMA
-                      WHERE turcodigo ='.$this->ModelTurma->getCodigo().' ';
-         pg_query($this->conexao, $sUpdate);
-         
-         $this->inserirDisciplinasRelacionadas();
-         
-        $sUpdateFinal = 'UPDATE SISTEMAESCOLA.TBTURMA
-                        SET turnome = \''.$this->ModelTurma->getNome().'\' 
-                      WHERE turcodigo ='.$this->ModelTurma->getCodigo().' ';
+        $sUpdateFinal = 'UPDATE TURMA
+                            SET nome = \''.$this->ModelTurma->getNome().'\' 
+                          WHERE id_turma ='.$this->ModelTurma->getCodigo().' ';
          pg_query($this->conexao, $sUpdateFinal);
                   
     }
 
     public function excluirRegistro($codigo) {
-        $sDelete = 'DELETE  
-                      FROM SISTEMAESCOLA.TBDISCIPLINATURMA
-                     WHERE TURCODIGO = '.$codigo.'';
-        pg_query($this->conexao, $sDelete);
-
-        $sDelete = 'DELETE  
-                      FROM SISTEMAESCOLA.TBNOTA
-                     WHERE  EXISTS (SELECT 1
-                                     FROM SISTEMAESCOLA.TBALUNO
-                                    WHERE TURCODIGO = '.$codigo.');';
-        pg_query($this->conexao, $sDelete);
-        
-        $sDeleteDois = 'DELETE  
-                      FROM SISTEMAESCOLA.TBALUNO
-                     WHERE TURCODIGO = '.$codigo.'';
-        pg_query($this->conexao, $sDeleteDois);
-        
-        $sDeleteTres = 'DELETE  
-                      FROM SISTEMAESCOLA.TBSALAAULA
-                     WHERE TURCODIGO = '.$codigo.'';
-        pg_query($this->conexao, $sDeleteTres);
-        
         $sDeleteFinal = 'DELETE 
                            FROM TURMA
                           WHERE ID_TURMA = '.$codigo.'';
@@ -150,12 +105,9 @@ class PersistenciaTurma extends PersistenciaPadrao {
         $oTurma = new ModelTurma();
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            
-            $oPersistenciaDisciplina = new PersistenciaDisciplina();
             $oTurma->setCodigo($aLinha['id_turma']);
             $oTurma->setNome($aLinha['nome']);
-            $oTurma->setDisciplina($oPersistenciaDisciplina->listarDisciplinasPorTurma($oTurma->getCodigo()));
-            }
+        }
         return $oTurma;
     }
 }

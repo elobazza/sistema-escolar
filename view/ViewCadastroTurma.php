@@ -51,47 +51,23 @@ class ViewCadastroTurma extends ViewPadrao{
                         <input type="submit" class="cadastrar-peq" id="cadastrar-turma" value="Cadastrar">
                     </div>
                 </form>
-             </div>'
-         ;
+             </div>';
     }
     
     
     function getConteudoAlterar(){
-        return '<form action="index.php?pg=turma&acao=altera&efetiva=1" method="POST">
-            <div class="container">
-                <label class="desc-formulario">Código</label>
-                <input class="campo" name="codigo" type="text" id="codigo-turma" value="'.$this->turma->getCodigo().'" readonly>
-          
-                <label class="desc-formulario">Nome da Turma</label>
-                <input class="campo" name="nome" type="text" id="nome-turma" maxlength="50" value="'.$this->turma->getNome().'">
-                <label class="desc-formulario">Disciplinas</label>
-                <table id="tabela-disciplina" class="tabela-adiciona">
-                <tr>
-                '.$this->createSelect().'
-                </tr>
-                </table>
-               
-                <button class="limpar" id="limpar-turma">
-                                Limpar
-                </button>
-                <input type="submit" value="Alterar" class="cadastrar" id="alterar-turma">
-
-                <input type="submit" value="Alterar" class="cadastrar-peq" id="alterar-turma">
-
-           </div>
-         </form>
-        <div class="container">
-                <form action="index.php?pg=turma" method="POST">
-                    <select name="indice" id="indice" class="selecao-filtro">
-
-                    '.$this->buscaIndice().'  
-                    </select>
-                    <input type="text" name="valor" class="selecao-valor">
-                    <input type="submit" value="Filtrar" class="enviar-filtro">
-                 </form>
-             </div> 
-
-        '.$this->montaTabela().'';
+        return '<div id="cadastro">
+            <form id="form" action="index.php?pg=turma&acao=insere" method="POST">
+                    <div class="container">
+                        <input class="campo" name="codigo" type="hidden" id="codigo" value="'.$this->turma->getCodigo() .'">
+                        <label class="desc-formulario">Nome</label>
+                        <input class="campo" name="nome" type="text" id="nome" maxlength="50" value="'.$this->turma->getNome().'" >
+                    
+                        <input type="submit" class="cadastrar" id="alterar-turma" value="Alterar">                    
+                        <input type="submit" class="cadastrar-peq" id="alterar-turma" value="Alterar">
+                    </div>
+                </form>
+             </div>';
     }
     
     
