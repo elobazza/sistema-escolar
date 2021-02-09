@@ -25,6 +25,16 @@ $(document).ready(function () {
        ("#modal-alerta").fadeOut("fast");
     });
   
+    
+    $(".table-selectable tr").click(function(e) {
+        var selecionar = !$(this).hasClass("selected");
+        $(this).parent().find("tr.selected").removeClass("selected");
+        $(this).parent().find("input[type='checkbox']").prop('checked', false);
+        if (selecionar) {
+          $(this).addClass("selected");
+          $(this).find("input[type='checkbox']").prop('checked', true);
+        }
+      });
 
       
 }); 
@@ -160,6 +170,27 @@ function limparCampoEscola(oImagem){
 function limparCampoDisciplina(oImagem){
    
    document.getElementById("tabela-disciplina").deleteRow(oImagem.parentNode.parentNode.rowIndex);
+}
+
+function alterar() {
+    var codigo = pegarCodigo();
+    window.open('index.php?pg=aluno&acao=altera&codigo='+ parseInt(codigo) +'&efetiva=0');
+}
+
+function excluir() {
+    var codigo = pegarCodigo();
+    window.open('index.php?pg=aluno&acao=exclui&codigo='+ parseInt(codigo));
+}
+
+
+function pegarCodigo() {
+    var selecionados = document.getElementsByClassName("selected");
+    if(selecionados.length < 1){
+  	alert("Selecione pelo menos uma linha");
+        return false;
+    }
+    return selecionados[0].getElementsByTagName("input")[0].value;
+     
 }
 
 //function limparCampoDois(oImagem){

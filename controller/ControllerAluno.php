@@ -36,16 +36,26 @@ class ControllerAluno extends ControllerPadrao {
     public function processaAlterar() { 
         if(Redirecionador::getParametro('efetiva') == 1) {
             if(!empty(Redirecionador::getParametro('nome')) && !empty(Redirecionador::getParametro('cpf')) 
-            && !empty(Redirecionador::getParametro('contato')) && !empty(Redirecionador::getParametro('turma'))){
-                $this->ModelAluno->setCodigo(Redirecionador::getParametro('codigo'));
-                $this->ModelAluno->setNome(Redirecionador::getParametro('nome'));
-                $this->ModelAluno->setCpf(Redirecionador::getParametro('cpf'));
-                $this->ModelAluno->setContato(Redirecionador::getParametro('contato'));
+            && !empty(Redirecionador::getParametro('contato')) && !empty(Redirecionador::getParametro('turma'))
+            && !empty(Redirecionador::getParametro('data_nascimento'))){
+                
+                $this->ModelPessoa->getUsuario()->setCodigo(Redirecionador::getParametro('codigo'));
+                
+                $this->ModelPessoa->setContato(Redirecionador::getParametro('contato'));        
+                $this->ModelPessoa->setCpf(Redirecionador::getParametro('cpf'));        
+                $this->ModelPessoa->setData_nascimento(Redirecionador::getParametro('data_nascimento'));        
+                $this->ModelPessoa->setNome(Redirecionador::getParametro('nome'));      
+
+                $this->PersistenciaPessoa->setModelPessoa($this->ModelPessoa);
+                $this->PersistenciaPessoa->alterarRegistro();
+
                 $this->ModelAluno->getTurma()->setCodigo(Redirecionador::getParametro('turma'));
+                $this->ModelAluno->setMatricula(Redirecionador::getParametro('matricula'));
+                $this->ModelAluno->setUsuario($this->ModelPessoa->getUsuario());
 
                 $this->PersistenciaAluno->setModelAluno($this->ModelAluno);
                 $this->PersistenciaAluno->alterarRegistro();
-                header('Location:index.php?pg=aluno');
+                header('Location:index.php?pg=consultaAluno');
             }
             $this->processaExibir();
         }
@@ -60,7 +70,7 @@ class ControllerAluno extends ControllerPadrao {
 
     public function processaExcluir() {
         $this->PersistenciaAluno->excluirRegistro(Redirecionador::getParametro('codigo'));
-        header('Location:index.php?pg=aluno');
+        header('Location:index.php?pg=consultaAluno');
         $this->processaExibir();
     }
 

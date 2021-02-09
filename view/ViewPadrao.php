@@ -61,7 +61,7 @@ abstract class ViewPadrao {
         if (isset($_SESSION['id'])) {
             return '<nav class="navbar navbar-dark navbar-expand-lg">
                         <div class="container">
-                            <a class="navbar-brand" href="#">
+                            <a class="navbar-brand" href="index.php?pg=telaPrincipal">
                             <img src="../images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
                                 Newton
                             </a>

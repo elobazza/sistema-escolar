@@ -645,3 +645,18 @@ a{
         text-align: center;
         
     }
+
+    .table-selectable {
+        > tbody {
+            > tr {
+              cursor: pointer;
+            }
+            > tr.selected {
+              background-color: #d9edf7;
+              color: #31708f;
+              &:hover {
+                background-color: darken(#d9edf7, 5%);
+              }
+            }
+        }
+    }

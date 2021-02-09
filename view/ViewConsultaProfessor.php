@@ -34,7 +34,6 @@ class ViewConsultaProfessor extends ViewPadrao {
                     <a href="index.php?pg=professor" style="color:white; font-size:18px; margin-right: 20px"> Cadastrar</a>
                     <a href="index.php?pg=professor" style="color:white; font-size:18px; margin-right: 20px"> Editar</a>
                     <a href="index.php?pg=professor" style="color:white; font-size:18px; margin-right: 20px"> Excluir</a>
-                    <a href="index.php?pg=professor" style="color:white; font-size:18px; margin-right: 20px"> Visualizar</a>
                 </div>
             </div>
             

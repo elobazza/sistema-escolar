@@ -31,9 +31,8 @@ class PersistenciaAluno extends PersistenciaPadrao{
     
     public function alterarRegistro() {
         $sUpdate = 'UPDATE ALUNO
-                       SET matricula = \''.$this->ModelAluno->getMatricula().'\' ,
-                           id_turma = '.$this->ModelAluno->getTurma()->getCodigo().'
-                     WHERE id_aluno ='.$this->ModelAluno->getCodigo().' ';
+                       SET id_turma = '.$this->ModelAluno->getTurma()->getCodigo().'
+                     WHERE id_aluno ='.$this->ModelAluno->getUsuario()->getCodigo().' ';
         
          pg_query($this->conexao, $sUpdate); 
     }
@@ -73,7 +72,13 @@ class PersistenciaAluno extends PersistenciaPadrao{
     }
     
     public function selecionar($codigo) {
-        $sSelect = 'SELECT * FROM ALUNO WHERE ID_ALUNO = '.$codigo.'';
+        $sSelect = 'SELECT * 
+                      FROM ALUNO 
+                      JOIN PESSOA 
+                        ON id_aluno = id_pessoa 
+                      JOIN USUARIO
+                        ON id_pessoa = id_usuario 
+                     WHERE ID_ALUNO = '.$codigo.'';
         $oResultadoAluno = pg_query($this->conexao, $sSelect);
         $oAluno = new ModelAluno();
         
@@ -85,18 +90,18 @@ class PersistenciaAluno extends PersistenciaPadrao{
             $oAluno->setContato($aLinha['contato']);
             $oAluno->setNome($aLinha['nome']);
             $oAluno->setData_nascimento($aLinha['data_nascimento']);
-            $oTurma->setCodigo($aLinha['turma']);
+            $oTurma->setCodigo($aLinha['id_turma']);
             $oAluno->setTurma($oTurma);
            }
         return $oAluno;
     }
     
     public function listarComFiltro($sIndice, $sValor) {
-        $sSelect = 'SELECT TBALUNO.*,
-                           TBTURMA.TURNOME
-                      FROM SISTEMAESCOLA.TBALUNO
-                      JOIN SISTEMAESCOLA.TBTURMA ON
-                           TBTURMA.TURCODIGO = TBALUNO.TURCODIGO
+        $sSelect = 'SELECT ALUNO.*,
+                           TURMA.NOME
+                      FROM ALUNO
+                      JOIN TURMA ON
+                           TURMA.ID_TURMA = TBALUNO.ID_TURMA
                      WHERE '.$sIndice.' = \''.$sValor.'\';' ;
 
         $oResultado = pg_query($this->conexao, $sSelect);

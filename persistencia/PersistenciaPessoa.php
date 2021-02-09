@@ -19,6 +19,14 @@ class PersistenciaPessoa extends PersistenciaPadrao {
 
         
     public function alterarRegistro() {
+        $sUpdate = 'UPDATE PESSOA
+                       SET nome = \''.$this->ModelPessoa->getNome().'\',
+                           cpf = \''.$this->ModelPessoa->getCpf().'\',
+                           data_nascimento = \''.$this->ModelPessoa->getData_nascimento().'\',
+                           contato = \''.$this->ModelPessoa->getContato().'\'
+                     WHERE id_pessoa ='.$this->ModelPessoa->getUsuario()->getCodigo().' ';
+        
+         pg_query($this->conexao, $sUpdate);
         
     }
 

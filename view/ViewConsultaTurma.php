@@ -34,7 +34,6 @@ class ViewConsultaTurma extends ViewPadrao {
                     <a href="index.php?pg=turma" style="color:white; font-size:18px; margin-right: 20px"> Cadastrar</a>
                     <a href="index.php?pg=turma" style="color:white; font-size:18px; margin-right: 20px"> Editar</a>
                     <a href="index.php?pg=turma" style="color:white; font-size:18px; margin-right: 20px"> Excluir</a>
-                    <a href="index.php?pg=turma" style="color:white; font-size:18px; margin-right: 20px"> Visualizar</a>
                     <a href="i#" style="color:white; font-size:18px; margin-right: 20px"> Professores/Disciplinas</a>
                     <a href="i#" style="color:white; font-size:18px; margin-right: 20px"> Aulas</a>
                     <a href="i#" style="color:white; font-size:18px; margin-right: 20px"> Alunos</a>
