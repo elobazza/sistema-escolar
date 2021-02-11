@@ -1,11 +1,6 @@
 <?php
-
 /**
- * Classe de Modelo de Aula.
- * 
- * @author  Eloísa Bazzanella, Maria Eduarda Buzana
- * @package model
- * @sinse   29/12/2020
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
  */
 class ModelAula {
     

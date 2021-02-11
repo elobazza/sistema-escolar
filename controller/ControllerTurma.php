@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
+ */
 class ControllerTurma extends ControllerPadrao{
     
     /** @var ModelTurma $ModelTurma */

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
+ */
 abstract class ViewPadrao {
 
     private $alterar;
@@ -16,13 +18,9 @@ abstract class ViewPadrao {
         return $this->alterar ? $this->getConteudoAlterar() : $this->getConteudoCadastrar();
     }
 
-    protected function getConteudoCadastrar() {
-        
-    }
+    protected function getConteudoCadastrar() {}
 
-    protected function getConteudoAlterar() {
-        
-    }
+    protected function getConteudoAlterar() {}
 
     public function imprime() {
 

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
+ */
 class ControllerAluno extends ControllerPadrao {
     
     /** @var ModelAluno $ModelAluno */

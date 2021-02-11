@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
+ */
 class ControllerLogin extends ControllerPadrao {
     
      /** @var ModelUsuario $ModelUsuario */
@@ -55,19 +57,12 @@ class ControllerLogin extends ControllerPadrao {
         }
     }
     
-    public function processaAlterar() {
-        
-    }
-
-    public function processaExcluir() {
-        
-    }
-
     public function processaExibir() {
         $this->ViewLogin->imprime();
     }
+    
+    public function processaAlterar() {}
+    public function processaExcluir() {}
+    public function processaInserir() {}
 
-    public function processaInserir() {
-        
-    }
 }

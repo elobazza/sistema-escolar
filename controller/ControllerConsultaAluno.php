@@ -33,13 +33,8 @@ class ControllerConsultaAluno extends ControllerPadrao {
         $this->ViewConsultaAluno->imprime();
     }
     
-    public function processaAlterar() {
-    }
-
-    public function processaExcluir() {
-    }
-
-    public function processaInserir() {
-    }
+    public function processaAlterar() {}
+    public function processaExcluir() {}
+    public function processaInserir() {}
 
 }

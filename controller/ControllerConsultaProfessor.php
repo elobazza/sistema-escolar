@@ -1,12 +1,8 @@
 <?php
-
 /**
- * Controller referente à Consulta de Professores
- *
- * @author mduda
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
  */
 class ControllerConsultaProfessor extends ControllerPadrao {
-    
     
     /** @var ModelProfessor $ModelProfessor */
     private $ModelProfessor;
@@ -34,13 +30,8 @@ class ControllerConsultaProfessor extends ControllerPadrao {
         $this->ViewConsultaProfessor->imprime();
     }
     
-    public function processaAlterar() {
-    }
-
-    public function processaExcluir() {
-    }
-
-    public function processaInserir() {
-    }    
+    public function processaAlterar() {}
+    public function processaExcluir() {}
+    public function processaInserir() {}    
     
 }

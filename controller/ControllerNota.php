@@ -1,8 +1,10 @@
 <?php
-
-
+/**
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
+ */
 class ControllerNota extends ControllerPadrao{
-     /** @var ModelNota $ModelNota */
+
+    /** @var ModelNota $ModelNota */
     private $ModelNota;
     
     /** @var PersistenciaNota $PersistenciaNota */

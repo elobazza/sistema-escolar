@@ -1,9 +1,6 @@
 <?php
-
 /**
- * Classe Controlador Tela Principal
- * 
- * @author Eloísa Bazzanella e Maria Eduarda Buzana
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
  */
 class ControllerTelaPrincipal extends ControllerPadrao {
     
@@ -18,19 +15,12 @@ class ControllerTelaPrincipal extends ControllerPadrao {
         $this->ViewTelaPrincipal = new ViewTelaPrincipal();
     }
 
-    
     public function processaExibir() {
        $this->ViewTelaPrincipal->imprime();
     }
     
-    
-    public function processaAlterar() {
-    }
-
-    public function processaExcluir() {
-    }
-
-    public function processaInserir() {
-    }
+    public function processaAlterar() {}
+    public function processaExcluir() {}
+    public function processaInserir() {}
 
 }

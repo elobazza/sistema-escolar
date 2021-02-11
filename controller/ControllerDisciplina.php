@@ -1,7 +1,9 @@
 <?php
-
-
+/**
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
+ */
 class ControllerDisciplina extends ControllerPadrao {
+    
      /** @var ModelDisciplina $ModelDisciplina */
     private $ModelDisciplina;
     

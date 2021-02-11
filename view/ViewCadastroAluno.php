@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
+ */
 class ViewCadastroAluno extends ViewPadrao {
     
     private $turmas;
@@ -101,7 +103,6 @@ class ViewCadastroAluno extends ViewPadrao {
                 $aSelect[] = '<option value="' . $oTurma->getCodigo() . '">' . $oTurma->getNome() . '</option>';
             }
         }
-        //PHP_EOL � o </br> do PHP
         return '<select class="selecao" name="turma" id="turma">
                 '. implode(PHP_EOL, $aSelect).'
                 </select>';

@@ -1,6 +1,7 @@
 <?php
-
-
+/**
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
+ */
 class ViewCadastroProfessor extends ViewPadrao {
     
     private $professores;

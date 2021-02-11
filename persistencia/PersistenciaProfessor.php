@@ -1,6 +1,7 @@
 <?php
-
-
+/**
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
+ */
 class PersistenciaProfessor extends PersistenciaPadrao{
     /** @var ModelProfessor $ModelProfessor */
     private $ModelProfessor;

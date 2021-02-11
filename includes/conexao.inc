@@ -1,5 +1,4 @@
 <?php
-
 function conexao() {
     
     $sHost = 'localhost';

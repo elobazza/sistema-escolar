@@ -1,12 +1,8 @@
 <?php
-
 /**
- * Description of ControllerConsultaTurma
- *
- * @author mduda
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
  */
 class ControllerConsultaTurma extends ControllerPadrao {
-    
     
     /** @var ModelTurma $ModelTurma */
     private $ModelTurma;
@@ -34,13 +30,8 @@ class ControllerConsultaTurma extends ControllerPadrao {
         $this->ViewConsultaTurma->imprime();
     }
     
-    public function processaAlterar() {
-    }
-
-    public function processaExcluir() {
-    }
-
-    public function processaInserir() {
-    }    
+    public function processaAlterar() {}
+    public function processaExcluir() {}
+    public function processaInserir() {}    
     
 }

@@ -1,6 +1,9 @@
 <?php
-
-class ControllerCidade extends ControllerPadrao{
+/**
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
+ */
+class ControllerCidade extends ControllerPadrao {
+    
       /** @var ModelCidade $ModelCidade */
     private $ModelCidade;
     

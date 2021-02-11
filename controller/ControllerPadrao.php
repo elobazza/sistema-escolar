@@ -1,8 +1,6 @@
 <?php
 /**
- * Description of ControllerPadrao
- *
- * @author eloba
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
  */
 abstract class ControllerPadrao {
     

@@ -1,6 +1,9 @@
 <?php
-
-class ControllerAula extends ControllerPadrao{
+/**
+ * @author Eloisa Bazzanella e Maria Eduarda Buzana
+ */
+class ControllerAula extends ControllerPadrao {
+    
      /** @var ModelAula $ModelAula */
     private $ModelAula;
     
