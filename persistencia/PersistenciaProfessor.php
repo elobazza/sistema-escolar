@@ -30,10 +30,8 @@ class PersistenciaProfessor extends PersistenciaPadrao{
             $this->ModelProfessor->getEspecialidade(),
             $this->ModelProfessor->getSalario()            
         ];
-//        echo 'INSERT INTO professor ('. implode(',', $aColunas).') VALUES (\''. implode('\',\'', $aValores).'\');';
-//        die();
         
-        parent::inserir('professor', $aColunas, $aValores);
+        return parent::inserir('professor', $aColunas, $aValores);
     }
     
     private function inserirDisciplinasRelacionadas() {
@@ -48,7 +46,7 @@ class PersistenciaProfessor extends PersistenciaPadrao{
                 $oModelDisciplina->getCodigo(),
             ];
             
-            parent::inserir('tbprofessordisciplina', $aColunas, $aValores);
+            return parent::inserir('tbprofessordisciplina', $aColunas, $aValores);
         }
     }
     
@@ -65,7 +63,7 @@ class PersistenciaProfessor extends PersistenciaPadrao{
                 $oModelEscola->getCodigo(),
             ];
             
-            parent::inserir('tbprofessorescola', $aColunas, $aValores);
+            return parent::inserir('tbprofessorescola', $aColunas, $aValores);
         }
     }
     
@@ -75,13 +73,13 @@ class PersistenciaProfessor extends PersistenciaPadrao{
                        SET especialidade = \''.$this->ModelProfessor->getEspecialidade().'\',
                            salario = '.$this->ModelProfessor->getSalario().'
                      WHERE id_professor ='.$this->ModelProfessor->getUsuario()->getCodigo().' ';
-        pg_query($this->conexao, $sUpdate);
+        return pg_query($this->conexao, $sUpdate);
     }
 
     public function excluirRegistro($codigo) {
         $sDeleteFinal = 'DELETE FROM PROFESSOR
                           WHERE ID_PROFESSOR = '.$codigo.'';
-        pg_query($this->conexao, $sDeleteFinal);
+        return pg_query($this->conexao, $sDeleteFinal);
     }
 
     public function listarRegistros() {

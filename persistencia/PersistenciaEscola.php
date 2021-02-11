@@ -26,12 +26,12 @@ class PersistenciaEscola extends PersistenciaPadrao{
                            contato   = \''.$this->ModelEscola->getContato().'\' 
                      WHERE id_escola ='.$this->ModelEscola->getUsuario()->getCodigo().' ';
         
-         pg_query($this->conexao, $sUpdate); 
+        return pg_query($this->conexao, $sUpdate); 
     }
 
     public function excluirRegistro($codigo) {
         $sDelete = 'DELETE FROM ESCOLA WHERE ID_ESCOLA = '.$codigo.'';
-        pg_query($this->conexao, $sDelete);
+        return pg_query($this->conexao, $sDelete);
     }
 
     public function inserirRegistro() {        
@@ -47,7 +47,7 @@ class PersistenciaEscola extends PersistenciaPadrao{
             $this->ModelEscola->getContato()
         ];
         
-        parent::inserir('escola', $aColunas, $aValores);
+        return parent::inserir('escola', $aColunas, $aValores);
     }
 
     public function listarRegistros() {

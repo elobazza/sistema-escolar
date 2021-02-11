@@ -26,7 +26,7 @@ class PersistenciaAluno extends PersistenciaPadrao{
             $this->ModelAluno->getTurma()->getCodigo()
         ];
         
-        parent::inserir('aluno', $aColunas, $aValores);
+        return parent::inserir('aluno', $aColunas, $aValores);
     }
     
     public function alterarRegistro() {
@@ -34,14 +34,17 @@ class PersistenciaAluno extends PersistenciaPadrao{
                        SET id_turma = '.$this->ModelAluno->getTurma()->getCodigo().'
                      WHERE id_aluno ='.$this->ModelAluno->getUsuario()->getCodigo().' ';
         
-         pg_query($this->conexao, $sUpdate); 
+        return pg_query($this->conexao, $sUpdate); 
     }
 
     public function excluirRegistro($codigo) {
         $sDelete = 'DELETE FROM NOTA WHERE ID_ALUNO = '.$codigo.'';
-        pg_query($this->conexao, $sDelete);
-        $sDeleteFinal = 'DELETE FROM ALUNO WHERE ID_ALUNO = '.$codigo.'';
-        pg_query($this->conexao, $sDeleteFinal);
+        if (pg_query($this->conexao, $sDelete)) {
+            $sDeleteFinal = 'DELETE FROM ALUNO WHERE ID_ALUNO = '.$codigo.'';
+            return pg_query($this->conexao, $sDeleteFinal);
+        } else {
+            return false;
+        }
     }
     
     public function listarRegistros() {
@@ -97,24 +100,28 @@ class PersistenciaAluno extends PersistenciaPadrao{
     }
     
     public function listarComFiltro($sIndice, $sValor) {
-        $sSelect = 'SELECT ALUNO.*,
-                           TURMA.NOME
-                      FROM ALUNO
+        $sSelect = 'SELECT PESSOA.*, ALUNO.*
+                      FROM ALUNO 
+                      JOIN PESSOA 
+                        ON id_aluno = id_pessoa 
+                      JOIN USUARIO
+                        ON id_pessoa = id_usuario
                       JOIN TURMA ON
-                           TURMA.ID_TURMA = TBALUNO.ID_TURMA
+                           TURMA.ID_TURMA = ALUNO.ID_TURMA
                      WHERE '.$sIndice.' = \''.$sValor.'\';' ;
 
         $oResultado = pg_query($this->conexao, $sSelect);
         $aAlunos = [];
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            $oAluno = new ModelAluno();
             $oTurma = new ModelTurma();
-            $oAluno->getUsuario()->setCodigo($aLinha['alucodigo']);
-            $oAluno->setNome($aLinha['alunome']);
-            $oAluno->setCpf($aLinha['alucpf']);
-            $oAluno->setContato($aLinha['alucontato']);
-            $oTurma->setCodigo($aLinha['turcodigo']);
-            $oTurma->setNome($aLinha['turnome']);
+            $oAluno = new ModelAluno();
+            $oAluno->getUsuario()->setCodigo($aLinha['id_aluno']);
+            $oAluno->setMatricula($aLinha['matricula']);
+            $oAluno->setCpf($aLinha['cpf']);
+            $oAluno->setContato($aLinha['contato']);
+            $oAluno->setNome($aLinha['nome']);
+            $oAluno->setData_nascimento($aLinha['data_nascimento']);
+            $oTurma->setCodigo($aLinha['id_turma']);
             $oAluno->setTurma($oTurma);
             
             $aAlunos[] = $oAluno;

@@ -24,14 +24,14 @@ class PersistenciaTurma extends PersistenciaPadrao {
             $this->ModelTurma->getNome()
         ];
         
-        parent::inserir('turma', $aColunas, $aValores);
+        return parent::inserir('turma', $aColunas, $aValores);
     }
         
     public function alterarRegistro() {
         $sUpdateFinal = 'UPDATE TURMA
                             SET nome = \''.$this->ModelTurma->getNome().'\' 
                           WHERE id_turma ='.$this->ModelTurma->getCodigo().' ';
-         pg_query($this->conexao, $sUpdateFinal);
+        return pg_query($this->conexao, $sUpdateFinal);
                   
     }
 
@@ -39,7 +39,7 @@ class PersistenciaTurma extends PersistenciaPadrao {
         $sDeleteFinal = 'DELETE 
                            FROM TURMA
                           WHERE ID_TURMA = '.$codigo.'';
-        pg_query($this->conexao, $sDeleteFinal);
+        return pg_query($this->conexao, $sDeleteFinal);
     }
 
     public function listarRegistros() {

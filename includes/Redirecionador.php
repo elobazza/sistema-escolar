@@ -43,6 +43,10 @@ class Redirecionador {
                 throw new Exception('P�gina solicitada não encontrada! '.$sController);
             }
         }
+        else {
+            $oControllerTelaPrincipal = new ControllerTelaPrincipal();
+            $oControllerTelaPrincipal->processa();
+        }
       
         
     }

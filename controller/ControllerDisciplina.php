@@ -24,8 +24,11 @@ class ControllerDisciplina extends ControllerPadrao {
                 $this->ModelDisciplina->setCargaHoraria(Redirecionador::getParametro('carga_horaria'));
 
                 $this->PersistenciaDisciplina->setModelDisciplina($this->ModelDisciplina);
-                $this->PersistenciaDisciplina->alterarRegistro();
-                header('Location:index.php?pg=consultaDisciplina');
+                if($this->PersistenciaDisciplina->alterarRegistro()) {
+                    header('Location:index.php?pg=consultaDisciplina&message=sucessoalteracao');
+                } else {
+                    header('Location:index.php?pg=consultaDisciplina&message=erroalteracao'); 
+                }
             }
             $this->processaExibir();
         }
@@ -38,8 +41,11 @@ class ControllerDisciplina extends ControllerPadrao {
     }
 
     public function processaExcluir() {
-        $this->PersistenciaDisciplina->excluirRegistro(Redirecionador::getParametro('codigo'));
-        header('Location:index.php?pg=consultaDisciplina');
+        if($this->PersistenciaDisciplina->excluirRegistro(Redirecionador::getParametro('codigo'))) {
+            header('Location:index.php?pg=consultaDisciplina&message=sucessoexclusao');
+        } else {
+            header('Location:index.php?pg=consultaDisciplina&message=erroexclusao');
+        }
         $this->processaExibir();
     }
 
@@ -60,8 +66,11 @@ class ControllerDisciplina extends ControllerPadrao {
             $this->ModelDisciplina->setCargaHoraria(Redirecionador::getParametro('carga_horaria'));
 
             $this->PersistenciaDisciplina->setModelDisciplina($this->ModelDisciplina);
-            $this->PersistenciaDisciplina->inserirRegistro();
-            header('Location:index.php?pg=consultaDisciplina');
+            if($this->PersistenciaDisciplina->inserirRegistro()) {
+                header('Location:index.php?pg=consultaDisciplina&message=sucessoinclusao');
+            } else {
+                header('Location:index.php?pg=consultaDisciplina&message=erroinclusao');
+            }
          }
         $this->processaExibir();
     }

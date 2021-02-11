@@ -100,27 +100,7 @@ $(document).ready(function () {
 		$("#escola-prof-esc").css("borderColor", "#807B65");
     });
 	
-	$("#limpar-sala").click(function () {
-		$("#descricao-sala").val(""); 
-		$("#escola-sala").val("");
-		
-		$("#descricao-sala").css("borderColor", "#807B65");
-		$("#escola-sala").css("borderColor", "#807B65");
-    });
 	
-	$("#limpar-sal-aul").click(function () {
-		$("#sala-sal-aul").val(""); 
-		$("#aula-dis-tur").val("");
-		$("#turma-dis-tur").val("");
-		$("#professor-dis-tur").val("");
-		$("#disciplina-dis-tur").val("");
-		
-		$("#sala-sal-aul").css("borderColor", "#807B65");
-		$("#aula-dis-tur").css("borderColor", "#807B65");
-		$("#turma-dis-tur").css("borderColor", "#807B65");
-		$("#professor-dis-tur").css("borderColor", "#807B65");
-		$("#disciplina-dis-tur").css("borderColor", "#807B65");
-    });
 	
 	$("#limpar-turma").click(function () {
 		$("#nome-turma").val(""); 

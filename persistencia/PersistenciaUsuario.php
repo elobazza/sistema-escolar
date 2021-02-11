@@ -33,7 +33,7 @@ class PersistenciaUsuario extends PersistenciaPadrao {
             $this->ModelUsuario->getTipo()
         ];
         
-        parent::inserir('usuario', $aColunas, $aValores);
+        return parent::inserir('usuario', $aColunas, $aValores);
     }
     
     public function alterarRegistro() {
@@ -43,12 +43,12 @@ class PersistenciaUsuario extends PersistenciaPadrao {
                            tipo  = '{$this->ModelAluno->getContato()}' 
                      WHERE id_usuario = {$this->ModelAluno->getCodigo()}";
         
-         pg_query($this->conexao, $sUpdate); 
+        return pg_query($this->conexao, $sUpdate); 
     }
 
     public function excluirRegistro($codigo) {
         $sDeleteFinal = 'DELETE FROM USUARIO WHERE ID_USUARIO = '.$codigo.'';
-        pg_query($this->conexao, $sDeleteFinal);
+        return pg_query($this->conexao, $sDeleteFinal);
     }
     
     public function listarRegistros() {

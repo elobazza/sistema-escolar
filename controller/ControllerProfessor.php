@@ -48,15 +48,22 @@ class ControllerProfessor extends ControllerPadrao{
                 $this->ModelPessoa->setNome(Redirecionador::getParametro('nome'));      
 
                 $this->PersistenciaPessoa->setModelPessoa($this->ModelPessoa);
-                $this->PersistenciaPessoa->alterarRegistro();
+                $sucessoAlteracao = $this->PersistenciaPessoa->alterarRegistro();
 
-                $this->ModelProfessor->setEspecialidade(Redirecionador::getParametro('especialidade'));
-                $this->ModelProfessor->setSalario(Redirecionador::getParametro('salario'));
-                $this->ModelProfessor->setUsuario($this->ModelPessoa->getUsuario());
+                if($sucessoAlteracao) {
+                    $this->ModelProfessor->setEspecialidade(Redirecionador::getParametro('especialidade'));
+                    $this->ModelProfessor->setSalario(Redirecionador::getParametro('salario'));
+                    $this->ModelProfessor->setUsuario($this->ModelPessoa->getUsuario());
 
-                $this->PersistenciaProfessor->setModelProfessor($this->ModelProfessor);
-                $this->PersistenciaProfessor->alterarRegistro();
-                header('Location:index.php?pg=consultaProfessor');
+                    $this->PersistenciaProfessor->setModelProfessor($this->ModelProfessor);
+                    $sucessoAlteracao = $this->PersistenciaProfessor->alterarRegistro();
+                }
+                
+                if($sucessoAlteracao) {
+                    header('Location:index.php?pg=consultaProfessor&message=sucessoalteracao');
+                } else {
+                    header('Location:index.php?pg=consultaProfessor&message=erroalteracao'); 
+                }
             }
             $this->processaExibir();
         }
@@ -70,8 +77,11 @@ class ControllerProfessor extends ControllerPadrao{
     }
 
     public function processaExcluir() {
-        $this->PersistenciaProfessor->excluirRegistro(Redirecionador::getParametro('codigo'));
-        header('Location:index.php?pg=consultaProfessor');
+        if($this->PersistenciaProfessor->excluirRegistro(Redirecionador::getParametro('codigo'))) {
+            header('Location:index.php?pg=consultaProfessor&message=sucessoexclusao');
+        } else {
+            header('Location:index.php?pg=consultaProfessor&message=erroexclusao');
+        }
         $this->processaExibir();
     }
 
@@ -99,28 +109,36 @@ class ControllerProfessor extends ControllerPadrao{
             $this->ModelUsuario->setTipo(1);        
 
             $this->PersistenciaUsuario->setModelUsuario($this->ModelUsuario);
-            $this->PersistenciaUsuario->inserirRegistro();
+            $sucessoInclusao = $this->PersistenciaUsuario->inserirRegistro();
             
-            $this->ModelPessoa->setUsuario($this->ModelUsuario);
-            $this->ModelPessoa->setContato(Redirecionador::getParametro('contato'));        
-            $this->ModelPessoa->setCpf(Redirecionador::getParametro('cpf'));        
-            $this->ModelPessoa->setData_nascimento(Redirecionador::getParametro('data_nascimento'));        
-            $this->ModelPessoa->setNome(Redirecionador::getParametro('nome'));
-            $this->ModelPessoa->getEscola()->getUsuario()->setCodigo($_SESSION['id']);        
-            
-            $oUsuarioPessoa = $this->PersistenciaUsuario->selecionarLogin($this->ModelUsuario->getLogin(), $this->ModelUsuario->getSenha());
-            $this->ModelPessoa->setUsuario($oUsuarioPessoa);
-            
-            $this->PersistenciaPessoa->setModelPessoa($this->ModelPessoa);
-            $this->PersistenciaPessoa->inserirRegistro();
-            
-            $this->ModelProfessor->setEspecialidade(Redirecionador::getParametro('especialidade'));
-            $this->ModelProfessor->setSalario(Redirecionador::getParametro('salario'));
-            $this->ModelProfessor->setUsuario($oUsuarioPessoa);
+            if($sucessoInclusao) {
+                $this->ModelPessoa->setUsuario($this->ModelUsuario);
+                $this->ModelPessoa->setContato(Redirecionador::getParametro('contato'));        
+                $this->ModelPessoa->setCpf(Redirecionador::getParametro('cpf'));        
+                $this->ModelPessoa->setData_nascimento(Redirecionador::getParametro('data_nascimento'));        
+                $this->ModelPessoa->setNome(Redirecionador::getParametro('nome'));
+                $this->ModelPessoa->getEscola()->getUsuario()->setCodigo($_SESSION['id']);        
 
-            $this->PersistenciaProfessor->setModelProfessor($this->ModelProfessor);
-            $this->PersistenciaProfessor->inserirRegistro();
-            header('Location:index.php?pg=consultaProfessor');
+                $oUsuarioPessoa = $this->PersistenciaUsuario->selecionarLogin($this->ModelUsuario->getLogin(), $this->ModelUsuario->getSenha());
+                $this->ModelPessoa->setUsuario($oUsuarioPessoa);
+
+                $this->PersistenciaPessoa->setModelPessoa($this->ModelPessoa);
+                $sucessoInclusao = $this->PersistenciaPessoa->inserirRegistro();
+            }
+            
+            if($sucessoInclusao) {
+                $this->ModelProfessor->setEspecialidade(Redirecionador::getParametro('especialidade'));
+                $this->ModelProfessor->setSalario(Redirecionador::getParametro('salario'));
+                $this->ModelProfessor->setUsuario($oUsuarioPessoa);
+
+                $this->PersistenciaProfessor->setModelProfessor($this->ModelProfessor);
+                $sucessoInclusao = $this->PersistenciaProfessor->inserirRegistro();
+            }
+            if($sucessoInclusao) {
+                header('Location:index.php?pg=consultaProfessor&message=sucessoinclusao');
+            } else {
+                header('Location:index.php?pg=consultaProfessor&message=erroinclusao'); 
+            }
         }
         
         $this->processaExibir();

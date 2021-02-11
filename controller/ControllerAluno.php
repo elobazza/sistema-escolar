@@ -47,15 +47,25 @@ class ControllerAluno extends ControllerPadrao {
                 $this->ModelPessoa->setNome(Redirecionador::getParametro('nome'));      
 
                 $this->PersistenciaPessoa->setModelPessoa($this->ModelPessoa);
-                $this->PersistenciaPessoa->alterarRegistro();
+                $sucessoAlterar = $this->PersistenciaPessoa->alterarRegistro();
+                   
+                if($sucessoAlterar) {
+                    $this->ModelAluno->getTurma()->setCodigo(Redirecionador::getParametro('turma'));
+                    $this->ModelAluno->setMatricula(Redirecionador::getParametro('matricula'));
+                    $this->ModelAluno->setUsuario($this->ModelPessoa->getUsuario());
 
-                $this->ModelAluno->getTurma()->setCodigo(Redirecionador::getParametro('turma'));
-                $this->ModelAluno->setMatricula(Redirecionador::getParametro('matricula'));
-                $this->ModelAluno->setUsuario($this->ModelPessoa->getUsuario());
+                    $this->PersistenciaAluno->setModelAluno($this->ModelAluno);
+                    
+                    $sucessoAlterar = $this->PersistenciaAluno->alterarRegistro();
+                } 
+                        
+                if($sucessoAlterar) {
+                    header('Location:index.php?pg=consultaAluno&message=sucessoalteracao');
+                } else {
+                    header('Location:index.php?pg=consultaAluno&message=erroalteracao');
+                }
+                
 
-                $this->PersistenciaAluno->setModelAluno($this->ModelAluno);
-                $this->PersistenciaAluno->alterarRegistro();
-                header('Location:index.php?pg=consultaAluno');
             }
             $this->processaExibir();
         }
@@ -69,8 +79,11 @@ class ControllerAluno extends ControllerPadrao {
     }
 
     public function processaExcluir() {
-        $this->PersistenciaAluno->excluirRegistro(Redirecionador::getParametro('codigo'));
-        header('Location:index.php?pg=consultaAluno');
+        if($this->PersistenciaAluno->excluirRegistro(Redirecionador::getParametro('codigo'))) {
+            header('Location:index.php?pg=consultaAluno&message=sucessoexclusao');
+        } else {
+            header('Location:index.php?pg=consultaAluno&message=erroexclusao');
+        }
         $this->processaExibir();
     }
 
@@ -99,28 +112,37 @@ class ControllerAluno extends ControllerPadrao {
             $this->ModelUsuario->setTipo(1);        
 
             $this->PersistenciaUsuario->setModelUsuario($this->ModelUsuario);
-            $this->PersistenciaUsuario->inserirRegistro();
+            $sucessoInserir = $this->PersistenciaUsuario->inserirRegistro();
             
-            $this->ModelPessoa->setUsuario($this->ModelUsuario);
-            $this->ModelPessoa->setContato(Redirecionador::getParametro('contato'));        
-            $this->ModelPessoa->setCpf(Redirecionador::getParametro('cpf'));        
-            $this->ModelPessoa->setData_nascimento(Redirecionador::getParametro('data_nascimento'));        
-            $this->ModelPessoa->setNome(Redirecionador::getParametro('nome'));
-            $this->ModelPessoa->getEscola()->getUsuario()->setCodigo($_SESSION['id']);        
-            
-            $oUsuarioPessoa = $this->PersistenciaUsuario->selecionarLogin($this->ModelUsuario->getLogin(), $this->ModelUsuario->getSenha());
-            $this->ModelPessoa->setUsuario($oUsuarioPessoa);
-            
-            $this->PersistenciaPessoa->setModelPessoa($this->ModelPessoa);
-            $this->PersistenciaPessoa->inserirRegistro();
-            
-            $this->ModelAluno->getTurma()->setCodigo(Redirecionador::getParametro('turma'));
-            $this->ModelAluno->setMatricula(Redirecionador::getParametro('matricula'));
-            $this->ModelAluno->setUsuario($oUsuarioPessoa);
+            if($sucessoInserir) {
+                $this->ModelPessoa->setUsuario($this->ModelUsuario);
+                $this->ModelPessoa->setContato(Redirecionador::getParametro('contato'));        
+                $this->ModelPessoa->setCpf(Redirecionador::getParametro('cpf'));        
+                $this->ModelPessoa->setData_nascimento(Redirecionador::getParametro('data_nascimento'));        
+                $this->ModelPessoa->setNome(Redirecionador::getParametro('nome'));
+                $this->ModelPessoa->getEscola()->getUsuario()->setCodigo($_SESSION['id']);        
 
-            $this->PersistenciaAluno->setModelAluno($this->ModelAluno);
-            $this->PersistenciaAluno->inserirRegistro();
-            header('Location:index.php?pg=consultaAluno');
+                $oUsuarioPessoa = $this->PersistenciaUsuario->selecionarLogin($this->ModelUsuario->getLogin(), $this->ModelUsuario->getSenha());
+                $this->ModelPessoa->setUsuario($oUsuarioPessoa);
+
+                $this->PersistenciaPessoa->setModelPessoa($this->ModelPessoa);
+                $sucessoInserir = $this->PersistenciaPessoa->inserirRegistro();                
+            }
+            
+            if($sucessoInserir) {
+                $this->ModelAluno->getTurma()->setCodigo(Redirecionador::getParametro('turma'));
+                $this->ModelAluno->setMatricula(Redirecionador::getParametro('matricula'));
+                $this->ModelAluno->setUsuario($oUsuarioPessoa);
+
+                $this->PersistenciaAluno->setModelAluno($this->ModelAluno);
+                $sucessoInserir = $this->PersistenciaAluno->inserirRegistro();
+            }
+            
+            if($sucessoInserir) {
+                header('Location:index.php?pg=consultaAluno&message=sucessoinclusao');
+            } else {
+                header('Location:index.php?pg=consultaAluno&message=erroinclusao');
+            }
         }
         $this->processaExibir();
     }

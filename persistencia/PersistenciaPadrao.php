@@ -15,8 +15,8 @@ abstract class PersistenciaPadrao {
      * Construtor da Persistência - Realiza a conexão com o Banco de Dados.
      */
     function __construct() {
-        $this->conexao = pg_connect('host=localhost port=5432 dbname=escola user=postgres password=0000');
-//        $this->conexao = pg_connect('host=localhost port=5432 dbname=escola user=postgres password=admin');
+//        $this->conexao = pg_connect('host=localhost port=5432 dbname=escola user=postgres password=0000');
+        $this->conexao = pg_connect('host=localhost port=5432 dbname=escola user=postgres password=admin');
     }
     
     /**
@@ -29,7 +29,7 @@ abstract class PersistenciaPadrao {
     protected function inserir($nomeTabela, $colunas, $valores) {        
         $sInsert = 'INSERT INTO '.$nomeTabela.' ('. implode(',', $colunas).') VALUES (\''. implode('\',\'', $valores).'\');';
         
-        pg_query($this->conexao, $sInsert);
+        return pg_query($this->conexao, $sInsert);
     }
 
     /**

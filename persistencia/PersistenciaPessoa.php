@@ -26,7 +26,7 @@ class PersistenciaPessoa extends PersistenciaPadrao {
                            contato = \''.$this->ModelPessoa->getContato().'\'
                      WHERE id_pessoa ='.$this->ModelPessoa->getUsuario()->getCodigo().' ';
         
-         pg_query($this->conexao, $sUpdate);
+         return pg_query($this->conexao, $sUpdate);
         
     }
 
@@ -54,7 +54,7 @@ class PersistenciaPessoa extends PersistenciaPadrao {
         ];
         
         
-        parent::inserir('pessoa', $aColunas, $aValores);
+        return parent::inserir('pessoa', $aColunas, $aValores);
     }
 
     public function listarRegistros() {

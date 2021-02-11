@@ -18,12 +18,12 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
                            carga_horaria = \''.$this->ModelDisciplina->getCargaHoraria().'\' 
                      WHERE id_disciplina ='.$this->ModelDisciplina->getCodigo().' ';
         
-         pg_query($this->conexao, $sUpdate); 
+         return pg_query($this->conexao, $sUpdate); 
     }
 
     public function excluirRegistro($codigo) {
         $sDeleteFinal = 'DELETE FROM DISCIPLINA WHERE ID_DISCIPLINA = '.$codigo.'';
-        pg_query($this->conexao, $sDeleteFinal);
+        return pg_query($this->conexao, $sDeleteFinal);
     }
 
     public function inserirRegistro() {
@@ -36,7 +36,7 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
             $this->ModelDisciplina->getCargaHoraria()
         ];
         
-        parent::inserir('disciplina', $aColunas, $aValores);
+        return parent::inserir('disciplina', $aColunas, $aValores);
     }
 
     public function listarRegistros() {

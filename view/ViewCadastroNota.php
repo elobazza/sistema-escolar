@@ -22,8 +22,6 @@ class ViewCadastroNota extends ViewPadrao {
     function setNota($nota) {
         $this->nota = $nota;
     }
-
-    
             
     function getDisciplinas() {
         return $this->disciplinas;

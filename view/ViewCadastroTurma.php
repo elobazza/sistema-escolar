@@ -59,8 +59,8 @@ class ViewCadastroTurma extends ViewPadrao{
         return '<div id="cadastro">
             <form id="form" action="index.php?pg=turma&acao=insere" method="POST">
                     <div class="container">
+                        <label class="titulo-formulario">ALTERAR TURMA</label>
                         <input class="campo" name="codigo" type="hidden" id="codigo" value="'.$this->turma->getCodigo() .'">
-                        <label class="desc-formulario">Nome</label>
                         <input class="campo" name="nome" type="text" id="nome" maxlength="50" value="'.$this->turma->getNome().'" >
                     
                         <input type="submit" class="cadastrar" id="alterar-turma" value="Alterar">                    

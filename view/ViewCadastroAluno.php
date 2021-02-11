@@ -61,16 +61,13 @@ class ViewCadastroAluno extends ViewPadrao {
         return '<div id="cadastro">
             <form id="form" action="index.php?pg=aluno&acao=altera&efetiva=1" method="POST">
                     <div class="container">
-                        <input class="campo" name="codigo" type="hidden" id="codigo-aluno" value="'.$this->aluno->getUsuario()->getCodigo() .'">
-                        <label class="desc-formulario">Nome</label>
-                        <input class="campo" name="nome" type="text" id="nome" maxlength="50" value="'.$this->aluno->getNome().'" >
-                        <label class="desc-formulario">CPF</label>
-                        <input class="campo" name="cpf" type="text" id="cpf" maxlength="14" value="'.$this->aluno->getCpf().'">
-                        <label class="desc-formulario">Contato</label>
-                        <input class="campo" name="contato" type="text" id="contato"  maxlength="30" value="'.$this->aluno->getContato().'">
-                        <label class="desc-formulario">Data de Nascimento</label>
+                        <label class="titulo-formulario">ALTERAR ALUNO</label>
+                        <input class="campo" name="codigo"  type="hidden" id="codigo-aluno" value="'.$this->aluno->getUsuario()->getCodigo() .'">
+                        <input class="campo" name="nome"    type="text"   id="nome" maxlength="50" value="'.$this->aluno->getNome().'" >
+                        <input class="campo" name="cpf"     type="text"   id="cpf" maxlength="14" value="'.$this->aluno->getCpf().'">
+                        <input class="campo" name="contato" type="text"   id="contato"  maxlength="30" value="'.$this->aluno->getContato().'">
                         <input class="campo" name="data_nascimento" type="text" id="data_nascimento"  maxlength="30" value="'.$this->aluno->getData_nascimento().'">
-                        <label class="desc-formulario">Turma</label>
+                        <label class="label-select">Turma</label>
                         '.$this->createSelect().'
                         <button class="limpar" id="limpar-aluno">
                             Limpar

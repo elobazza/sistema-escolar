@@ -1,49 +1,20 @@
 body {
     background-color: #FFFFFE;
-	font-family: Calibri;
-	margin: 0px;
+    font-family: Calibri;
+    margin: 0px;
 }
 
 .container{
-	width: 60%;
-	margin: auto;
+    width: 60%;
+    margin: auto;
 }
-
-
-
-
-/* ITENS CABEÇALHO */
-
-.link-cabecalho{
-	display: block;
-	float: left;
-	color: white;
-	font-family: Calibri;
-	font-size: 15px;
-	text-align: center;
-	text-decoration: none;
-	float: none;
-	padding: 12px 16px;
-	display: block;
-	text-align: left;
-}
-
-.link-cabecalho:hover{
-	background-color: #3b5375;
-	color: white;
-	text-decoration: none;
-}
-
-/*.dropdown:hover .drop-botao {
-  background-color:  #3b5375;
-}*/
 
 .cabecalho {
-	background-color: #4a6891;
-	width: 100%;
-	list-style-type: none;
-	margin: 0;
-	overflow: hidden;
+    background-color: #4a6891;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
 }
 
 nav {
@@ -54,76 +25,14 @@ nav {
   display: block;
 }
 
-#registro{
-    width: 40%; 
-    margin-left: 30%;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.table_listagem {
-    background-color: white;
-    width: auto;
-    min-width: 40%;
-    margin: auto;
-    padding-top: 30px;
-    border-collapse: separate;
-}
-
-.table_listagem tr td, .table_listagem th {
-    padding: 5px;
-    padding-left: 30px;
-    padding-right: 30px;
-    font-size: 17px;
-    font-family: Calibri;
-    
-}
-
-.table_listagem tr th{
-    background-color: white;
-    color: #5E5A46;
-    border-bottom: 1px solid black;
-    
-}
-
-
-.table_muitos {
-    background-color: white;
-    width: 100%;
-    margin: auto;
-    border-spacing: 0px;
-    border-collapse: separate;
-}
-
-.table_muitos tr th {
-    background-color: white;
-    color: #5E5A46; 
-    
-}
-
-.table_muitos tr td, .table_muitos th {
-    padding: 5px;
-    text-align: center;
-    border: 1px solid white;
-}
-/* ITENS FORMUL�?RIO */
-
-.desc-formulario{
-	margin-top: 20px;
-	margin-left: 20%;
-	font-size: 15px;
-	color:  #5E5A46;
-	float: left;
-}
-
 .titulo-formulario{
-	margin-top: 20px;
-	margin-left: 20%;
-	font-size: 25px;
-	color:  #4a6891;
-        font-weight: bold;
-        font-family: Calibri;
-	float: left;
+    margin-top: 20px;
+    margin-left: 20%;
+    font-size: 25px;
+    color:  #4a6891;
+    font-weight: bold;
+    font-family: Calibri;
+    float: left;
 }
 
 .campo{
@@ -146,19 +55,6 @@ nav {
     color:  #5E5A46;
 }
 
-.campo-pequeno{
-	width: 80%;
-        position: relative;
-	padding-left: 10px;	
-	margin-top: 10px;
-	font-size: 12px;
-        font-weight: lighter;
-	color:  #5E5A46;
-	border: 1px solid #5E5A46;
-}
-
-
-
 .enviar-filtro{
     margin-left: 3%; 
     width: 14%; 
@@ -172,68 +68,65 @@ nav {
     color: #FFFFFF;
 }
 
-
-
-
 .cadastrar-peq{
-	float: left;
-	position: relative;
-	margin-top: 10px;
-	margin-left: 20%;
-	width: 150px;
-	font-size: 15px;
-	font-family: Calibri;
-	padding: 15px;
-	margin-bottom: 50px;
-	background-color:#4a6891;
-	border: #4a6891;
-	color: #FFFFFF;
-	display: none;
+    float: left;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 20%;
+    width: 150px;
+    font-size: 15px;
+    font-family: Calibri;
+    padding: 15px;
+    margin-bottom: 50px;
+    background-color:#4a6891;
+    border: #4a6891;
+    color: #FFFFFF;
+    display: none;
 }
 
 .cadastrar{
-	float: left;
-	position: relative;
-	margin-top: 20px;
-        margin-left: 20%;
-	width: 150px;
-	font-size: 15px;
-	font-family: Calibri;
-	padding: 15px;
-	margin-bottom: 120px;
-	background-color:#4a6891;
-	border: #4a6891;
-	color: #FFFFFF;
+    float: left;
+    position: relative;
+    margin-top: 20px;
+    margin-left: 20%;
+    width: 150px;
+    font-size: 15px;
+    font-family: Calibri;
+    padding: 15px;
+    margin-bottom: 120px;
+    background-color:#4a6891;
+    border: #4a6891;
+    color: #FFFFFF;
 }
 
 .limpar {
-	float: left;
-	position: relative;
-	margin-top: 20px;
-	margin-left: 20%;
-	width: 150px;
-	font-size: 15px;
-	font-family: Calibri;
-	padding: 15px;
-	margin-bottom: 10px;
-	background-color:#4a6891;
-	border: #4a6891;
-	color: #FFFFFF;
+    float: left;
+    position: relative;
+    margin-top: 20px;
+    margin-left: 20%;
+    width: 150px;
+    font-size: 15px;
+    font-family: Calibri;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color:#4a6891;
+    border: #4a6891;
+    color: #FFFFFF;
 
 }
 	
 .limpar:hover, .cadastrar:hover, .enviar-filtro:hover{
-	background-color:#3b5375;
-	border: #3b5375;
+    background-color:#3b5375;
+    border: #3b5375;
 }
 
 .selecao{
-	width: 60%;
-	padding: 7px;	
-	margin-left: 20%;
-	font-size: 12px;
-	color:  #5E5A46;
-	border: 1px solid #C0C0C0;
+    width: 60%;
+    padding: 7px;	
+    margin-left: 20%;
+    font-size: 12px;
+    color:  #5E5A46;
+    border: 1px solid #C0C0C0;
 }
 
 .selecao-filtro{
@@ -261,31 +154,31 @@ nav {
 
 
 .selecao-adiciona{
-	width: 100%;
-	padding: 10px;	
-	font-size: 12px;
-	color:  #5E5A46;
-        margin-top: 10px;
-	border: 1px solid #5E5A46;
+    width: 100%;
+    padding: 10px;	
+    font-size: 12px;
+    color:  #5E5A46;
+    margin-top: 10px;
+    border: 1px solid #5E5A46;
 }
 
 .selecao-escola{
-        width: 100%;
-	padding: 10px;	
-	font-size: 12px;
-	color:  #5E5A46;
-        margin-top: 10px;
-	border: 1px solid #5E5A46;
+    width: 100%;
+    padding: 10px;	
+    font-size: 12px;
+    color:  #5E5A46;
+    margin-top: 10px;
+    border: 1px solid #5E5A46;
     
 }
 
 .selecao-adiciona-dois{
-	width: 75%;
-	padding: 10px;	
-	font-size: 12px;
-	color:  #5E5A46;
-        margin-top: 10px;
-	border: 1px solid #5E5A46;
+    width: 75%;
+    padding: 10px;	
+    font-size: 12px;
+    color:  #5E5A46;
+    margin-top: 10px;
+    border: 1px solid #5E5A46;
 }
  
 .tabela-adiciona{
@@ -304,18 +197,6 @@ nav {
 
 .estilo-sublinhado {
     border-bottom: 1px solid black;
-}
-.imagem-add{
-    cursor: pointer;
-    width: 20px;
-    margin-top: -15px;
-    float: right;
-    
-}
-
-
-.imagem-editar{
-    cursor: pointer;
 }
 
 .input-especial{
@@ -352,10 +233,6 @@ nav {
 
 }
 
-.img-add{
-    float: right;
-}
-
 /* ELEMENTOS DO FOOTER*/
 
 #footer{
@@ -375,136 +252,27 @@ nav {
 
 
 .coluna{
-	padding-right: 50px;
-	padding-top: 10px;
+    padding-right: 50px;
+    padding-top: 10px;
 }
 
 .sobre{
-        color: #FFFFFE;
-	font-family: Calibri;
-        font-size: 10px;
+    color: #FFFFFE;
+    font-family: Calibri;
+    font-size: 10px;
 }
 
 a{
-	text-decoration: none;
-	color: #FFFFFE;
-	font-family: Calibri;
-	font-size: 15px;
+    text-decoration: none;
+    color: #FFFFFE;
+    font-family: Calibri;
+    font-size: 15px;
 }
-
-/*a:hover{
-	text-decoration: underline;
-}*/
 
 .titulo-footer{
-	font-size: 20px;
-	font-weight: bold;
-        float: left;
-}
-
-
-/*MENSAGENS*/
-
-#modal-normal{
-		position: fixed;
-		min-height: 100px;
-		margin-top: 20px;
-		padding: 10px;
-		width: 40%;
-		margin-left: 10%;
-		background-color:#99ceff;
-		border-radius: 10px;
-		display: none;
-
-}
-
-#modal-sucesso{
-	position: fixed;
-	min-height: 100px;
-	margin-top: 20px;
-	padding: 10px;
-	width: 40%;
-	margin-left: 10%;
-	background-color: #2eb82e;
-	border-radius: 10px;
-	display: none;
-
-}
-
-#modal-alerta{
-	position: fixed;
-	min-height: 100px;
-	margin-top: 20px;
-	padding: 10px;
-	width: 40%;
-	margin-left: 10%;
-	background-color: #ffaa00;
-	border-radius: 10px;
-	display: none;
-
-}
-
-#modal-erro{
-	position: fixed;
-	min-height: 80px;
-	margin-top: 20px;
-	padding: 10px;
-	width: 40%;
-	margin-left: 10%;
-	background-color: #cc0000;
-	border-radius: 10px;
-	display: none;
-
-}
-
-
-.fecha-modal-sucesso{
-	font-weight: bold;
-	font-family: Calibri;
-	font-size: 15px;
-	float: right;
-	color: white;
-	background-color: #2eb82e;
-
-}
-
-.fecha-modal-normal{
-	font-weight: bold;
-	font-family: Calibri;
-	font-size: 15px;
-	float: right;
-	color: white;
-	background-color: #99ceff;
-
-}
-
-.fecha-modal-alerta{
-	font-weight: bold;
-	font-family: Calibri;
-	font-size: 15px;
-	float: right;
-	color: white;
-	background-color: #ffaa00;
-
-}
-
-.fecha-modal-erro{
-	font-weight: bold;
-	font-family: Calibri;
-	font-size: 15px;
-	float: right;
-	color: white;
-	background-color: #cc0000;
-
-}
-
-.texto-modal{
-	color: black;
-	font-family: Verdana;
-	font-size: 15px;
-	float: left;
-	padding: 0px 10px 15px 0px;
-
+    font-size: 20px;
+    font-weight: bold;
+    float: left;
 }
 
 
@@ -521,142 +289,151 @@ a{
 
 @media only screen and (max-width: 900px) {
 	
-  .cadastrar {
+    .cadastrar {
         display: none;
-  }
-  .cadastrar-peq{
-	  display: block;
-  }
+    }
+    .cadastrar-peq{
+        display: block;
+    }
   
-        .container{
-		  width: 75%;	
-	 }   
-                 
-         .cadastrar-peq{
-             width: 60%;
-         }
-         
-         .limpar{
-             width: 60%;
-         }
-         
-         .enviar-filtro{
-             font-size: 13px;
-             
-         }
+    .container{
+        width: 75%;	
+    }   
+
+    .cadastrar-peq{
+        width: 60%;
+    }
+
+    .limpar{
+        width: 60%;
+    }
+
+    .enviar-filtro{
+        font-size: 13px;
+    }
          
 }
 
+/* BOOTSTRAP */
 
+.tela_login {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #4a6891 !important;
+}
+.user_card {
+    height: 400px;
+    width: 350px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: #ffffff;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+.brand_logo_container {
+    position: absolute;
+    height: 170px;
+    width: 170px;
+    top: -75px;
+    border-radius: 50%;
+    background: #4a6891;
+    padding: 10px;
+    text-align: center;
+}
+.brand_logo {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.form_container {
+    margin-top: 100px;
+}
+.login_btn {
+    width: 100%;
+    background: #4a6891 !important;
+    color: white !important;
+}
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.login_container {
+    padding: 0 2rem;
+}
+.input-group-text {
+    background: #4a6891 !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
 
+/** TELA PRINCIPAL */
 
+.caixa-tela-principal{
+    width: 100%;
+    height: 150px;
+    margin-top: 60px;
+}
 
+.caixinha {
+    width: 23%;
+    height: 100%;
+    background-color: #4a6891;
+    float: left;
+    margin: 0 1% 0 1%;
+    padding: 5px;
+    display: table;
+}
 
+.texto-caixinha {
+    color: white;
+    font-size: 17px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
 
-/*BOTSTREP*/
+.texto-caixinha:hover {
+    color: white;
+}
 
-    .tela_login {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        background: #4a6891 !important;
-    }
-    .user_card {
-        height: 400px;
-        width: 350px;
-        margin-top: auto;
-        margin-bottom: auto;
-        background: #ffffff;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        padding: 10px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        border-radius: 5px;
-    }
-    .brand_logo_container {
-        position: absolute;
-        height: 170px;
-        width: 170px;
-        top: -75px;
-        border-radius: 50%;
-        background: #4a6891;
-        padding: 10px;
-        text-align: center;
-    }
-    .brand_logo {
-        height: 150px;
-        width: 150px;
-        border-radius: 50%;
-        border: 2px solid white;
-    }
-    .form_container {
-        margin-top: 100px;
-    }
-    .login_btn {
-        width: 100%;
-        background: #4a6891 !important;
-        color: white !important;
-    }
-    .login_btn:focus {
-        box-shadow: none !important;
-        outline: 0px !important;
-    }
-    .login_container {
-        padding: 0 2rem;
-    }
-    .input-group-text {
-        background: #4a6891 !important;
-        color: white !important;
-        border: 0 !important;
-        border-radius: 0.25rem 0 0 0.25rem !important;
-    }
-    .input_user,
-    .input_pass:focus {
-        box-shadow: none !important;
-        outline: 0px !important;
-    }
+.titulo {
+    margin-top: 20px;
+    color: #4a6891;
+    font-family: Calibri;
+    font-size: 30px;
+    text-align: center;
+}
 
-    /** TELA PRINCIPAL */
-    
-    .caixa-tela-principal{
-        width: 100%;
-        height: 150px;
-        margin-top: 60px;
-        
-    }
-    
-    .caixinha {
-        width: 23%;
-        height: 100%;
-        background-color: #4a6891;
-        float: left;
-        margin: 0 1% 0 1%;
-    }
-    
-    .titulo {
-        margin-top: 20px;
-        color: #4a6891;
-        font-family: Calibri;
-        font-size: 30px;
-        text-align: center;
-        
-    }
-
-    .table-selectable {
-        > tbody {
-            > tr {
-              cursor: pointer;
-            }
-            > tr.selected {
-              background-color: #d9edf7;
-              color: #31708f;
-              &:hover {
-                background-color: darken(#d9edf7, 5%);
-              }
-            }
+.table-selectable {
+    > tbody {
+        > tr {
+          cursor: pointer;
+        }
+        > tr.selected {
+          background-color: #d9edf7;
+          color: #31708f;
+          &:hover {
+            background-color: darken(#d9edf7, 5%);
+          }
         }
     }
+}
+
+.table-selectable {
+    margin-bottom: 120px;
+}

@@ -24,8 +24,11 @@ class ControllerTurma extends ControllerPadrao{
                 $this->ModelTurma->setNome(Redirecionador::getParametro('nome'));
 
                 $this->PersistenciaTurma->setModelTurma($this->ModelTurma);
-                $this->PersistenciaTurma->alterarRegistro();
-                header('Location:index.php?pg=consultaTurma');
+                if($this->PersistenciaTurma->alterarRegistro()) {
+                    header('Location:index.php?pg=consultaTurma&message=sucessoalteracao');
+                } else {
+                    header('Location:index.php?pg=consultaTurma&message=erroalteracao');
+                }
             }
             $this->processaExibir();
         }
@@ -39,8 +42,11 @@ class ControllerTurma extends ControllerPadrao{
     }
 
     public function processaExcluir() {
-        $this->PersistenciaTurma->excluirRegistro(Redirecionador::getParametro('codigo'));
-        header('Location:index.php?pg=consultaTurma');
+        if($this->PersistenciaTurma->excluirRegistro(Redirecionador::getParametro('codigo'))) {
+            header('Location:index.php?pg=consultaTurma&message=sucessoexclusao');
+        } else {
+            header('Location:index.php?pg=consultaTurma&message=erroexclusao');
+        }
         $this->processaExibir();
     }
 
@@ -61,8 +67,12 @@ class ControllerTurma extends ControllerPadrao{
             $this->ModelTurma->setNome(Redirecionador::getParametro('nome'));
 
             $this->PersistenciaTurma->setModelTurma($this->ModelTurma);
-            $this->PersistenciaTurma->inserirRegistro();
-            header('Location:index.php?pg=consultaTurma');
+            if($this->PersistenciaTurma->inserirRegistro()) {
+                header('Location:index.php?pg=consultaTurma&message=sucessoinclusao');
+            } else {
+                header('Location:index.php?pg=consultaTurma&message=erroinclusao');
+            }
+            
         }
         $this->processaExibir();
     }

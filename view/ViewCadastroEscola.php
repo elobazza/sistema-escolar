@@ -60,19 +60,14 @@ class ViewCadastroEscola extends ViewPadrao {
         return '<form action="index.php?pg=escola&acao=altera" method="POST">
                 <div class="container">
                 
-                    <label class="desc-formulario">Nome da Escola</label>
-                    <label class="desc-formulario">Endereço</label>
-                    <label class="desc-formulario">Contato</label>
-                    <label class="desc-formulario">Login </label>
                     <input class="campo" type="text" name="login"  value="'.$_SESSION['login'].'" id="login" maxlength="50">
-                    <label class="desc-formulario">Senha</label>
                     <input class="campo" type="password" name="senha" id="senha" maxlength="20">
                     
                     <button class="limpar" id="limpar-escola">
                                     Limpar
                     </button>
+                    
                     <input type="submit" value="Alterar" class="cadastrar" id="cadastrar-escola">
-
                     <input type="submit" value="Alterar" class="cadastrar-peq" id="cadastrar-escola">
 
             </div>
