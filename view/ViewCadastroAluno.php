@@ -71,7 +71,7 @@ class ViewCadastroAluno extends ViewPadrao {
                         <label class="label-select">Turma</label>
                         '.$this->createSelectAlteracao().'
                             
-                        <button class="limpar" id="limpar">Limpar</button>
+                        <div id="limpar" onclick="limpar()">Limpar</div>
                         <input type="submit" class="cadastrar" id="alterar-aluno" value="Alterar">                    
                         <input type="submit" class="cadastrar-peq" id="alterar-aluno" value="Alterar">
                     </div>
