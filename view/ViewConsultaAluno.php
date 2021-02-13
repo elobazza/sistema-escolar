@@ -31,8 +31,8 @@ class ViewConsultaAluno extends ViewPadrao {
             <div style="background-color:#4a6891; height: 50px; width: 100%; margin-top: 30px; padding-top:10px">
                 <div class="container">
                     <a href="index.php?pg=aluno" style="color:white; font-size:18px; margin-right: 20px"> Cadastrar</a>
-                    <a href="" onclick="alterar(\'aluno\')" style="color:white; font-size:18px; margin-right: 20px"> Editar</a>
-                    <a href="" onclick="excluir(\'aluno\')" style="color:white; font-size:18px; margin-right: 20px"> Excluir</a>
+                    <a href="" onClick="alterar(event, \'aluno\')" style="color:white; font-size:18px; margin-right: 20px"> Editar</a>
+                    <a href="" onClick="excluir(event, \'aluno\')" style="color:white; font-size:18px; margin-right: 20px"> Excluir</a>
                 </div>
             </div>
             

@@ -49,9 +49,8 @@ class ViewCadastroAluno extends ViewPadrao {
                     
                         <label class="label-select">Turma</label>
                         '.$this->createSelectCadastro().'
-                        <button class="limpar" id="limpar-aluno">
-                            Limpar
-                        </button>
+                            
+                        <div id="limpar" onclick="limpar()">Limpar</div>
                         <input type="submit" class="cadastrar" id="cadastrar-aluno" value="Cadastrar">                    
                         <input type="submit" class="cadastrar-peq" id="cadastrar-aluno" value="Cadastrar">
                     </div>
@@ -70,10 +69,9 @@ class ViewCadastroAluno extends ViewPadrao {
                         <input class="campo" name="contato" type="text"   id="contato"  maxlength="30" value="'.$this->aluno->getContato().'">
                         <input class="campo" name="data_nascimento" type="text" id="data_nascimento"  maxlength="30" value="'.$this->aluno->getData_nascimento().'">
                         <label class="label-select">Turma</label>
-                        '.$this->createSelect().'
-                        <button class="limpar" id="limpar-aluno">
-                            Limpar
-                        </button>
+                        '.$this->createSelectAlteracao().'
+                            
+                        <button class="limpar" id="limpar">Limpar</button>
                         <input type="submit" class="cadastrar" id="alterar-aluno" value="Alterar">                    
                         <input type="submit" class="cadastrar-peq" id="alterar-aluno" value="Alterar">
                     </div>
@@ -87,13 +85,12 @@ class ViewCadastroAluno extends ViewPadrao {
         foreach ($this->turmas as $oTurma) {
                 $aSelect[] = '<option value="' . $oTurma->getCodigo() . '">' . $oTurma->getNome() . '</option>';
         }
-        //PHP_EOL � o </br> do PHP
         return '<select class="selecao" name="turma" id="turma">
                 '. implode(PHP_EOL, $aSelect).'
                 </select>';
     }
     
-    private function createSelect() {
+    private function createSelectAlteracao() {
         $aSelect = [];
         
         foreach ($this->turmas as $oTurma) {

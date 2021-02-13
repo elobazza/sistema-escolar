@@ -35,7 +35,7 @@ class ControllerAluno extends ControllerPadrao {
         $this->ViewCadastroAluno   = new ViewCadastroAluno();
     }
     
-    public function processaAlterar() { 
+    public function processaAlterar() {
         if(Redirecionador::getParametro('efetiva') == 1) {
             if(!empty(Redirecionador::getParametro('nome')) && !empty(Redirecionador::getParametro('cpf')) 
             && !empty(Redirecionador::getParametro('contato')) && !empty(Redirecionador::getParametro('turma'))
@@ -108,7 +108,7 @@ class ControllerAluno extends ControllerPadrao {
         if(!empty(Redirecionador::getParametro('nome')) && !empty(Redirecionador::getParametro('cpf')) 
         && !empty(Redirecionador::getParametro('contato')) && !empty(Redirecionador::getParametro('turma'))
         && !empty(Redirecionador::getParametro('senha')) && !empty(Redirecionador::getParametro('matricula'))
-         && !empty(Redirecionador::getParametro('data_nascimento')) && !empty(Redirecionador::getParametro('login'))){
+        && !empty(Redirecionador::getParametro('data_nascimento')) && !empty(Redirecionador::getParametro('login'))){
             $this->ModelUsuario->setLogin(Redirecionador::getParametro('login'));
             $this->ModelUsuario->setSenha(Redirecionador::getParametro('senha'));
             $this->ModelUsuario->setTipo(1);        
@@ -145,7 +145,8 @@ class ControllerAluno extends ControllerPadrao {
             } else {
                 header('Location:index.php?pg=consultaAluno&message=erroinclusao');
             }
+            $this->processaExibir();
         }
-        $this->processaExibir();
+        header('Location:index.php?pg=aluno&message=erroinclusao');
     }
 }

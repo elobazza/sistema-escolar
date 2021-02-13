@@ -49,6 +49,7 @@ class ViewCadastroEscola extends ViewPadrao {
                     <input class="campo" type="number" name="numero" placeholder="Número" id="numero" maxlength="7">
                     <input class="campo" type="text" name="complemento" placeholder="Complemento" id="complemento" maxlength="255">
                     
+                    <div id="limpar" onclick="limpar()">Limpar</div>
                     <input type="submit" value="Cadastrar" class="cadastrar" id="cadastrar-escola">
                     <input type="submit" value="Cadastrar" class="cadastrar-peq" id="cadastrar-escola">
                 </div>
@@ -65,85 +66,12 @@ class ViewCadastroEscola extends ViewPadrao {
                     <input class="campo" type="text" name="login"  value="'.$_SESSION['login'].'" id="login" maxlength="50">
                     <input class="campo" type="password" name="senha" id="senha" maxlength="20">
                     
-                    <button class="limpar" id="limpar-escola">
-                                    Limpar
-                    </button>
-                    
+                    <div id="limpar" onclick="limpar()">Limpar</div>
                     <input type="submit" value="Alterar" class="cadastrar" id="cadastrar-escola">
                     <input type="submit" value="Alterar" class="cadastrar-peq" id="cadastrar-escola">
 
             </div>
-            </form>
-            <div class="container">
-                <form action="index.php?pg=escola" method="POST">
-                    <select name="indice" id="indice" class="selecao-filtro">
-
-                    '.$this->buscaIndice().'  
-                    </select>
-                    <input type="text" name="valor" class="selecao-valor">
-                    <input type="submit" value="Filtrar" class="enviar-filtro">
-                 </form>
-             </div>
-            '.$this->montaTabela().'';
+            </form>';
+            
     }
-    
-    public function montaTabela(){
-        return '<table class="table_listagem" style="clear:both">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Endereço</th>
-                        <th>Contato</th>
-                        <th>Cidade</th>
-                        <th>Login</th>
-                        
-                    </tr>
-                    '.$this->createSelectListagem().'
-                </table>';
-    }
-    
-    private function createSelectListagem() {
-        $sResult = "";
-
-        foreach ($this->getEscolas() as $oEscola) { 
-//            $sResult .= ' <tr>
-//                            <td>' . $oEscola->getCodigo() . '</td>
-//                            <td>' . $oEscola->getNome() . '</td>
-//                            <td>' . $oEscola->getEndereco() . '</td>
-//                            <td>' . $oEscola->getContato() . '</td>
-//                            <td>' . $oEscola->getLogin() . '</td>
-//                             </tr>';
-            $sResult .= ' <tr>
-                            <td>' . $oEscola->getUsuario()->getCodigo() . '</td>
-                            <td>' . $oEscola->getUsuario()->getLogin() . '</td>
-                             </tr>';
-        }
-        return $sResult;
-    }
-    
-    private function createSelect() {
-        $aSelect = [];
-        
-        foreach ($this->cidades as $oCidade) {
-//            if($this->escola->getCidade()->getCodigo() == $oCidade->getCodigo()){
-//                $aSelect[] = '<option value="' . $oCidade->getCodigo() . '" selected>' . $oCidade->getNome() . '</option>';
-//            } else {
-                $aSelect[] = '<option value="' . $oCidade->getCodigo() . '">' . $oCidade->getNome() . '</option>';
-//            }
-        }
-        //PHP_EOL � o </br> do PHP
-        return '<select class="selecao" name="cidade" id="cidade-escola">
-                '. implode(PHP_EOL, $aSelect).'
-                </select>';
-    }
-    
-    public function buscaIndice() {
-        $aFiltros = ['esccodigo', 'escnome', 'escendereco', 'esccontato'];
-        $aValores = ['ID', 'Nome', 'Endereço', 'Contato'];
-        $sOpcoes = "";
-        for ($i = 0; $i < sizeof($aValores); $i++) {
-            $sOpcoes .= '<option value="' . $aFiltros[$i] . '">'. $aValores[$i].'</option>';
-        }
-        return $sOpcoes;
-    }
-}
+}    

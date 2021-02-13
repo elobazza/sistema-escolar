@@ -53,26 +53,12 @@ class ViewCadastroNota extends ViewPadrao {
                         <input class="campo" type="text" name="nota" id="nota" maxlength="3">
                         
 
-                        <button class="limpar" id="limpar-nota">
-                                        Limpar
-                        </button>
+                        <div id="limpar" onclick="limpar()">Limpar</div>
                         <input type="submit" class="cadastrar" id="cadastrar-aluno" value="Cadastrar">                    
                         <input type="submit" class="cadastrar-peq" id="cadastrar-aluno" value="Cadastrar">
 		</div>
                 
-           </form>
-           <div class="container">
-                <form action="index.php?pg=nota" method="POST">
-                    <select name="indice" id="indice" class="selecao-filtro">
-
-                    '.$this->buscaIndice().'  
-                    </select>
-                    <input type="text" name="valor" class="selecao-valor">
-                    <input type="submit" value="Filtrar" class="enviar-filtro">
-                 </form>
-             </div>
-
-            '.$this->montaTabela().'';
+           </form>';
     }
     function getConteudoAlterar(){
         return '<form action="index.php?pg=nota&acao=altera&efetiva=1" method="POST">
@@ -89,61 +75,14 @@ class ViewCadastroNota extends ViewPadrao {
                         <input class="campo" type="text" name="nota" id="nota" maxlength="3" value="'.$this->nota->getNota().'">
                         
 
-                        <button class="limpar" id="limpar-nota">
-                                        Limpar
-                        </button>
+                        <div id="limpar" onclick="limpar()">Limpar</div>
                         <input type="submit" class="cadastrar" id="cadastrar-aluno" value="Alterar">                    
                         <input type="submit" class="cadastrar-peq" id="cadastrar-aluno" value="Alterar">
 		</div>
                 
-           </form>
-           <div class="container">
-                <form action="index.php?pg=nota" method="POST">
-                    <select name="indice" id="indice" class="selecao-filtro">
-
-                    '.$this->buscaIndice().'  
-                    </select>
-                    <input type="text" name="valor" class="selecao-valor">
-                    <input type="submit" value="Filtrar" class="enviar-filtro">
-                 </form>
-             </div>
-
-            '.$this->montaTabela().'';
+           </form>';
     }
-    
-     public function montaTabela(){
-        return '<table class="table_listagem" style="clear:both">
-                    <tr>
-                        <th>Código</th>
-                        <th>Nota</th>
-                        <th>Aluno</th>
-                        <th>Disciplina</th>
-                        <th>Ações</th>
-                        
-                    </tr>
-                    '.$this->createSelectListagem().'
-                </table>';
-    }
-    
-    private function createSelectListagem() {
-        $sResult = "";
-
-        foreach ($this->getNotas() as $oNota) { 
-            
-            $sResult .= ' <tr>
-                            <td>' . $oNota->getCodigo() . '</td>
-                            <td>' . $oNota->getNota() . '</td>
-                            <td>' . $oNota->getAluno()->getNome() . '</td>
-                            <td>' . $oNota->getDisciplina()->getNome() . '</td>
-                            <td><a href="index.php?pg=nota&acao=altera&codigo='.$oNota->getCodigo().'&efetiva=0"><img src="../images/edit.png" width="20px"></a>
-                     <a href="index.php?pg=nota&acao=exclui&codigo='.$oNota->getCodigo().'"><img src="../images/garbage-2.png" width="20px"></a></td>
-                
-                         </tr>';
-        }
-        return $sResult;
-    }
-    
-    
+        
     private function createSelect() {
         $aSelect = [];
         
@@ -201,15 +140,5 @@ class ViewCadastroNota extends ViewPadrao {
                 </select>
                 
                 ' ;
-    }
-    
-    public function buscaIndice() {
-        $aFiltros = ['notcodigo', 'notnota', 'alunome', 'disnome'];
-        $aValores = ['ID', 'Nota', 'Aluno', 'Disciplina'];
-        $sOpcoes = "";
-        for ($i = 0; $i < sizeof($aValores); $i++) {
-            $sOpcoes .= '<option value="' . $aFiltros[$i] . '">'. $aValores[$i].'</option>';
-        }
-        return $sOpcoes;
     }
 }

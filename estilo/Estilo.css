@@ -99,7 +99,7 @@ nav {
     color: #FFFFFF;
 }
 
-.limpar {
+#limpar {
     float: left;
     position: relative;
     margin-top: 20px;
@@ -112,10 +112,11 @@ nav {
     background-color:#4a6891;
     border: #4a6891;
     color: #FFFFFF;
+    text-align: center;
 
 }
 	
-.limpar:hover, .cadastrar:hover, .enviar-filtro:hover{
+#limpar:hover, .cadastrar:hover, .enviar-filtro:hover{
     background-color:#3b5375;
     border: #3b5375;
 }
@@ -434,6 +435,6 @@ a{
     }
 }
 
-.table-selectable {
+/*.table-selectable {
     margin-bottom: 120px;
-}
+}*/
