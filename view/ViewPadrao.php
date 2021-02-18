@@ -77,7 +77,7 @@ abstract class ViewPadrao {
                                         <a class="dropdown-item" href="index.php?pg=consultaProfessor">Professores</a>
                                         <a class="dropdown-item" href="index.php?pg=consultaDisciplina">Disciplinas</a>
                                         <a class="dropdown-item" href="index.php?pg=consultaTurma">Turmas</a>
-                                        <a class="dropdown-item" href="consultaAula">Aulas</a>
+                                        <a class="dropdown-item" href="index.php?pg=consultaAula">Aulas</a>
                                       </div>
                                   </li>
                                   <li class="nav-item active mr-2 dropdown">

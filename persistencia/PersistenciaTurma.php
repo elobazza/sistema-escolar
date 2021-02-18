@@ -7,9 +7,6 @@ class PersistenciaTurma extends PersistenciaPadrao {
     /** @var ModelTurma $ModelTurma */
     private $ModelTurma;
     
-    /** @var ModelDisciplina $ModelDisciplina */
-    private $ModelDisciplina;
-    
     function getModelTurma() {
         return $this->ModelTurma;
     }

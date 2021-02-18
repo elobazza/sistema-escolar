@@ -27,8 +27,11 @@ class ControllerAula extends ControllerPadrao {
                 $this->ModelAula->setHorarioFim(Redirecionador::getParametro('horarioFim'));
 
                 $this->PersistenciaAula->setModelAula($this->ModelAula);
-                $this->PersistenciaAula->alterarRegistro();
-                header('Location:index.php?pg=aula');
+                if($this->PersistenciaAula->alterarRegistro()) {
+                    header('Location:index.php?pg=consultaAula&message=sucessoalteracao');
+                } else {
+                    header('Location:index.php?pg=consultaAula&message=erroalteracao');
+                }
             }
             $this->processaExibir();
         }
@@ -41,13 +44,15 @@ class ControllerAula extends ControllerPadrao {
     }
 
     public function processaExcluir() {
-        $this->PersistenciaAula->excluirRegistro(Redirecionador::getParametro('codigo'));
-        header('Location:index.php?pg=aula');
+        if($this->PersistenciaAula->excluirRegistro(Redirecionador::getParametro('codigo'))) {
+            header('Location:index.php?pg=consultaAula&message=sucessoexclusao');
+        } else {
+            header('Location:index.php?pg=consultaAula&message=erroexclusao');
+        }
         $this->processaExibir();
     }
 
-    public function processaExibir() {
-        
+    public function processaExibir() {        
         if(Redirecionador::getParametro('indice') && Redirecionador::getParametro('valor')){
             $sIndice = Redirecionador::getParametro('indice');
             $sValor = Redirecionador::getParametro('valor'); 
@@ -62,10 +67,15 @@ class ControllerAula extends ControllerPadrao {
         if(!empty(Redirecionador::getParametro('horarioInicio')) && !empty(Redirecionador::getParametro('horarioFim'))){
             $this->ModelAula->setHorarioInicio(Redirecionador::getParametro('horarioInicio'));
             $this->ModelAula->setHorarioFim(Redirecionador::getParametro('horarioFim'));
+            $this->ModelAula->getDisciplinaProfessorTurma()->setCodigo(1);
 
             $this->PersistenciaAula->setModelAula($this->ModelAula);
-            $this->PersistenciaAula->inserirRegistro();
-            header('Location:index.php?pg=aula');
+            
+            if($this->PersistenciaAula->inserirRegistro()) {
+                header('Location:index.php?pg=consultaAula&message=sucessoinclusao');
+            } else {
+                header('Location:index.php?pg=consultaAula&message=erroinclusao');
+            }
         }
         $this->processaExibir();
     }

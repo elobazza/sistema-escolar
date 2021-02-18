@@ -15,46 +15,46 @@ class PersistenciaAula extends PersistenciaPadrao {
     }
 
     public function alterarRegistro() {
-        $sUpdate = 'UPDATE SISTEMAESCOLA.TBAULA
-                       SET aulhorarioinicio =\''.$this->ModelAula->getHorarioInicio().'\' ,
-                           aulhorariofim = \''.$this->ModelAula->getHorarioFim().'\' 
-                     WHERE aulcodigo = '.$this->ModelAula->getCodigo().' ';
+        $sUpdate = 'UPDATE AULA
+                       SET horario_inicio =\''.$this->ModelAula->getHorarioInicio().'\' ,
+                           horario_fim = \''.$this->ModelAula->getHorarioFim().'\' 
+                     WHERE id_aula = '.$this->ModelAula->getCodigo().' ';
       
-         pg_query($this->conexao, $sUpdate);
+        return pg_query($this->conexao, $sUpdate);
     }
 
     public function excluirRegistro($codigo) {
-        $sDelete = 'DELETE FROM SISTEMAESCOLA.TBAULA WHERE AULCODIGO = '.$codigo.'';
-        pg_query($this->conexao, $sDelete);
+        $sDelete = 'DELETE FROM AULA WHERE id_aula = '.$codigo.'';
+        return pg_query($this->conexao, $sDelete);
     }
 
     public function inserirRegistro() {
         $aColunas = [
-            'aulhorarioinicio',
-            'aulhorariofim'
+            'horario_inicio',
+            'horario_fim',
+            'id_discproftur'
         ];
         $aValores = [
             $this->ModelAula->getHorarioInicio(),
-            $this->ModelAula->getHorarioFim()
-        ];
-        
-        parent::inserir('tbaula', $aColunas, $aValores);
+            $this->ModelAula->getHorarioFim(),
+            $this->ModelAula->getDisciplinaProfessorTurma()->getCodigo()
+        ];        
+        return parent::inserir('aula', $aColunas, $aValores);
     }
 
         
     
     public function listarRegistros() {
         $sSelect = 'SELECT * 
-                      FROM SISTEMAESCOLA.TBAULA 
-                     ORDER BY 1';
+                      FROM AULA';
         $oResultado = pg_query($this->conexao, $sSelect);
         $aAulas = [];
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
             $oAula = new ModelAula();
-            $oAula->setCodigo($aLinha['aulcodigo']);
-            $oAula->setHorarioInicio($aLinha['aulhorarioinicio']);
-            $oAula->setHorarioFim($aLinha['aulhorariofim']);
+            $oAula->setCodigo($aLinha['id_aula']);
+            $oAula->setHorarioInicio($aLinha['horario_inicio']);
+            $oAula->setHorarioFim($aLinha['horario_fim']);
             
             $aAulas[] = $oAula;
         }
@@ -62,7 +62,7 @@ class PersistenciaAula extends PersistenciaPadrao {
     }
     public function listarComFiltro($sIndice, $sValor) {
         $sSelect = 'SELECT * 
-                      FROM SISTEMAESCOLA.TBAULA  
+                      FROM AULA  
                      WHERE '.$sIndice.' = \''.$sValor.'\'   
                      ORDER BY 1;';
         
@@ -71,9 +71,9 @@ class PersistenciaAula extends PersistenciaPadrao {
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
             $oAula = new ModelAula();
-            $oAula->setCodigo($aLinha['aulcodigo']);
-            $oAula->setHorarioInicio($aLinha['aulhorarioinicio']);
-            $oAula->setHorarioFim($aLinha['aulhorariofim']);
+            $oAula->setCodigo($aLinha['id_aula']);
+            $oAula->setHorarioInicio($aLinha['horario_inicio']);
+            $oAula->setHorarioFim($aLinha['horario_fim']);
             
             $aAulas[] = $oAula;
         }
@@ -81,14 +81,14 @@ class PersistenciaAula extends PersistenciaPadrao {
     }
     
     public function selecionar($codigo) {
-        $sSelect = 'SELECT * FROM SISTEMAESCOLA.TBAULA WHERE AULCODIGO = '.$codigo.'';
+        $sSelect = 'SELECT * FROM AULA WHERE ID_AULA = '.$codigo.'';
         $oResultadoAula = pg_query($this->conexao, $sSelect);
         $oAula = new ModelAula();
         
         while ($aLinha = pg_fetch_array($oResultadoAula, null, PGSQL_ASSOC)){
-            $oAula->setCodigo($aLinha['aulcodigo']);
-            $oAula->setHorarioInicio($aLinha['aulhorarioinicio']);
-            $oAula->setHorarioFim($aLinha['aulhorariofim']);
+            $oAula->setCodigo($aLinha['id_aula']);
+            $oAula->setHorarioInicio($aLinha['horario_inicio']);
+            $oAula->setHorarioFim($aLinha['horario_fim']);
             
            }
         return $oAula;
