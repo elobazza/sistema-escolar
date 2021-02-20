@@ -44,9 +44,6 @@ class ControllerLogin extends ControllerPadrao {
             $xUsuario = $this->PersistenciaUsuario->selecionarLogin(Redirecionador::getParametro('nome'), Redirecionador::getParametro('senha'));           
             if($xUsuario){
                 $_SESSION['id']       = $xUsuario->getCodigo();
-//                $_SESSION['nome']     = $xUsuario->getNome();
-//                $_SESSION['endereco'] = $xUsuario->getEndereco();
-//                $_SESSION['contato']  = $xUsuario->getContato();
                 $_SESSION['login']    = $xUsuario->getLogin();
                
                 header('Location:index.php?pg=telaPrincipal');

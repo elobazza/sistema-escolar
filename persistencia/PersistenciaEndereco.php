@@ -30,13 +30,12 @@ class PersistenciaEndereco extends PersistenciaPadrao{
     }
 
     public function excluirRegistro($codigo) {
-        $sDelete = 'DELETE FROM ESCOLA WHERE ID_ESCOLA = '.$codigo.'';
+        $sDelete = 'DELETE FROM ENDERECO WHERE ID_ENDERECO = '.$codigo.'';
         pg_query($this->conexao, $sDelete);
     }
 
     public function inserirRegistro() {        
         $aColunas = [
-            'id_escola',
             'estado',
             'cidade',
             'bairro',
@@ -46,123 +45,42 @@ class PersistenciaEndereco extends PersistenciaPadrao{
         ];
         
         $aValores = [
-            $this->ModelEndereco->getEscola()->getUsuario()->getCodigo(),
             $this->ModelEndereco->getEstado(),
             $this->ModelEndereco->getCidade(),
             $this->ModelEndereco->getBairro(),
             $this->ModelEndereco->getRua(),
             $this->ModelEndereco->getNumero(),
-            $this->ModelEndereco->getComplemento(),
+            $this->ModelEndereco->getComplemento()
         ];
         
         parent::inserir('endereco', $aColunas, $aValores);
     }
-
-    public function listarRegistros() {
-        $sSelect = 'SELECT *  
-                      FROM ESCOLA
-                      JOIN USUARIO
-                        ON id_escola = id_usuario';
+    
+    public function selecionar($Endereco) {
+         $sSelect = 'SELECT * 
+                      FROM ENDERECO
+                      WHERE ESTADO = \''. $Endereco->getEstado() .'\'
+                        AND CIDADE = \''. $Endereco->getCidade() .'\'
+                        AND RUA = \''. $Endereco->getRua() .'\'
+                        AND COMPLEMENTO = \''. $Endereco->getComplemento() .'\'
+                        AND NUMERO = '. $Endereco->getNumero() .'
+                        AND BAIRRO = \''. $Endereco->getBairro() .'\'';
+         
         $oResultado = pg_query($this->conexao, $sSelect);
-        $aEnderecos = [];
+        $oEndereco = new ModelEndereco();
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            $oEndereco  = new ModelEndereco();
-            $oUsuario = new ModelUsuario();
-            
-            $oEndereco->setContato($aLinha['contato']);
-            $oEndereco->setNome($aLinha['nome']);
-            
-            $oUsuario->setCodigo($aLinha['id_escola']);
-            $oUsuario->setLogin($aLinha['login']);
-            $oUsuario->setSenha($aLinha['senha']);
-            $oUsuario->setTipo($aLinha['tipo']);
-            
-            $oEndereco->setUsuario($oUsuario);
-            
-            $aEnderecos[] = $oEndereco;
-        }
-        return $aEnderecos;
-    }
-    
-    public function listarComFiltro($sIndice, $sValor) {
-        $sSelect = 'SELECT *
-                      FROM ESCOLA 
-                      JOIN USUARIO
-                        ON id_usuario = id_escola
-                     WHERE '.$sIndice.' = \''.$sValor.'\';' ;
-        $oResultado = pg_query($this->conexao, $sSelect);
-        $aEnderecos = [];
-        
-        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            $oEndereco  = new ModelEndereco();
-            $oUsuario = new ModelUsuario();
-            
-            $oEndereco->setContato($aLinha['contato']);
-            $oEndereco->setNome($aLinha['nome']);
-            
-            $oUsuario->setCodigo($aLinha['id_escola']);
-            $oUsuario->setLogin($aLinha['login']);
-            $oUsuario->setSenha($aLinha['senha']);
-            $oUsuario->setTipo($aLinha['tipo']);
-            
-            $oEndereco->setUsuario($oUsuario);
-            
-            $aEnderecos[] = $oEndereco;
-        }        
-        return $aEnderecos;
-    }
-    
-    public function selecionar($codigo) {
-        $sSelect = 'SELECT * 
-                      FROM ESCOLA 
-                     WHERE id_escola = '.$codigo.'';
-        
-        $oResultadoEndereco = pg_query($this->conexao, $sSelect);
-        $oEndereco          = new ModelEndereco();
-        $oUsuario         = new ModelUsuario();
-        
-        while ($aLinha = pg_fetch_array($oResultadoEndereco, null, PGSQL_ASSOC)){
-            $oEndereco->setContato($aLinha['contato']);
-            $oEndereco->setNome($aLinha['nome']);
-            
-            $oUsuario->setCodigo($aLinha['id_escola']);
-            $oUsuario->setLogin($aLinha['login']);
-            $oUsuario->setSenha($aLinha['senha']);
-            $oUsuario->setTipo($aLinha['tipo']);
-            
-            $oEndereco->setUsuario($oUsuario);
+            $oEndereco->setBairro($aLinha['bairro']);
+            $oEndereco->setCidade($aLinha['cidade']);
+            $oEndereco->setCodigo($aLinha['id_endereco']);
+            $oEndereco->setComplemento($aLinha['complemento']);
+            $oEndereco->setEstado($aLinha['estado']);
+            $oEndereco->setNumero($aLinha['numero']);
+            $oEndereco->setRua($aLinha['rua']);
         }
         return $oEndereco;
     }
-    
-    //FALTANTES
-    
-    public function listarEnderecosPorProfessor($codigo) {
-        $sSelect = 'SELECT TBESCOLA.*
-                      FROM SISTEMAESCOLA.TBESCOLA 
-                      JOIN SISTEMAESCOLA.TBPROFESSORESCOLA ON
-                           TBESCOLA.ESCCODIGO = TBPROFESSORESCOLA.ESCCODIGO
-                     WHERE TBPROFESSORESCOLA.PROCODIGO = '.$codigo.';';
-        $oResultado = pg_query($this->conexao, $sSelect);
-        $aEnderecos = [];
-        
-        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            $oEndereco = new ModelEndereco();
-            $oCidade = new ModelCidade();
-            $oEndereco->setCodigo($aLinha['esccodigo']);
-            $oEndereco->setNome($aLinha['escnome']);
-            $oEndereco->setEndereco($aLinha['escendereco']);
-            $oEndereco->setContato($aLinha['esccontato']);
-            $oEndereco->setLogin($aLinha['esclogin']);
-            
-            $oCidade->setCodigo($aLinha['cidcodigo']);
-            $oEndereco->setCidade($oCidade);
-            
-            $aEnderecos[] = $oEndereco;
-        }
-        
-        return $aEnderecos;
-    }
-    
+
+    public function listarRegistros() {}
+
 }

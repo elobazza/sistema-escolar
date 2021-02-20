@@ -65,7 +65,11 @@ abstract class ViewPadrao {
                             <img src="../images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
                                 Newton
                             </a>
-
+                            <ul class="navbar-nav ml-auto">
+                                <a href="index.php?pg=escola&acao=alterar&efetiva=0" class="nav-link active">
+                                    Perfil
+                                </a>
+                            </ul>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav mr-auto">
                                   <li class="nav-item active mr-2 dropdown">

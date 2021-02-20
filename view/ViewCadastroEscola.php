@@ -55,23 +55,31 @@ class ViewCadastroEscola extends ViewPadrao {
                 </div>
             </form>';
         } else {
-//            return $this->getConteudoAlterar();
+            return $this->getConteudoAlterar();
         }
     }
     
     function getConteudoAlterar(){
-        return '<form action="index.php?pg=escola&acao=altera" method="POST">
-                <div class="container">
-                
-                    <input class="campo" type="text" name="login"  value="'.$_SESSION['login'].'" id="login" maxlength="50">
-                    <input class="campo" type="password" name="senha" id="senha" maxlength="20">
-                    
-                    <div id="limpar" onclick="limpar()">Limpar</div>
-                    <input type="submit" value="Alterar" class="cadastrar" id="cadastrar-escola">
-                    <input type="submit" value="Alterar" class="cadastrar-peq" id="cadastrar-escola">
+        return '<form action="index.php?pg=escola&acao=altera&efetiva=1" method="POST">
+                    <div class="container">
+                        <label class="titulo-formulario">PERFIL</label>
+                        <input class="campo" type="text" name="login" placeholder="Login" id="login" maxlength="50" value="' . $this->getEscola()->getNome() . '">
+                        <input class="campo" type="password" name="senha" placeholder="Senha" id="senha" maxlength="32">
+                        <input class="campo" type="text" name="nome" placeholder="Nome da Escola" id="nome" maxlength="50">
+                        <input class="campo" type="text" name="contato" placeholder="Contato" id="contato" maxlength="30">
+                        <input class="campo" type="text" name="cidade" placeholder="Cidade" id="cidade" maxlength="100">
+                        <input class="campo" type="text" name="estado" placeholder="Estado" id="estado" maxlength="2">
+                        <input class="campo" type="text" name="bairro" placeholder="Bairro" id="bairro" maxlength="255">
+                        <input class="campo" type="text" name="rua" placeholder="Logradouro" id="rua" maxlength="255">
+                        <input class="campo" type="number" name="numero" placeholder="Número" id="numero" maxlength="7">
+                        <input class="campo" type="text" name="complemento" placeholder="Complemento" id="complemento" maxlength="255">
 
-            </div>
-            </form>';
+                        <div id="limpar" onclick="limpar()">Limpar</div>
+                        <input type="submit" value="Alterar" class="cadastrar" id="cadastrar-escola">
+                        <input type="submit" value="Alterar" class="cadastrar-peq" id="cadastrar-escola">
+
+                    </div>
+                 </form>';
             
     }
 }    

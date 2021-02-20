@@ -9,8 +9,11 @@
  */
 class ModelEscola {
     
-    /** @var ModelUsuario $usuario */
-    private $usuario;
+    /** @var ModelUsuario $Uuario */
+    private $Usuario;
+    
+    /** @var ModelEndereco $Endereco */
+    private $Endereco;
     
     private $nome;
     private $contato;
@@ -19,10 +22,10 @@ class ModelEscola {
      * @return ModelUsuario
      */
     function getUsuario() {
-        if(empty($this->usuario)) {
-            $this->usuario = new ModelUsuario();
+        if(empty($this->Usuario)) {
+            $this->Usuario = new ModelUsuario();
         }
-        return $this->usuario;
+        return $this->Usuario;
     }
 
     function getNome() {
@@ -33,8 +36,8 @@ class ModelEscola {
         return $this->contato;
     }
 
-    function setUsuario(ModelUsuario $usuario) {
-        $this->usuario = $usuario;
+    function setUsuario(ModelUsuario $Usuario) {
+        $this->Usuario = $Usuario;
     }
 
     function setNome($nome) {
@@ -44,5 +47,15 @@ class ModelEscola {
     function setContato($contato) {
         $this->contato = $contato;
     }
+    
+    function getEndereco() {
+        return $this->Endereco;
+    }
+
+    function setEndereco($Endereco) {
+        $this->Endereco = $Endereco;
+    }
+
+
     
 }

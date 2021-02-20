@@ -22,8 +22,9 @@ class PersistenciaEscola extends PersistenciaPadrao{
 
     public function alterarRegistro() {
         $sUpdate = 'UPDATE ESCOLA
-                       SET nome      = \''.$this->ModelEscola->getNome().'\' ,
-                           contato   = \''.$this->ModelEscola->getContato().'\' 
+                       SET nome        = \''.$this->ModelEscola->getNome().'\' ,
+                           contato     = \''.$this->ModelEscola->getContato().'\' 
+                           id_endereco = \''.$this->ModelEscola->getEndereco().'\' 
                      WHERE id_escola ='.$this->ModelEscola->getUsuario()->getCodigo().' ';
         
         return pg_query($this->conexao, $sUpdate); 
@@ -38,13 +39,15 @@ class PersistenciaEscola extends PersistenciaPadrao{
         $aColunas = [
             'id_escola',
             'nome',
-            'contato'
+            'contato',
+            'id_endereco'
         ];
         
         $aValores = [
             $this->ModelEscola->getUsuario()->getCodigo(),
             $this->ModelEscola->getNome(),
-            $this->ModelEscola->getContato()
+            $this->ModelEscola->getContato(),
+            $this->ModelEscola->getEndereco()->getCodigo()
         ];
         
         return parent::inserir('escola', $aColunas, $aValores);
@@ -108,22 +111,35 @@ class PersistenciaEscola extends PersistenciaPadrao{
     public function selecionar($codigo) {
         $sSelect = 'SELECT * 
                       FROM ESCOLA 
+                      JOIN USUARIO
+                        ON id_escola = id_usuario
+                      JOIN ENDERECO
+                        ON escola.id_endereco = endereco.id_endereco
                      WHERE id_escola = '.$codigo.'';
         
         $oResultadoEscola = pg_query($this->conexao, $sSelect);
         $oEscola          = new ModelEscola();
         $oUsuario         = new ModelUsuario();
+        $oEndereco        = new ModelEndereco();
         
         while ($aLinha = pg_fetch_array($oResultadoEscola, null, PGSQL_ASSOC)){
             $oEscola->setContato($aLinha['contato']);
             $oEscola->setNome($aLinha['nome']);
             
-            $oUsuario->setCodigo($aLinha['id_escola']);
+            $oUsuario->setCodigo($aLinha['id_usuario']);
             $oUsuario->setLogin($aLinha['login']);
             $oUsuario->setSenha($aLinha['senha']);
             $oUsuario->setTipo($aLinha['tipo']);
             
+            $oEndereco->setBairro($aLinha['bairro']);
+            $oEndereco->setCidade($aLinha['cidade']);
+            $oEndereco->setComplemento($aLinha['complemento']);
+            $oEndereco->setEstado($aLinha['estado']);
+            $oEndereco->setNumero($aLinha['numero']);
+            $oEndereco->setRua($aLinha['rua']);
+            
             $oEscola->setUsuario($oUsuario);
+            $oEscola->setEndereco($oEndereco);
         }
         return $oEscola;
     }

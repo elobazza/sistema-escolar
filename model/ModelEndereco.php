@@ -9,9 +9,6 @@
  */
 class ModelEndereco {
     
-    /** @var ModelEscola $escola */
-    private $escola;
-    
     private $codigo;
     private $estado;
     private $cidade;
@@ -19,16 +16,6 @@ class ModelEndereco {
     private $rua;
     private $numero;
     private $complemento;
-    
-    /**
-     * @return ModelEscola
-     */
-    function getEscola() {
-        if(empty($this->escola)) {
-            $this->escola = new ModelEscola();
-        }
-        return $this->escola;
-    }
 
     function getCodigo() {
         return $this->codigo;
@@ -56,10 +43,6 @@ class ModelEndereco {
 
     function getComplemento() {
         return $this->complemento;
-    }
-
-    function setEscola(ModelEscola $escola) {
-        $this->escola = $escola;
     }
 
     function setCodigo($codigo) {
