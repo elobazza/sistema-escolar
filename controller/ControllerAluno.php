@@ -111,7 +111,7 @@ class ControllerAluno extends ControllerPadrao {
         && !empty(Redirecionador::getParametro('data_nascimento')) && !empty(Redirecionador::getParametro('login'))){
             $this->ModelUsuario->setLogin(Redirecionador::getParametro('login'));
             $this->ModelUsuario->setSenha(Redirecionador::getParametro('senha'));
-            $this->ModelUsuario->setTipo(1);        
+            $this->ModelUsuario->setTipo(2);        
 
             $this->PersistenciaUsuario->setModelUsuario($this->ModelUsuario);
             $sucessoInserir = $this->PersistenciaUsuario->inserirRegistro();

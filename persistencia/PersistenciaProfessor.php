@@ -34,41 +34,7 @@ class PersistenciaProfessor extends PersistenciaPadrao{
         
         return parent::inserir('professor', $aColunas, $aValores);
     }
-    
-    private function inserirDisciplinasRelacionadas() {
-        foreach ($this->getModelProfessor()->getDisciplina() as $oModelDisciplina) {
-            $aColunas = [
-                'procodigo',
-                'discodigo',
-            ];
-            
-            $aValores = [
-                $this->ModelProfessor->getCodigo(),
-                $oModelDisciplina->getCodigo(),
-            ];
-            
-            return parent::inserir('tbprofessordisciplina', $aColunas, $aValores);
-        }
-    }
-    
-    private function inserirEscolasRelacionadas() {
-        foreach ($this->getModelProfessor()->getEscola() as $oModelEscola) {
-            
-            $aColunas = [
-                'procodigo',
-                'esccodigo',
-            ];
-            
-            $aValores = [
-                $this->ModelProfessor->getCodigo(),
-                $oModelEscola->getCodigo(),
-            ];
-            
-            return parent::inserir('tbprofessorescola', $aColunas, $aValores);
-        }
-    }
-    
-  
+        
     public function alterarRegistro() {
         $sUpdate = 'UPDATE PROFESSOR
                        SET especialidade = \''.$this->ModelProfessor->getEspecialidade().'\',

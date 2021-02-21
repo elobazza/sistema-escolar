@@ -21,10 +21,12 @@ class ControllerAula extends ControllerPadrao {
 
     public function processaAlterar() {
         if(Redirecionador::getParametro('efetiva') == 1) {
-            if(!empty(Redirecionador::getParametro('horarioInicio')) && !empty(Redirecionador::getParametro('horarioFim'))){
+            if(!empty(Redirecionador::getParametro('horarioInicio')) && !empty(Redirecionador::getParametro('horarioFim'))
+               && !empty(Redirecionador::getParametro('discproftur'))){
                 $this->ModelAula->setCodigo(Redirecionador::getParametro('codigo'));
                 $this->ModelAula->setHorarioInicio(Redirecionador::getParametro('horarioInicio'));
                 $this->ModelAula->setHorarioFim(Redirecionador::getParametro('horarioFim'));
+                $this->ModelAula->getDisciplinaProfessorTurma()->setCodigo(Redirecionador::getParametro('discproftur'));
 
                 $this->PersistenciaAula->setModelAula($this->ModelAula);
                 if($this->PersistenciaAula->alterarRegistro()) {
@@ -52,7 +54,9 @@ class ControllerAula extends ControllerPadrao {
         $this->processaExibir();
     }
 
-    public function processaExibir() {        
+    public function processaExibir() {   
+        $oPersistenciaDiscProfTur = new PersistenciaDisciplinaProfessorTurma();        
+        $this->ViewCadastroAula->setDiscProfTurmas($oPersistenciaDiscProfTur->listarRegistros());
         if(Redirecionador::getParametro('indice') && Redirecionador::getParametro('valor')){
             $sIndice = Redirecionador::getParametro('indice');
             $sValor = Redirecionador::getParametro('valor'); 
@@ -64,10 +68,11 @@ class ControllerAula extends ControllerPadrao {
     }
 
     public function processaInserir() {
-        if(!empty(Redirecionador::getParametro('horarioInicio')) && !empty(Redirecionador::getParametro('horarioFim'))){
+        if(!empty(Redirecionador::getParametro('horarioInicio')) && !empty(Redirecionador::getParametro('horarioFim'))
+           && !empty(Redirecionador::getParametro('discproftur'))){
             $this->ModelAula->setHorarioInicio(Redirecionador::getParametro('horarioInicio'));
             $this->ModelAula->setHorarioFim(Redirecionador::getParametro('horarioFim'));
-            $this->ModelAula->getDisciplinaProfessorTurma()->setCodigo(1);
+            $this->ModelAula->getDisciplinaProfessorTurma()->setCodigo(Redirecionador::getParametro('discproftur'));
 
             $this->PersistenciaAula->setModelAula($this->ModelAula);
             

@@ -17,7 +17,8 @@ class PersistenciaAula extends PersistenciaPadrao {
     public function alterarRegistro() {
         $sUpdate = 'UPDATE AULA
                        SET horario_inicio =\''.$this->ModelAula->getHorarioInicio().'\' ,
-                           horario_fim = \''.$this->ModelAula->getHorarioFim().'\' 
+                           horario_fim = \''.$this->ModelAula->getHorarioFim().'\',
+                           id_discproftur = '.$this->ModelAula->getDisciplinaProfessorTurma()->getCodigo().'
                      WHERE id_aula = '.$this->ModelAula->getCodigo().' ';
       
         return pg_query($this->conexao, $sUpdate);
@@ -45,8 +46,18 @@ class PersistenciaAula extends PersistenciaPadrao {
         
     
     public function listarRegistros() {
-        $sSelect = 'SELECT * 
-                      FROM AULA';
+        $sSelect = 'SELECT AULA.*, disciplinaprofessorturma.*, disciplina.nome AS disciplina, turma.nome AS turma, pessoa.nome AS professor
+                      FROM AULA
+                      JOIN disciplinaprofessorturma
+                        ON AULA.id_discproftur = disciplinaprofessorturma.id_discproftur
+                      JOIN disciplina
+                        ON disciplinaprofessorturma.id_disciplina = disciplina.id_disciplina
+                      JOIN professor
+                        ON disciplinaprofessorturma.id_professor = professor.id_professor
+                      JOIN pessoa
+                        ON professor.id_professor = pessoa.id_pessoa
+                      JOIN turma
+                        ON disciplinaprofessorturma.id_turma = turma.id_turma';
         $oResultado = pg_query($this->conexao, $sSelect);
         $aAulas = [];
         
@@ -55,6 +66,13 @@ class PersistenciaAula extends PersistenciaPadrao {
             $oAula->setCodigo($aLinha['id_aula']);
             $oAula->setHorarioInicio($aLinha['horario_inicio']);
             $oAula->setHorarioFim($aLinha['horario_fim']);
+            $oAula->getDisciplinaProfessorTurma()->setCodigo($aLinha['id_discproftur']);
+            $oAula->getDisciplinaProfessorTurma()->getDisciplina()->setCodigo($aLinha['id_disciplina']);
+            $oAula->getDisciplinaProfessorTurma()->getDisciplina()->setNome($aLinha['disciplina']);
+            $oAula->getDisciplinaProfessorTurma()->getProfessor()->getUsuario()->setCodigo($aLinha['id_professor']);
+            $oAula->getDisciplinaProfessorTurma()->getProfessor()->setNome($aLinha['professor']);
+            $oAula->getDisciplinaProfessorTurma()->getTurma()->setCodigo($aLinha['id_turma']);
+            $oAula->getDisciplinaProfessorTurma()->getTurma()->setNome($aLinha['turma']);
             
             $aAulas[] = $oAula;
         }
@@ -81,7 +99,19 @@ class PersistenciaAula extends PersistenciaPadrao {
     }
     
     public function selecionar($codigo) {
-        $sSelect = 'SELECT * FROM AULA WHERE ID_AULA = '.$codigo.'';
+        $sSelect = 'SELECT AULA.*, disciplinaprofessorturma.*, disciplina.nome AS disciplina, turma.nome AS turma, pessoa.nome AS professor
+                      FROM AULA 
+                      JOIN disciplinaprofessorturma
+                        ON AULA.id_discproftur = disciplinaprofessorturma.id_discproftur
+                      JOIN disciplina
+                        ON disciplinaprofessorturma.id_disciplina = disciplina.id_disciplina
+                      JOIN professor
+                        ON disciplinaprofessorturma.id_professor = professor.id_professor
+                      JOIN pessoa
+                        ON professor.id_professor = pessoa.id_pessoa
+                      JOIN turma
+                        ON disciplinaprofessorturma.id_turma = turma.id_turma
+                     WHERE ID_AULA = '.$codigo.'';
         $oResultadoAula = pg_query($this->conexao, $sSelect);
         $oAula = new ModelAula();
         
@@ -89,8 +119,14 @@ class PersistenciaAula extends PersistenciaPadrao {
             $oAula->setCodigo($aLinha['id_aula']);
             $oAula->setHorarioInicio($aLinha['horario_inicio']);
             $oAula->setHorarioFim($aLinha['horario_fim']);
-            
-           }
+            $oAula->getDisciplinaProfessorTurma()->setCodigo($aLinha['id_discproftur']);
+            $oAula->getDisciplinaProfessorTurma()->getDisciplina()->setCodigo($aLinha['id_disciplina']);
+            $oAula->getDisciplinaProfessorTurma()->getDisciplina()->setNome($aLinha['disciplina']);
+            $oAula->getDisciplinaProfessorTurma()->getProfessor()->getUsuario()->setCodigo($aLinha['id_professor']);
+            $oAula->getDisciplinaProfessorTurma()->getProfessor()->setNome($aLinha['professor']);
+            $oAula->getDisciplinaProfessorTurma()->getTurma()->setCodigo($aLinha['id_turma']);
+            $oAula->getDisciplinaProfessorTurma()->getTurma()->setNome($aLinha['turma']);
+        }
         return $oAula;
     }
 

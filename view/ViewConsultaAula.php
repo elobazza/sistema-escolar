@@ -39,6 +39,9 @@ class ViewConsultaAula extends ViewPadrao {
                             <th></th>
                             <th>Horário Inicial</th>
                             <th>Horário Final</th>
+                            <th>Disciplina</th>
+                            <th>Turma</th>
+                            <th>Professor</th>
                         </tr>
                         <tbody>
                         '.$this->createSelectListagem().'
@@ -55,6 +58,9 @@ class ViewConsultaAula extends ViewPadrao {
                             <td><input type="checkbox" name="linha" value=" '. $oAula->getCodigo() .'"/></td>
                             <td>' . $oAula->getHorarioInicio() . '</td>
                             <td>' . $oAula->getHorarioFim() . '</td>
+                            <td>' . $oAula->getDisciplinaProfessorTurma()->getDisciplina()->getNome() . '</td>
+                            <td>' . $oAula->getDisciplinaProfessorTurma()->getProfessor()->getNome() . '</td>
+                            <td>' . $oAula->getDisciplinaProfessorTurma()->getTurma()->getNome() . '</td>
                         </tr>';
         }
         return $sResult;
