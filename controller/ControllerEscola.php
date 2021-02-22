@@ -36,16 +36,18 @@ class ControllerEscola extends ControllerPadrao{
     }
     public function processaAlterar() {
         if(Redirecionador::getParametro('efetiva') == 1) {
-            if(!empty(Redirecionador::getParametro('nome')) && !empty(Redirecionador::getParametro('endereco'))
-            && !empty(Redirecionador::getParametro('contato')) && !empty(Redirecionador::getParametro('login'))
-            && !empty(Redirecionador::getParametro('senha')) && !empty(Redirecionador::getParametro('cidade'))){
+            if(!empty(Redirecionador::getParametro('nome')) && !empty(Redirecionador::getParametro('contato'))
+            && !empty(Redirecionador::getParametro('cidade')) && !empty(Redirecionador::getParametro('login'))
+            && !empty(Redirecionador::getParametro('senha')) && !empty(Redirecionador::getParametro('estado'))
+            && !empty(Redirecionador::getParametro('bairro')) && !empty(Redirecionador::getParametro('rua'))){
+                
                 $this->ModelUsuario->setLogin(Redirecionador::getParametro('login'));
-                $this->ModelUsuario->setSenha(Redirecionador::getParametro('senha'));
-                $this->ModelUsuario->setTipo(1);        
+                $this->ModelUsuario->setSenha(Redirecionador::getParametro('senha'));       
 
                 $this->PersistenciaUsuario->setModelUsuario($this->ModelUsuario);
-                $this->PersistenciaUsuario->inserirRegistro();
+                $this->PersistenciaUsuario->alterarRegistro();
 
+                $this->ModelEndereco->setCodigo($this->PersistenciaEndereco->getIdEnderecoEscolaLogada());
                 $this->ModelEndereco->setEstado(Redirecionador::getParametro('estado'));
                 $this->ModelEndereco->setCidade(Redirecionador::getParametro('cidade'));
                 $this->ModelEndereco->setBairro(Redirecionador::getParametro('bairro'));
@@ -54,8 +56,8 @@ class ControllerEscola extends ControllerPadrao{
                 $this->ModelEndereco->setComplemento(Redirecionador::getParametro('complemento'));
 
                 $this->PersistenciaEndereco->setModelEndereco($this->ModelEndereco);
-                $this->PersistenciaEndereco->inserirRegistro();
-
+                $this->PersistenciaEndereco->alterarRegistro();
+                
                 $this->ModelEscola->setNome(Redirecionador::getParametro('nome'));
                 $this->ModelEscola->setContato(Redirecionador::getParametro('contato'));
 
@@ -65,14 +67,14 @@ class ControllerEscola extends ControllerPadrao{
                 $this->ModelEscola->setUsuario($oUsuario);
                 $this->ModelEscola->setEndereco($oEndereco);
                 $this->PersistenciaEscola->setModelEscola($this->ModelEscola);
-                $this->PersistenciaEscola->inserirRegistro();    
-                header('Location:index.php?pg=escola');
+                $this->PersistenciaEscola->alterarRegistro();    
+                header('Location:index.php?pg=telaPrincipal');
             }
             $this->processaExibir();
         }
         
         else {
-           $oEscola = $this->PersistenciaEscola->selecionar(Redirecionador::getParametro($_SESSION['id']));
+           $oEscola = $this->PersistenciaEscola->selecionar(Redirecionador::getParametro('codigo'));
            $this->ViewCadastroEscola->setEscola($oEscola);
            $this->ViewCadastroEscola->setAlterar(1);
            $this->processaExibir();

@@ -52,15 +52,8 @@ class ControllerTurma extends ControllerPadrao{
         $this->processaExibir();
     }
 
-    public function processaExibir() {        
-        if(Redirecionador::getParametro('indice') && Redirecionador::getParametro('valor')){
-            $sIndice = Redirecionador::getParametro('indice');
-            $sValor = Redirecionador::getParametro('valor'); 
-            $this->ViewCadastroTurma->setTurmas($this->PersistenciaTurma->listarComFiltro($sIndice, $sValor));   
-        } 
-//        else {
-//            $this->ViewCadastroTurma->setTurmas($this->PersistenciaTurma->listarTudo());
-//        }
+    public function processaExibir() {         
+        $this->ViewCadastroTurma->setTurmas($this->PersistenciaTurma->listarRegistros());   
         $this->ViewCadastroTurma->imprime();
     }
 

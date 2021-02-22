@@ -17,18 +17,30 @@ class ViewConsultaDisciplinaProfessorTurma extends ViewPadrao {
     }
     
     protected function getConteudo() {
-        return '     
-            <b><p class="titulo">CONSULTA DE DISCIPLINA/PROFESSOR/TURMA</p></b>
-            <div style="background-color:#4a6891; height: 50px; width: 100%; margin-top: 30px; padding-top:10px">
-                <div class="container">
-                    <a href="index.php?pg=disciplinaProfessorTurma" style="color:white; font-size:18px; margin-right: 20px"> Cadastrar</a>
-                    <a href="" onclick="alterar(event, \'disciplinaProfessorTurma\')" style="color:white; font-size:18px; margin-right: 20px"> Editar</a>
-                    <a href="" onclick="excluir(event, \'disciplinaProfessorTurma\')" style="color:white; font-size:18px; margin-right: 20px"> Excluir</a>
-                </div>
-            </div>
-            
-          ' 
-        . $this->montaTabela();
+        switch ($_SESSION['tipo']) {
+            case 1: {
+                return '     
+                    <b><p class="titulo">CONSULTA DE DISCIPLINA/PROFESSOR/TURMA</p></b>
+
+                    <div style="background-color:#4a6891; height: 50px; width: 100%; margin-top: 30px; padding-top:10px">
+                        <div class="container">
+                            <a href="index.php?pg=disciplinaProfessorTurma" style="color:white; font-size:18px; margin-right: 20px"> Cadastrar</a>
+                            <a href="" onclick="alterar(event, \'disciplinaProfessorTurma\')" style="color:white; font-size:18px; margin-right: 20px"> Editar</a>
+                            <a href="" onclick="excluir(event, \'disciplinaProfessorTurma\')" style="color:white; font-size:18px; margin-right: 20px"> Excluir</a>
+                        </div>
+                    </div>
+
+                  ' 
+                . $this->montaTabela();
+                break;
+            }
+            default: {
+                return '     
+                    <b><p class="titulo">CONSULTA DE DISCIPLINAS E TURMAS</p></b>
+                    ' . $this->montaTabela();
+            }
+        }
+        
     }
     
     public function montaTabela(){

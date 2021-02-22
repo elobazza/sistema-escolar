@@ -56,7 +56,15 @@ class PersistenciaDisciplinaProfessorTurma extends PersistenciaPadrao {
                       JOIN pessoa
                         ON professor.id_professor = pessoa.id_pessoa
                       JOIN turma
-                        ON disciplinaprofessorturma.id_turma = turma.id_turma ORDER BY id_discproftur';
+                        ON disciplinaprofessorturma.id_turma = turma.id_turma ';
+        
+        switch ($_SESSION['tipo']) {
+            case 2: {
+                $sSelect .= 'WHERE professor.id_professor = '. $_SESSION['id'] .' ';
+                break;
+            }
+        }
+        $sSelect .= 'ORDER BY id_discproftur ';
         
         $oResultado      = pg_query($this->conexao, $sSelect);
         $aDiscProfTurmas = [];

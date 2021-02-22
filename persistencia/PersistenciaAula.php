@@ -43,8 +43,6 @@ class PersistenciaAula extends PersistenciaPadrao {
         return parent::inserir('aula', $aColunas, $aValores);
     }
 
-        
-    
     public function listarRegistros() {
         $sSelect = 'SELECT AULA.*, disciplinaprofessorturma.*, disciplina.nome AS disciplina, turma.nome AS turma, pessoa.nome AS professor
                       FROM AULA
@@ -58,6 +56,14 @@ class PersistenciaAula extends PersistenciaPadrao {
                         ON professor.id_professor = pessoa.id_pessoa
                       JOIN turma
                         ON disciplinaprofessorturma.id_turma = turma.id_turma';
+        
+        switch ($_SESSION['tipo']) {
+            case 2: {
+                $sSelect .= ' WHERE PESSOA.ID_PESSOA = '. $_SESSION['id'] .'';
+                break;
+            }
+        }
+        
         $oResultado = pg_query($this->conexao, $sSelect);
         $aAulas = [];
         
@@ -73,25 +79,6 @@ class PersistenciaAula extends PersistenciaPadrao {
             $oAula->getDisciplinaProfessorTurma()->getProfessor()->setNome($aLinha['professor']);
             $oAula->getDisciplinaProfessorTurma()->getTurma()->setCodigo($aLinha['id_turma']);
             $oAula->getDisciplinaProfessorTurma()->getTurma()->setNome($aLinha['turma']);
-            
-            $aAulas[] = $oAula;
-        }
-        return $aAulas;
-    }
-    public function listarComFiltro($sIndice, $sValor) {
-        $sSelect = 'SELECT * 
-                      FROM AULA  
-                     WHERE '.$sIndice.' = \''.$sValor.'\'   
-                     ORDER BY 1;';
-        
-        $oResultado = pg_query($this->conexao, $sSelect);
-        $aAulas = [];
-        
-        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            $oAula = new ModelAula();
-            $oAula->setCodigo($aLinha['id_aula']);
-            $oAula->setHorarioInicio($aLinha['horario_inicio']);
-            $oAula->setHorarioFim($aLinha['horario_fim']);
             
             $aAulas[] = $oAula;
         }

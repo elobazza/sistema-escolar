@@ -18,18 +18,33 @@ class ViewConsultaAula extends ViewPadrao {
     }
     
     protected function getConteudo() {
-        return '     
-            <b><p class="titulo">CONSULTA DE AULAS</p></b>
-            <div style="background-color:#4a6891; height: 50px; width: 100%; margin-top: 30px; padding-top:10px">
-                <div class="container">
-                    <a href="index.php?pg=aula" style="color:white; font-size:18px; margin-right: 20px"> Cadastrar</a>
-                    <a href="" onclick="alterar(event, \'aula\')" style="color:white; font-size:18px; margin-right: 20px"> Editar</a>
-                    <a href="" onclick="excluir(event, \'aula\')" style="color:white; font-size:18px; margin-right: 20px"> Excluir</a>
-                </div>
-            </div>
-            
-          ' 
-        . $this->montaTabela();
+        switch($_SESSION['tipo']) {
+            case 1 : {
+                return '     
+                    <b><p class="titulo">CONSULTA DE AULAS</p></b>
+                    <div style="background-color:#4a6891; height: 50px; width: 100%; margin-top: 30px; padding-top:10px">
+                        <div class="container">
+                            <a href="index.php?pg=aula" style="color:white; font-size:18px; margin-right: 20px"> Cadastrar</a>
+                            <a href="" onclick="alterar(event, \'aula\')" style="color:white; font-size:18px; margin-right: 20px"> Editar</a>
+                            <a href="" onclick="excluir(event, \'aula\')" style="color:white; font-size:18px; margin-right: 20px"> Excluir</a>
+                        </div>
+                    </div>
+
+                  ' 
+                . $this->montaTabela();
+                break;
+            }
+            case 2: {
+                return '     
+                    <b><p class="titulo">CONSULTA DE AULAS</p></b>
+                  ' 
+                . $this->montaTabela();
+                break;
+            }
+            case 3: {
+                break;
+            }
+        }
     }
     
     public function montaTabela(){
@@ -59,8 +74,8 @@ class ViewConsultaAula extends ViewPadrao {
                             <td>' . $oAula->getHorarioInicio() . '</td>
                             <td>' . $oAula->getHorarioFim() . '</td>
                             <td>' . $oAula->getDisciplinaProfessorTurma()->getDisciplina()->getNome() . '</td>
-                            <td>' . $oAula->getDisciplinaProfessorTurma()->getProfessor()->getNome() . '</td>
                             <td>' . $oAula->getDisciplinaProfessorTurma()->getTurma()->getNome() . '</td>
+                            <td>' . $oAula->getDisciplinaProfessorTurma()->getProfessor()->getNome() . '</td>
                         </tr>';
         }
         return $sResult;

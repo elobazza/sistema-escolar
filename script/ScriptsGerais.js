@@ -23,9 +23,15 @@ function limpar() {
    document.getElementById("carga_horaria").value = "";  
 }
 
-function alterar(event, pagina) {
+function alterar(event, pagina, cod) {
     event.preventDefault();
-    var codigo = pegarCodigo();
+    var codigo;
+    if(cod) {
+        codigo = cod;
+    } else {
+        codigo = pegarCodigo();
+    }
+    
     if(codigo) {
         window.location.href='index.php?pg=' + pagina + '&acao=altera&codigo='+ parseInt(codigo) +'&efetiva=0';
     } 

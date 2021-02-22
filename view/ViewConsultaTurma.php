@@ -29,7 +29,6 @@ class ViewConsultaTurma extends ViewPadrao {
     protected function getConteudo() {
         
         switch($_SESSION['tipo']) {
-            
             case 1 : {
                 return '     
                     <b><p class="titulo">CONSULTA DE TURMAS</p></b>
@@ -48,14 +47,12 @@ class ViewConsultaTurma extends ViewPadrao {
                 . $this->montaTabela();
                 break;
             }
-            
             case 2: {
                 return '     
                     <b><p class="titulo">CONSULTA DE TURMAS</p></b>
                     <div style="background-color:#4a6891; height: 50px; width: 100%; margin-top: 30px; padding-top:10px">
                         <div class="container">
-                            <a href="#" style="color:white; font-size:18px; margin-right: 20px"> Aulas</a>
-                            <a href="" onclick="consultarAlunoTurma(event)" style="color:white; font-size:18px; margin-right: 20px"> Alunos</a>
+                            <a href="" onclick="consultarAlunoTurma(event)" style="color:white; font-size:18px; margin-right: 20px"> Visualizar Alunos</a>
                         </div>
                     </div>
 
@@ -63,7 +60,6 @@ class ViewConsultaTurma extends ViewPadrao {
                 . $this->montaTabela();
                 break;
             }
-            
             case 3: {
              
                 break;

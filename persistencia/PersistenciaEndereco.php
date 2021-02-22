@@ -21,10 +21,14 @@ class PersistenciaEndereco extends PersistenciaPadrao{
     }
 
     public function alterarRegistro() {
-        $sUpdate = 'UPDATE ESCOLA
-                       SET nome      = \''.$this->ModelEndereco->getNome().'\' ,
-                           contato   = \''.$this->ModelEndereco->getContato().'\' 
-                     WHERE id_escola ='.$this->ModelEndereco->getUsuario()->getCodigo().' ';
+        $sUpdate = 'UPDATE ENDERECO
+                       SET rua         = \''.$this->ModelEndereco->getRua().'\' ,
+                           bairro      = \''.$this->ModelEndereco->getBairro().'\', 
+                           cidade      = \''.$this->ModelEndereco->getCidade().'\', 
+                           estado      = \''.$this->ModelEndereco->getEstado().'\', 
+                           complemento = \''.$this->ModelEndereco->getComplemento().'\', 
+                           numero      = \''.$this->ModelEndereco->getNumero().'\' 
+                     WHERE id_endereco = '.$this->ModelEndereco->getCodigo().' ';
         
          pg_query($this->conexao, $sUpdate); 
     }
@@ -79,6 +83,20 @@ class PersistenciaEndereco extends PersistenciaPadrao{
             $oEndereco->setRua($aLinha['rua']);
         }
         return $oEndereco;
+    }
+    
+    public function getIdEnderecoEscolaLogada() {
+         $sSelect = 'SELECT endereco.id_endereco 
+                      FROM ENDERECO
+                      JOIN ESCOLA
+                        ON ESCOLA.ID_ENDERECO = ENDERECO.ID_ENDERECO
+                      WHERE ID_ESCOLA = ' . $_SESSION['id'] . '';
+         
+        $oResultado = pg_query($this->conexao, $sSelect);        
+        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
+            $oCodigo = $aLinha['id_endereco'];
+        }
+        return $oCodigo;
     }
 
     public function listarRegistros() {}

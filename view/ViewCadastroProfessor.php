@@ -50,8 +50,9 @@ class ViewCadastroProfessor extends ViewPadrao {
     protected function getConteudoAlterar() {
         return '<div id="cadastro">
             <form id="form" action="index.php?pg=professor&acao=altera&efetiva=1" method="POST">
-                    <div class="container">
-                        <label class="titulo-formulario">ALTERAR PROFESSOR</label>
+                    <div class="container"> 
+                        <label class="titulo-formulario">ALTERAR PROFESSOR</label> 
+                    
                         <input class="campo" name="codigo" type="hidden" id="codigo" value="'.$this->professor->getUsuario()->getCodigo() .'">
                         <input class="campo" name="nome" type="text" id="nome" maxlength="50" value="'.$this->professor->getNome().'" >
                         <input class="campo" name="cpf" type="text" id="cpf" maxlength="14" value="'.$this->professor->getCpf().'">

@@ -23,9 +23,9 @@ class PersistenciaEscola extends PersistenciaPadrao{
     public function alterarRegistro() {
         $sUpdate = 'UPDATE ESCOLA
                        SET nome        = \''.$this->ModelEscola->getNome().'\' ,
-                           contato     = \''.$this->ModelEscola->getContato().'\' 
-                           id_endereco = \''.$this->ModelEscola->getEndereco().'\' 
-                     WHERE id_escola ='.$this->ModelEscola->getUsuario()->getCodigo().' ';
+                           contato     = \''.$this->ModelEscola->getContato().'\',
+                           id_endereco = \''.$this->ModelEscola->getEndereco()->getCodigo() .'\' 
+                     WHERE id_escola   = ' . $_SESSION['id'] . ' ';
         
         return pg_query($this->conexao, $sUpdate); 
     }

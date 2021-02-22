@@ -21,13 +21,7 @@ class ControllerConsultaAula extends ControllerPadrao {
     }
 
     public function processaExibir() {
-        if(Redirecionador::getParametro('indice') && Redirecionador::getParametro('valor')){
-            $sIndice = Redirecionador::getParametro('indice');
-            $sValor = Redirecionador::getParametro('valor'); 
-            $this->ViewConsultaAula->setAulas($this->PersistenciaAula->listarComFiltro($sIndice, $sValor));   
-        } else {
-            $this->ViewConsultaAula->setAulas($this->PersistenciaAula->listarRegistros());
-        }
+        $this->ViewConsultaAula->setAulas($this->PersistenciaAula->listarRegistros());
         $this->ViewConsultaAula->imprime();
     }
 

@@ -37,11 +37,10 @@ class PersistenciaUsuario extends PersistenciaPadrao {
     }
     
     public function alterarRegistro() {
-        $sUpdate = "UPDATE USUARIO
-                       SET login = '{$this->ModelAluno->getNome()   }',
-                           senha = '{$this->ModelAluno->getCpf()    }',
-                           tipo  = '{$this->ModelAluno->getContato()}' 
-                     WHERE id_usuario = {$this->ModelAluno->getCodigo()}";
+        $sUpdate = 'UPDATE USUARIO
+                       SET login = \''. $this->ModelUsuario->getLogin()   .'\',
+                           senha = \''. md5($this->ModelUsuario->getSenha()) .'\' 
+                     WHERE id_usuario = '. $_SESSION['id'] .'';
         
         return pg_query($this->conexao, $sUpdate); 
     }
@@ -82,43 +81,6 @@ class PersistenciaUsuario extends PersistenciaPadrao {
         return $oUsuario;
     }
     
-    public function listarComFiltro($sIndice, $sValor) {
-        $sSelect = 'SELECT *
-                      FROM usuario
-                     WHERE '.$sIndice.' = \''.$sValor.'\';' ;
-
-        $oResultado = pg_query($this->conexao, $sSelect);
-        $aUsuarios  = [];
-        
-        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            $oUsuario = new ModelUsuario();
-            $oUsuario->setCodigo($aLinha['id_usuario']);
-            $oUsuario->setLogin($aLinha['login']);
-            $oUsuario->setSenha($aLinha['senha']);
-            $oUsuario->setTipo($aLinha['tipo']);
-            
-            $aUsuarios[] = $oUsuario;
-        }
-        return $aUsuarios;
-    }
-    
-    public function listarTudo() {
-        $sSelect    = 'SELECT * FROM usuario ORDER BY 1;' ;
-        $oResultado = pg_query($this->conexao, $sSelect);
-        $aUsuarios  = [];
-        
-        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)) {            
-            $oUsuario = new ModelUsuario();
-            $oUsuario->setCodigo($aLinha['id_usuario']);
-            $oUsuario->setLogin($aLinha['login']);
-            $oUsuario->setSenha($aLinha['senha']);
-            $oUsuario->setTipo($aLinha['tipo']);
-            
-            array_push($aUsuarios, $oUsuario);
-        }        
-        return $aUsuarios;
-    }
-    
     public function selecionarLogin($login, $senha) {  
         $sSelect = 'SELECT * 
                       FROM USUARIO
@@ -126,16 +88,16 @@ class PersistenciaUsuario extends PersistenciaPadrao {
                        AND SENHA = \''.md5($senha).'\' ;';
         
         $oResultado = pg_query($this->conexao, $sSelect);
-        $xUsuario   = false;
+        $oUsuario   = new ModelUsuario();
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){            
-            $xUsuario = new ModelUsuario();
-            $xUsuario->setCodigo($aLinha['id_usuario']);
-            $xUsuario->setTipo($aLinha['tipo']);
-            $xUsuario->setSenha($aLinha['senha']);
-            $xUsuario->setLogin($aLinha['login']);            
+            $oUsuario = new ModelUsuario();
+            $oUsuario->setCodigo($aLinha['id_usuario']);
+            $oUsuario->setTipo($aLinha['tipo']);
+            $oUsuario->setSenha($aLinha['senha']);
+            $oUsuario->setLogin($aLinha['login']);            
         }
-        return $xUsuario;
+        return $oUsuario;
     }
     
 }

@@ -42,54 +42,18 @@ class PersistenciaTurma extends PersistenciaPadrao {
     }
 
     public function listarRegistros() {
-    $sSelect = 'SELECT * 
-                  FROM TURMA';
+        $sSelect = 'SELECT * 
+                      FROM TURMA ';
+    
+        
         $oResultado = pg_query($this->conexao, $sSelect);
         $aTurmas = [];
         
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            $oTurma = new ModelTurma();
+            $oTurma = new ModelTurma();            
             $oTurma->setCodigo($aLinha['id_turma']);
             $oTurma->setNome($aLinha['nome']);
             
-            $aTurmas[] = $oTurma;
-        }
-        return $aTurmas;
-    }
-    
-    public function listarTudo() {
-    $sSelect = 'SELECT TURMA.*,
-                       NOME
-                  FROM TURMA
-                 ';
-        $oResultado = pg_query($this->conexao, $sSelect);
-        $aTurmas = [];
-        
-        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            $oTurma = new ModelTurma();
-            $oPersistenciaDisciplina = new PersistenciaDisciplina();
-            $oTurma->setCodigo($aLinha['id_turma']);
-            $oTurma->setNome($aLinha['nome']);
-            $oTurma->setDisciplina($oPersistenciaDisciplina->listarDisciplinasPorTurma($oTurma->getCodigo()));
-            $aTurmas[] = $oTurma;
-        }
-        return $aTurmas;
-    }
-    
-    public function listarComFiltro($sIndice, $sValor) {
-    $sSelect = 'SELECT TURMA.*,
-                       NOME
-                  FROM TURMA
-                 WHERE '.$sIndice.' = \''.$sValor.'\';' ;
-        $oResultado = pg_query($this->conexao, $sSelect);
-        $aTurmas = [];
-        
-        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
-            $oTurma = new ModelTurma();
-            $oPersistenciaDisciplina = new PersistenciaDisciplina();
-            $oTurma->setCodigo($aLinha['id_turma']);
-            $oTurma->setNome($aLinha['nome']);
-            $oTurma->setDisciplina($oPersistenciaDisciplina->listarDisciplinasPorTurma($oTurma->getCodigo()));
             $aTurmas[] = $oTurma;
         }
         return $aTurmas;
