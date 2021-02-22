@@ -8,32 +8,105 @@
 class ViewTelaPrincipal extends ViewPadrao {
     
     protected function getConteudo() {
-        return '
-            <div class="container">
-                <div class="caixa-tela-principal">
-                    <div class="caixinha">
-                        <a class="texto-caixinha" href="index.php?pg=consultaAluno">
-                            <img src="../images/aluno.png" height="70px"><br>
-                            Consultar Alunos
-                        </a>
+        switch ($_SESSION['tipo']) {
+            
+            case 1: {
+                return '
+                    <div class="container">
+                        <div class="caixa-tela-principal">
+                            <div class="caixinha">
+                                <a class="texto-caixinha" href="index.php?pg=consultaAluno">
+                                    <img src="../images/aluno.png" height="70px"><br>
+                                    Consultar Alunos
+                                </a>
+                            </div>
+                            <div class="caixinha">
+                                <a class="texto-caixinha" href="index.php?pg=consultaProfessor">
+                                    <img src="../images/aluno.png" height="70px"><br>
+                                    Consultar Professores
+                                </a>
+                            </div>
+                            <div class="caixinha"></div>
+                            <div class="caixinha"></div>
+                        </div>
+                        <div class="caixa-tela-principal">
+                            <div class="caixinha"></div>
+                            <div class="caixinha"></div>
+                            <div class="caixinha"></div>                
+                            <div class="caixinha"></div>                
+                        </div>
                     </div>
-                    <div class="caixinha">
-                        <a class="texto-caixinha" href="index.php?pg=consultaProfessor">
-                            <img src="../images/aluno.png" height="70px"><br>
-                            Consultar Professores
-                        </a>
+                  ';
+                break;
+            }
+            
+            case 2: {
+                return '
+                    <div class="container">
+                        <div class="caixa-tela-principal">
+                            <div class="caixinha">
+                                <a class="texto-caixinha" href="index.php?pg=consultaAluno">
+                                    <img src="../images/aluno.png" height="70px"><br>
+                                    Registro Presença
+                                </a>
+                            </div>
+                            <div class="caixinha">
+                                <a class="texto-caixinha" href="index.php?pg=consultaAluno">
+                                    <img src="../images/aluno.png" height="70px"><br>
+                                    Notas
+                                </a>
+                            </div>
+                            <div class="caixinha">
+                                <a class="texto-caixinha" href="index.php?pg=consultaAluno">
+                                    <img src="../images/aluno.png" height="70px"><br>
+                                    Consultar Turmas
+                                </a>
+                            </div>
+                            <div class="caixinha">
+                                <a class="texto-caixinha" href="index.php?pg=consultaAluno">
+                                    <img src="../images/aluno.png" height="70px"><br>
+                                    Consultar Aulas
+                                </a>
+                            </div>
+                        </div>
+                        <div class="caixa-tela-principal">
+                            <div class="caixinha"></div>
+                            <div class="caixinha"></div>
+                            <div class="caixinha"></div>                
+                            <div class="caixinha"></div>                
+                        </div>
                     </div>
-                    <div class="caixinha"></div>
-                    <div class="caixinha"></div>
-                </div>
-                <div class="caixa-tela-principal">
-                    <div class="caixinha"></div>
-                    <div class="caixinha"></div>
-                    <div class="caixinha"></div>                
-                    <div class="caixinha"></div>                
-                </div>
-            </div>
-          ';
+                  ';
+             
+                break;
+            }
+            
+            case 3: {
+                return '
+                    <div class="container">
+                        <div class="caixa-tela-principal">
+                            <div class="caixinha">
+                                
+                            </div>
+                            <div class="caixinha">
+                                
+                            </div>
+                            <div class="caixinha"></div>
+                            <div class="caixinha"></div>
+                        </div>
+                        <div class="caixa-tela-principal">
+                            <div class="caixinha"></div>
+                            <div class="caixinha"></div>
+                            <div class="caixinha"></div>                
+                            <div class="caixinha"></div>                
+                        </div>
+                    </div>
+                  ';
+                
+                break;
+            }
+        }
+        
     }
     
 }

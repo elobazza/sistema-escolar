@@ -72,30 +72,21 @@ class ControllerEscola extends ControllerPadrao{
         }
         
         else {
-           echo Redirecionador::getParametro($_SESSION['id']);
            $oEscola = $this->PersistenciaEscola->selecionar(Redirecionador::getParametro($_SESSION['id']));
            $this->ViewCadastroEscola->setEscola($oEscola);
            $this->ViewCadastroEscola->setAlterar(1);
            $this->processaExibir();
         }
     }
+    
+    public function processaExibir() { 
+        $this->ViewCadastroEscola->imprime();
+    }
 
     public function processaExcluir() {
         $this->PersistenciaEscola->excluirRegistro(Redirecionador::getParametro('codigo'));
         header('Location:index.php?pg=escola');
         $this->processaExibir();
-    }
-
-    public function processaExibir() { 
-//        $this->ViewCadastroEscola->setCidades($oPersistenciaCidade->listarRegistros());
-        if(Redirecionador::getParametro('indice') && Redirecionador::getParametro('valor')){
-            $sIndice = Redirecionador::getParametro('indice');
-            $sValor = Redirecionador::getParametro('valor'); 
-            $this->ViewCadastroEscola->setEscolas($this->PersistenciaEscola->listarComFiltro($sIndice, $sValor));   
-        } else {
-            $this->ViewCadastroEscola->setEscolas($this->PersistenciaEscola->listarRegistros());
-        }
-        $this->ViewCadastroEscola->imprime();
     }
 
     public function processaInserir() {        

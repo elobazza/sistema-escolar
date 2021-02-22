@@ -58,15 +58,17 @@ abstract class ViewPadrao {
     }
 
     public function criarCabecalho() {
-        if (isset($_SESSION['id'])) {
-            return '<nav class="navbar navbar-dark navbar-expand-lg">
+        switch ($_SESSION['tipo']) {
+            
+            case 1 : {
+                return '<nav class="navbar navbar-dark navbar-expand-lg">
                         <div class="container">
                             <a class="navbar-brand" href="index.php?pg=telaPrincipal">
                             <img src="../images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
                                 Newton
                             </a>
                             <ul class="navbar-nav ml-auto">
-                                <a href="index.php?pg=escola&acao=alterar&efetiva=0" class="nav-link active">
+                                <a href="" onClick="alterar(event, \'escola\', '. $_SESSION['id'] .')" class="nav-link active">
                                     Perfil
                                 </a>
                             </ul>
@@ -102,14 +104,68 @@ abstract class ViewPadrao {
                             </div>
                         </div>
                     </nav>';
-        } else {
-            return '<div class="cabecalho">
+                break;
+            } 
+        
+            case 2 : {
+                return '<nav class="navbar navbar-dark navbar-expand-lg">
+                        <div class="container">
+                            <a class="navbar-brand" href="index.php?pg=telaPrincipal">
+                            <img src="../images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                                Newton
+                            </a>
+                            <ul class="navbar-nav ml-auto">
+                                <a href="" onClick="alterar(event, \'professor\', '. $_SESSION['id'] .')" class="nav-link active">
+                                    Perfil
+                                </a>
+                            </ul>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                  <li class="nav-item active mr-2 dropdown">
+                                      <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuRegistersButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Registros
+                                      </a>
+                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuRegistersButton">
+                                        <a class="dropdown-item" href="index.php?pg=consultaTurma">Turmas</a>
+                                        <a class="dropdown-item" href="index.php?pg=consultaAula">Aulas</a>
+                                        <a class="dropdown-item" href="index.php?pg=consultaPresenca">Presenças</a>
+                                        <a class="dropdown-item" href="index.php?pg=consultaNota">Notas</a>
+                                      </div>
+                                  </li>
+                                  <li class="nav-item active mr-2 dropdown">
+                                      <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuReportButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Relatórios
+                                      </a>
+                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuReportButton">
+                                        <a class="dropdown-item" href="#">Boletins</a>
+                                      </div>
+                                  </li>
+                                </ul>
+                                <ul class="navbar-nav ml-auto">
+                                    <a href="index.php?pg=logout" class="nav-link active">
+                                        Sair
+                                    </a>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>';
+                break;
+            }
+            
+            case 3: {
+                
+            }
+            
+            default: {
+                return '<div class="cabecalho">
                         <div class="container">
                             <div class="dropdown">
                                 <a href="index.php?pg=login"><img src="../images/logo-titulo.png" style="width: 200px; margin-top:5px; margin-bottom: 5px"></a>
                             </div>
                         </div>
                     </div>';
+                break;
+            }
         }
     }
 

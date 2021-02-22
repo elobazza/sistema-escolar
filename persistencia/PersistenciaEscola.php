@@ -145,7 +145,6 @@ class PersistenciaEscola extends PersistenciaPadrao{
     }
     
     //FALTANTES
-    
     public function listarEscolasPorProfessor($codigo) {
         $sSelect = 'SELECT TBESCOLA.*
                       FROM SISTEMAESCOLA.TBESCOLA 

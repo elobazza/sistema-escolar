@@ -3,8 +3,6 @@
  * @author Eloisa Bazzanella e Maria Eduarda Buzana
  */
 class ViewCadastroEscola extends ViewPadrao {
-    private $escolas;
-    private $cidades;
     private $escola;
     
     function getEscola() {
@@ -14,24 +12,7 @@ class ViewCadastroEscola extends ViewPadrao {
     function setEscola($escola) {
         $this->escola = $escola;
     }
-
-        function getEscolas() {
-        return $this->escolas;
-    }
-
-    function setEscolas($escolas) {
-        $this->escolas = $escolas;
-    }
-   
-    function getCidades() {
-        return $this->cidades;
-    }
-
-    function setCidades($cidades) {
-        $this->cidades = $cidades;
-    }
-
-        
+    
     function getConteudoCadastrar(){        
         if(!isset($_SESSION['id'])){
             return 
