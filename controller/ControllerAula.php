@@ -26,6 +26,7 @@ class ControllerAula extends ControllerPadrao {
                 $this->ModelAula->setCodigo(Redirecionador::getParametro('codigo'));
                 $this->ModelAula->setHorarioInicio(Redirecionador::getParametro('horarioInicio'));
                 $this->ModelAula->setHorarioFim(Redirecionador::getParametro('horarioFim'));
+                $this->ModelAula->setDiaSemana(Redirecionador::getParametro('dia_semana'));
                 $this->ModelAula->getDisciplinaProfessorTurma()->setCodigo(Redirecionador::getParametro('discproftur'));
 
                 $this->PersistenciaAula->setModelAula($this->ModelAula);
@@ -72,6 +73,7 @@ class ControllerAula extends ControllerPadrao {
            && !empty(Redirecionador::getParametro('discproftur'))){
             $this->ModelAula->setHorarioInicio(Redirecionador::getParametro('horarioInicio'));
             $this->ModelAula->setHorarioFim(Redirecionador::getParametro('horarioFim'));
+            $this->ModelAula->setDiaSemana(Redirecionador::getParametro('dia_semana'));
             $this->ModelAula->getDisciplinaProfessorTurma()->setCodigo(Redirecionador::getParametro('discproftur'));
 
             $this->PersistenciaAula->setModelAula($this->ModelAula);

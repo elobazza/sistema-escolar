@@ -10,6 +10,7 @@ class ModelAula {
     private $codigo;
     private $horarioInicio;
     private $horarioFim;
+    private $diaSemana;
     
     /**
      * @return ModelDisciplinaProfessorTurma
@@ -49,4 +50,21 @@ class ModelAula {
         $this->horarioFim = $horarioFim;
     }
 
+    function getDiaSemana() {
+        switch($this->diaSemana) {
+            case 1: return 'Segunda-Feira';
+            case 2: return 'Terça-Feira';
+            case 3: return 'Quarta-Feira';
+            case 4: return 'Quinta-Feira';
+            case 5: return 'Sexta-Feira';
+        }
+    }
+    
+    function getDiaSemanaValue() {
+        return $this->diaSemana;
+    }
+
+    function setDiaSemana($diaSemana) {
+        $this->diaSemana = $diaSemana;
+    }
 }

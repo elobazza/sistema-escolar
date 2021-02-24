@@ -57,6 +57,7 @@ class ViewConsultaAula extends ViewPadrao {
                             <th>Disciplina</th>
                             <th>Turma</th>
                             <th>Professor</th>
+                            <th>Dia da Semana</th>
                         </tr>
                         <tbody>
                         '.$this->createSelectListagem().'
@@ -76,6 +77,7 @@ class ViewConsultaAula extends ViewPadrao {
                             <td>' . $oAula->getDisciplinaProfessorTurma()->getDisciplina()->getNome() . '</td>
                             <td>' . $oAula->getDisciplinaProfessorTurma()->getTurma()->getNome() . '</td>
                             <td>' . $oAula->getDisciplinaProfessorTurma()->getProfessor()->getNome() . '</td>
+                            <td>' . $oAula->getDiaSemana() . '</td>
                         </tr>';
         }
         return $sResult;

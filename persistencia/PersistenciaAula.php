@@ -19,6 +19,7 @@ class PersistenciaAula extends PersistenciaPadrao {
         $sUpdate = 'UPDATE AULA
                        SET horario_inicio =\''.$this->ModelAula->getHorarioInicio().'\' ,
                            horario_fim = \''.$this->ModelAula->getHorarioFim().'\',
+                           dia_semana = '. $this->ModelAula->getDiaSemanaValue() .',
                            id_discproftur = '.$this->ModelAula->getDisciplinaProfessorTurma()->getCodigo().'
                      WHERE id_aula = '.$this->ModelAula->getCodigo().' ';
       
@@ -34,11 +35,13 @@ class PersistenciaAula extends PersistenciaPadrao {
         $aColunas = [
             'horario_inicio',
             'horario_fim',
+            'dia_semana',
             'id_discproftur'
         ];
         $aValores = [
             $this->ModelAula->getHorarioInicio(),
             $this->ModelAula->getHorarioFim(),
+            $this->ModelAula->getDiaSemanaValue(),
             $this->ModelAula->getDisciplinaProfessorTurma()->getCodigo()
         ];        
         return parent::inserir('aula', $aColunas, $aValores);
@@ -73,6 +76,7 @@ class PersistenciaAula extends PersistenciaPadrao {
             $oAula->setCodigo($aLinha['id_aula']);
             $oAula->setHorarioInicio($aLinha['horario_inicio']);
             $oAula->setHorarioFim($aLinha['horario_fim']);
+            $oAula->setDiaSemana($aLinha['dia_semana']);
             $oAula->getDisciplinaProfessorTurma()->setCodigo($aLinha['id_discproftur']);
             $oAula->getDisciplinaProfessorTurma()->getDisciplina()->setCodigo($aLinha['id_disciplina']);
             $oAula->getDisciplinaProfessorTurma()->getDisciplina()->setNome($aLinha['disciplina']);

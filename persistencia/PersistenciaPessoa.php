@@ -30,7 +30,7 @@ class PersistenciaPessoa extends PersistenciaPadrao {
         
     }
 
-    public function excluirRegistro() {}
+    public function excluirRegistro($codigo) {}
 
     public function inserirRegistro() {
         $aColunas = [
@@ -55,8 +55,5 @@ class PersistenciaPessoa extends PersistenciaPadrao {
         return parent::inserir('pessoa', $aColunas, $aValores);
     }
 
-    public function listarRegistros() {
-        
-    }
-
+    public function listarRegistros() {}
 }
