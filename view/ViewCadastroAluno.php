@@ -67,7 +67,7 @@ class ViewCadastroAluno extends ViewPadrao {
                         <input class="campo" name="nome"    type="text"   id="nome" maxlength="50" value="'.$this->aluno->getNome().'" >
                         <input class="campo" name="cpf"     type="text"   id="cpf" maxlength="14" value="'.$this->aluno->getCpf().'">
                         <input class="campo" name="contato" type="text"   id="contato"  maxlength="30" value="'.$this->aluno->getContato().'">
-                        <input class="campo" name="data_nascimento" type="text" id="data_nascimento"  maxlength="30" value="'.$this->aluno->getData_nascimento().'">
+                        <input class="campo" name="data_nascimento" type="text" id="data_nascimento"  maxlength="30" value="'.$this->aluno->getDataNascimento().'">
                         <label class="label-select">Turma</label>
                         '.$this->createSelectAlteracao().'
                             

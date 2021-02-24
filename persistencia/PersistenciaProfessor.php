@@ -3,6 +3,7 @@
  * @author Eloisa Bazzanella e Maria Eduarda Buzana
  */
 class PersistenciaProfessor extends PersistenciaPadrao{
+    
     /** @var ModelProfessor $ModelProfessor */
     private $ModelProfessor;
     
@@ -65,7 +66,7 @@ class PersistenciaProfessor extends PersistenciaPadrao{
             $oProfessor->setContato($aLinha['contato']);
             $oProfessor->setEspecialidade($aLinha['especialidade']);
             $oProfessor->setSalario($aLinha['salario']);
-            $oProfessor->setData_nascimento($aLinha['data_nascimento']);
+            $oProfessor->setDataNascimento($aLinha['data_nascimento']);
             
             $aProfessores[] = $oProfessor;
         }
@@ -91,7 +92,7 @@ class PersistenciaProfessor extends PersistenciaPadrao{
             $oProfessor->setContato($aLinha['contato']);
             $oProfessor->setEspecialidade($aLinha['especialidade']);
             $oProfessor->setSalario($aLinha['salario']);
-            $oProfessor->setData_nascimento($aLinha['data_nascimento']);
+            $oProfessor->setDataNascimento($aLinha['data_nascimento']);
             
             $aProfessores[] = $oProfessor;
         }
@@ -182,7 +183,7 @@ class PersistenciaProfessor extends PersistenciaPadrao{
             $oProfessor->setCpf($aLinha['cpf']);
             $oProfessor->setContato($aLinha['contato']);
             $oProfessor->setNome($aLinha['nome']);
-            $oProfessor->setData_nascimento($aLinha['data_nascimento']);
+            $oProfessor->setDataNascimento($aLinha['data_nascimento']);
             $oProfessor->setSalario($aLinha['salario']);
            }
         return $oProfessor;

@@ -69,7 +69,7 @@ class ViewConsultaProfessor extends ViewPadrao {
                             <td><input type="checkbox" name="linha" value=" '. $oProfessor->getUsuario()->getCodigo() .'"/></td>
                             <td>' . $oProfessor->getNome() . '</td>
                             <td>' . $oProfessor->getCpf() . '</td>
-                            <td>' . $oProfessor->getData_nascimento() . '</td>
+                            <td>' . $oProfessor->getDataNascimento() . '</td>
                             <td>' . $oProfessor->getContato() . '</td>
                             <td>' . $oProfessor->getSalario() . '</td>
                         </tr>';

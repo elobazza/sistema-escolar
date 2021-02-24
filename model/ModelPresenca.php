@@ -5,15 +5,15 @@
  * 
  * @author  Eloísa Bazzanella, Maria Eduarda Buzana
  * @package model
- * @sinse   29/12/2020
+ * @since   24/02/2020
  */
 class ModelPresenca {
     
-    /** @var ModelAluno $aluno */
-    private $aluno;
+    /** @var ModelAluno $Aluno */
+    private $Aluno;
     
-    /** @var ModelAula $aula */
-    private $aula;
+    /** @var ModelAula $Aula */
+    private $Aula;
     
     private $codigo;
     private $presenca;
@@ -22,20 +22,20 @@ class ModelPresenca {
      * @return ModelAluno
      */
     function getAluno() {
-        if(empty($this->aluno)) {
-            $this->aluno = new ModelAluno();
+        if(empty($this->Aluno)) {
+            $this->Aluno = new ModelAluno();
         }
-        return $this->aluno;
+        return $this->Aluno;
     }
     
     /**
      * @return ModelAula
      */
     function getAula() {
-        if(empty($this->aula)) {
-            $this->aula = new ModelAula();
+        if(empty($this->Aula)) {
+            $this->Aula = new ModelAula();
         }
-        return $this->aula;
+        return $this->Aula;
     }
     
     function getCodigo() {
@@ -46,12 +46,12 @@ class ModelPresenca {
         return $this->presenca;
     }
     
-    function setAluno(ModelAluno $aluno) {
-        $this->aluno = $aluno;
+    function setAluno(ModelAluno $Aluno) {
+        $this->Aluno = $Aluno;
     }
 
-    function setAula(ModelAula $aula) {
-        $this->aula = $aula;
+    function setAula(ModelAula $Aula) {
+        $this->Aula = $Aula;
     }
 
     function setCodigo($codigo) {

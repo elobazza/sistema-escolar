@@ -5,7 +5,7 @@
  * 
  * @author  Eloísa Bazzanella, Maria Eduarda Buzana
  * @package model
- * @sinse   29/12/2020
+ * @since   29/12/2020
  */
 class ModelUsuario {
     

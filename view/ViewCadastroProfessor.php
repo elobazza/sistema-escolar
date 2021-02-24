@@ -57,7 +57,7 @@ class ViewCadastroProfessor extends ViewPadrao {
                         <input class="campo" name="nome" type="text" id="nome" maxlength="50" value="'.$this->professor->getNome().'" >
                         <input class="campo" name="cpf" type="text" id="cpf" maxlength="14" value="'.$this->professor->getCpf().'">
                         <input class="campo" name="contato" type="text" id="contato"  maxlength="30" value="'.$this->professor->getContato().'">
-                        <input class="campo" name="data_nascimento" type="text" id="data_nascimento"  maxlength="30" value="'.$this->professor->getData_nascimento().'">
+                        <input class="campo" name="data_nascimento" type="text" id="data_nascimento"  maxlength="30" value="'.$this->professor->getDataNascimento().'">
                         <input class="campo" type="text" name="especialidade" id="especialidade" maxlength="30" value="'.$this->professor->getEspecialidade().'">
                         <input class="campo" type="text" name="salario" id="salario" maxlength="30" value="'.$this->professor->getSalario().'">
 

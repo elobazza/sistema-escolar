@@ -5,7 +5,7 @@
  * 
  * @author  Eloísa Bazzanella, Maria Eduarda Buzana
  * @package persistencia
- * @sinse   29/12/2020
+ * @since   29/12/2020
  */
 class PersistenciaUsuario extends PersistenciaPadrao {
     
@@ -50,37 +50,6 @@ class PersistenciaUsuario extends PersistenciaPadrao {
         return pg_query($this->conexao, $sDeleteFinal);
     }
     
-    public function listarRegistros() {
-        $sSelect           = 'SELECT * FROM USUARIO';
-        $oResultadoUsuario = pg_query($this->conexao, $sSelect);
-        $aUsuarios         = [];
-        
-        while ($aLinha = pg_fetch_array($oResultadoUsuario, null, PGSQL_ASSOC)){            
-            $oUsuario = new ModelUsuario();
-            $oUsuario->setCodigo($aLinha['id_usuario']);
-            $oUsuario->setLogin($aLinha['login']);
-            $oUsuario->setSenha($aLinha['senha']);
-            $oUsuario->setTipo($aLinha['tipo']);
-            
-            $aUsuarios[] = $oUsuario;
-        }
-        return $aUsuarios;
-    }
-    
-    public function selecionar($codigo) {
-        $sSelect           = 'SELECT * FROM USUARIO WHERE ID_USUARIO = '.$codigo.'';
-        $oResultadoUsuario = pg_query($this->conexao, $sSelect);
-        $oUsuario          = new ModelUsuario();
-        
-        while ($aLinha = pg_fetch_array($oResultadoUsuario, null, PGSQL_ASSOC)){
-            $oUsuario->setCodigo($aLinha['id_usuario']);
-            $oUsuario->setLogin($aLinha['login']);
-            $oUsuario->setSenha($aLinha['senha']);
-            $oUsuario->setTipo($aLinha['tipo']);
-        }
-        return $oUsuario;
-    }
-    
     public function selecionarLogin($login, $senha) {  
         $sSelect = 'SELECT * 
                       FROM USUARIO
@@ -99,5 +68,7 @@ class PersistenciaUsuario extends PersistenciaPadrao {
         }
         return $oUsuario;
     }
-    
+
+    public function listarRegistros() {}
+
 }

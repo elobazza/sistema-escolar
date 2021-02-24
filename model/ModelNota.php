@@ -5,39 +5,37 @@
  * 
  * @author  Eloísa Bazzanella, Maria Eduarda Buzana
  * @package model
- * @sinse   29/12/2020
+ * @since   24/02/2020
  */
 class ModelNota {
     
-    /** @var ModelAluno $aluno */
-    private $aluno;
+    /** @var ModelAluno $Aluno */
+    private $Aluno;
     
-    /** @var ModelDisciplinaProfessorTurma $disciplina */
-    private $disciplinaProfessorTurma;
+    /** @var ModelDisciplinaProfessorTurma $DisciplinaProfessorTurma */
+    private $DisciplinaProfessorTurma;
     
     private $codigo;
     private $nota;
-    
-    private $media;
 
     /**
      * @return ModelAluno
      */
     function getAluno() {
-        if(empty($this->aluno)) {
-            $this->aluno = new ModelAluno();
+        if(empty($this->Aluno)) {
+            $this->Aluno = new ModelAluno();
         }
-        return $this->aluno;
+        return $this->Aluno;
     }
     
     /**
      * @return ModelDisciplinaProfessorTurma
      */
     function getDisciplinaProfessorTurma() {
-        if(empty($this->disciplinaProfessorTurma)) {
-            $this->disciplinaProfessorTurma = new ModelDisciplinaProfessorTurma();
+        if(empty($this->DisciplinaProfessorTurma)) {
+            $this->DisciplinaProfessorTurma = new ModelDisciplinaProfessorTurma();
         }
-        return $this->disciplinaProfessorTurma;
+        return $this->DisciplinaProfessorTurma;
     }
     
     function getCodigo() {
@@ -48,16 +46,12 @@ class ModelNota {
         return $this->nota;
     }
     
-    function getMedia() {
-        return $this->media;
-    }
-
     function setAluno(ModelAluno $aluno) {
-        $this->aluno = $aluno;
+        $this->Aluno = $aluno;
     }
 
-    function setDisciplinaProfessorTurma(ModelDisciplinaProfessorTurma $disciplinaProfessorTurma) {
-        $this->disciplinaProfessorTurma = $disciplinaProfessorTurma;
+    function setDisciplinaProfessorTurma(ModelDisciplinaProfessorTurma $DisciplinaProfessorTurma) {
+        $this->DisciplinaProfessorTurma = $DisciplinaProfessorTurma;
     }
 
     function setCodigo($codigo) {
@@ -67,9 +61,4 @@ class ModelNota {
     function setNota($nota) {
         $this->nota = $nota;
     }
-    
-    function setMedia($media) {
-        $this->media = $media;
-    }
-    
 }

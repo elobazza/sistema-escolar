@@ -9,35 +9,35 @@
  */
 class ModelPessoa {
         
-    /** @var ModelEscola $escola */
-    private $escola;
+    /** @var ModelEscola $Escola */
+    private $Escola;
         
-    /** @var ModelUsuario $usuario */
-    private $usuario;
+    /** @var ModelUsuario $Usuario */
+    private $Usuario;
     
     private $nome;
     private $cpf;
-    private $data_nascimento;
+    private $dataNascimento;
     private $contato;
     
     /**
      * @return ModelEscola
      */
     function getEscola() {
-        if(empty($this->escola)) {
-            $this->escola = new ModelEscola();
+        if(empty($this->Escola)) {
+            $this->Escola = new ModelEscola();
         }
-        return $this->escola;
+        return $this->Escola;
     }
 
     /**
      * @return ModelUsuario
      */
     function getUsuario() {
-        if(empty($this->usuario)) {
-            $this->usuario = new ModelUsuario();
+        if(empty($this->Usuario)) {
+            $this->Usuario = new ModelUsuario();
         }
-        return $this->usuario;
+        return $this->Usuario;
     }
 
     function getNome() {
@@ -48,20 +48,20 @@ class ModelPessoa {
         return $this->cpf;
     }
 
-    function getData_nascimento() {
-        return $this->data_nascimento;
+    function getDataNascimento() {
+        return $this->dataNascimento;
     }
 
     function getContato() {
         return $this->contato;
     }
 
-    function setEscola(ModelEscola $escola) {
-        $this->escola = $escola;
+    function setEscola(ModelEscola $Escola) {
+        $this->Escola = $Escola;
     }
 
-    function setUsuario(ModelUsuario $usuario) {
-        $this->usuario = $usuario;
+    function setUsuario(ModelUsuario $Usuario) {
+        $this->Usuario = $Usuario;
     }
 
     function setNome($nome) {
@@ -72,8 +72,8 @@ class ModelPessoa {
         $this->cpf = $cpf;
     }
 
-    function setData_nascimento($data_nascimento) {
-        $this->data_nascimento = $data_nascimento;
+    function setDataNascimento($dataNascimento) {
+        $this->dataNascimento = $dataNascimento;
     }
 
     function setContato($contato) {

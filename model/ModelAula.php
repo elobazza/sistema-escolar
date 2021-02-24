@@ -4,8 +4,8 @@
  */
 class ModelAula {
     
-    /** @var ModelDisciplinaProfessorTurma $disciplinaProfessorTurma */
-    private $disciplinaProfessorTurma;
+    /** @var ModelDisciplinaProfessorTurma $DisciplinaProfessorTurma */
+    private $DisciplinaProfessorTurma;
     
     private $codigo;
     private $horarioInicio;
@@ -15,10 +15,10 @@ class ModelAula {
      * @return ModelDisciplinaProfessorTurma
      */
     function getDisciplinaProfessorTurma() {
-        if(empty($this->disciplinaProfessorTurma)) {
-            $this->disciplinaProfessorTurma = new ModelDisciplinaProfessorTurma();
+        if(empty($this->DisciplinaProfessorTurma)) {
+            $this->DisciplinaProfessorTurma = new ModelDisciplinaProfessorTurma();
         }
-        return $this->disciplinaProfessorTurma;
+        return $this->DisciplinaProfessorTurma;
     }
     
     function getCodigo() {
@@ -33,8 +33,8 @@ class ModelAula {
         return $this->horarioFim;
     }
     
-    function setDisciplinaProfessorTurma(ModelDisciplinaProfessorTurma $disciplinaProfessorTurma) {
-        $this->disciplinaProfessorTurma = $disciplinaProfessorTurma;
+    function setDisciplinaProfessorTurma(ModelDisciplinaProfessorTurma $DisciplinaProfessorTurma) {
+        $this->DisciplinaProfessorTurma = $DisciplinaProfessorTurma;
     }
 
     function setCodigo($codigo) {

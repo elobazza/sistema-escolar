@@ -5,56 +5,56 @@
  * 
  * @author  Eloísa Bazzanella, Maria Eduarda Buzana
  * @package model
- * @sinse   29/12/2020
+ * @since   29/12/2020
  */
 class ModelDisciplinaProfessorTurma {
     
-    /** @var ModelDisciplina $disciplina */
-    private $disciplina;
+    /** @var ModelDisciplina $Disciplina */
+    private $Disciplina;
     
-    /** @var ModelProfessor $professor */
-    private $professor;
+    /** @var ModelProfessor $Professor */
+    private $Professor;
     
-    /** @var ModelTurma $turma */
+    /** @var ModelTurma $Turma */
     private $turma;
     
     private $codigo;
         
     function getDisciplina() {
-        if(empty($this->disciplina)) {
-            $this->disciplina = new ModelDisciplina();
+        if(empty($this->Disciplina)) {
+            $this->Disciplina = new ModelDisciplina();
         }
-        return $this->disciplina;
+        return $this->Disciplina;
     }
 
     function getProfessor() {
-        if(empty($this->professor)) {
-            $this->professor = new ModelProfessor();
+        if(empty($this->Professor)) {
+            $this->Professor = new ModelProfessor();
         }
-        return $this->professor;
+        return $this->Professor;
     }
 
     function getTurma() {
-        if(empty($this->turma)) {
-            $this->turma = new ModelTurma();
+        if(empty($this->Turma)) {
+            $this->Turma = new ModelTurma();
         }
-        return $this->turma;
+        return $this->Turma;
     }
 
     function getCodigo() {
         return $this->codigo;
     }
 
-    function setDisciplina(ModelDisciplina $disciplina) {
-        $this->disciplina = $disciplina;
+    function setDisciplina(ModelDisciplina $Disciplina) {
+        $this->Disciplina = $Disciplina;
     }
 
-    function setProfessor(ModelProfessor $professor) {
-        $this->professor = $professor;
+    function setProfessor(ModelProfessor $Professor) {
+        $this->Professor = $Professor;
     }
 
-    function setTurma(ModelTurma $turma) {
-        $this->turma = $turma;
+    function setTurma(ModelTurma $Turma) {
+        $this->Turma = $Turma;
     }
 
     function setCodigo($codigo) {

@@ -66,7 +66,7 @@ class PersistenciaAluno extends PersistenciaPadrao{
             $oAluno->setCpf($aLinha['cpf']);
             $oAluno->setContato($aLinha['contato']);
             $oAluno->setNome($aLinha['nome']);
-            $oAluno->setData_nascimento($aLinha['data_nascimento']);
+            $oAluno->setDataNascimento($aLinha['data_nascimento']);
             $oTurma->setCodigo($aLinha['id_turma']);
             $oTurma->setNome($aLinha['turma']);
             $oAluno->setTurma($oTurma);
@@ -94,7 +94,7 @@ class PersistenciaAluno extends PersistenciaPadrao{
             $oAluno->setCpf($aLinha['cpf']);
             $oAluno->setContato($aLinha['contato']);
             $oAluno->setNome($aLinha['nome']);
-            $oAluno->setData_nascimento($aLinha['data_nascimento']);
+            $oAluno->setDataNascimento($aLinha['data_nascimento']);
             $oTurma->setCodigo($aLinha['id_turma']);
             $oAluno->setTurma($oTurma);
            }
@@ -122,7 +122,7 @@ class PersistenciaAluno extends PersistenciaPadrao{
             $oAluno->setCpf($aLinha['cpf']);
             $oAluno->setContato($aLinha['contato']);
             $oAluno->setNome($aLinha['nome']);
-            $oAluno->setData_nascimento($aLinha['data_nascimento']);
+            $oAluno->setDataNascimento($aLinha['data_nascimento']);
             $oTurma->setCodigo($aLinha['id_turma']);
             $oAluno->setTurma($oTurma);
             
@@ -161,7 +161,7 @@ class PersistenciaAluno extends PersistenciaPadrao{
             $oAluno->setNome($aLinha['nome']);
             $oAluno->setCpf($aLinha['cpf']);
             $oAluno->setContato($aLinha['contato']);
-            $oAluno->setData_nascimento($aLinha['data_nascimento']);
+            $oAluno->setDataNascimento($aLinha['data_nascimento']);
             $oAluno->setMatricula($aLinha['matricula']);
             $oAluno->setTurma($oTurma);
             

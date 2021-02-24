@@ -5,7 +5,7 @@
  * 
  * @author  Eloísa Bazzanella, Maria Eduarda Buzana
  * @package persistencia
- * @sinse   29/12/2020
+ * @since   29/12/2020
  */
 class PersistenciaEscola extends PersistenciaPadrao{
     

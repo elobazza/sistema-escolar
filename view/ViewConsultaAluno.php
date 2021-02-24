@@ -69,7 +69,7 @@ class ViewConsultaAluno extends ViewPadrao {
                             <td>' . $oAluno->getNome() . '</td>
                             <td>' . $oAluno->getMatricula() . '</td>
                             <td>' . $oAluno->getCpf() . '</td>
-                            <td>' . $oAluno->getData_nascimento() . '</td>
+                            <td>' . $oAluno->getDataNascimento() . '</td>
                             <td>' . $oAluno->getContato() . '</td>
                             <td>' . $oAluno->getTurma()->getNome() . '</td>
                         </tr>';

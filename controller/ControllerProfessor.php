@@ -45,7 +45,7 @@ class ControllerProfessor extends ControllerPadrao{
                 
                 $this->ModelPessoa->setContato(Redirecionador::getParametro('contato'));        
                 $this->ModelPessoa->setCpf(Redirecionador::getParametro('cpf'));        
-                $this->ModelPessoa->setData_nascimento(Redirecionador::getParametro('data_nascimento'));        
+                $this->ModelPessoa->setDataNascimento(Redirecionador::getParametro('data_nascimento'));        
                 $this->ModelPessoa->setNome(Redirecionador::getParametro('nome'));      
 
                 $this->PersistenciaPessoa->setModelPessoa($this->ModelPessoa);
@@ -116,7 +116,7 @@ class ControllerProfessor extends ControllerPadrao{
                 $this->ModelPessoa->setUsuario($this->ModelUsuario);
                 $this->ModelPessoa->setContato(Redirecionador::getParametro('contato'));        
                 $this->ModelPessoa->setCpf(Redirecionador::getParametro('cpf'));        
-                $this->ModelPessoa->setData_nascimento(Redirecionador::getParametro('data_nascimento'));        
+                $this->ModelPessoa->setDataNascimento(Redirecionador::getParametro('data_nascimento'));        
                 $this->ModelPessoa->setNome(Redirecionador::getParametro('nome'));
                 $this->ModelPessoa->getEscola()->getUsuario()->setCodigo($_SESSION['id']);        
 

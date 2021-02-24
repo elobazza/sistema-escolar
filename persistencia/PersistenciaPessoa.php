@@ -22,7 +22,7 @@ class PersistenciaPessoa extends PersistenciaPadrao {
         $sUpdate = 'UPDATE PESSOA
                        SET nome = \''.$this->ModelPessoa->getNome().'\',
                            cpf = \''.$this->ModelPessoa->getCpf().'\',
-                           data_nascimento = \''.$this->ModelPessoa->getData_nascimento().'\',
+                           data_nascimento = \''.$this->ModelPessoa->getDataNascimento().'\',
                            contato = \''.$this->ModelPessoa->getContato().'\'
                      WHERE id_pessoa ='.$this->ModelPessoa->getUsuario()->getCodigo().' ';
         
@@ -30,9 +30,7 @@ class PersistenciaPessoa extends PersistenciaPadrao {
         
     }
 
-    public function excluirRegistro($codigo) {
-        
-    }
+    public function excluirRegistro() {}
 
     public function inserirRegistro() {
         $aColunas = [
@@ -49,7 +47,7 @@ class PersistenciaPessoa extends PersistenciaPadrao {
             $this->ModelPessoa->getNome(),
             $this->ModelPessoa->getCpf(),
             $this->ModelPessoa->getContato(),
-            $this->ModelPessoa->getData_nascimento(),
+            $this->ModelPessoa->getDataNascimento(),
             $_SESSION['id']
         ];
         
