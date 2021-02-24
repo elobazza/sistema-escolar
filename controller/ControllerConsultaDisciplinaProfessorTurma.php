@@ -25,7 +25,8 @@ class ControllerConsultaDisciplinaProfessorTurma extends ControllerPadrao {
             $sIndice = Redirecionador::getParametro('indice');
             $sValor = Redirecionador::getParametro('valor'); 
             $this->ViewConsultaDiscProfTurma->setDiscProfTurmas($this->PersistenciaDiscProfTurma->listarComFiltro($sIndice, $sValor));   
-        } else {
+        } 
+        else {
             $this->ViewConsultaDiscProfTurma->setDiscProfTurmas($this->PersistenciaDiscProfTurma->listarRegistros());
         }
         $this->ViewConsultaDiscProfTurma->imprime();

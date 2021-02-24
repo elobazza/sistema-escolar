@@ -53,6 +53,38 @@ function consultarAlunoTurma(event) {
     }
 }
 
+function consultarDisciplinaProfessor(event) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.assign('index.php?pg=consultaDisciplina&professor='+ parseInt(codigo));        
+    }
+}
+
+function consultarProfessorDisciplina(event) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.assign('index.php?pg=consultaProfessor&disciplina='+ parseInt(codigo));        
+    }
+}
+
+function consultarTurmaProfessorDisciplina(event) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.assign('index.php?pg=consultaDisciplinaProfessorTurma&indice=disciplinaprofessorturma.id_turma&valor='+ parseInt(codigo));        
+    }
+}
+
+function consultarAulaTurma(event) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.assign('index.php?pg=consultaAula&indice=disciplinaprofessorturma.id_turma&valor='+ parseInt(codigo));        
+    }
+}
+
 function pegarCodigo() {
     var selecionados = document.getElementsByClassName("selected");
     if(selecionados.length < 1){

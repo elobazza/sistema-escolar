@@ -17,6 +17,8 @@ class ModelNota {
     
     private $codigo;
     private $nota;
+    
+    private $media;
 
     /**
      * @return ModelAluno
@@ -45,6 +47,10 @@ class ModelNota {
     function getNota() {
         return $this->nota;
     }
+    
+    function getMedia() {
+        return $this->media;
+    }
 
     function setAluno(ModelAluno $aluno) {
         $this->aluno = $aluno;
@@ -60,6 +66,10 @@ class ModelNota {
 
     function setNota($nota) {
         $this->nota = $nota;
+    }
+    
+    function setMedia($media) {
+        $this->media = $media;
     }
     
 }

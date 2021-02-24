@@ -3,6 +3,7 @@
  * @author Eloisa Bazzanella e Maria Eduarda Buzana
  */
 class PersistenciaAula extends PersistenciaPadrao {
+    
     /** @var ModelAula $ModelAula */
     private $ModelAula;
     
@@ -67,6 +68,42 @@ class PersistenciaAula extends PersistenciaPadrao {
         $oResultado = pg_query($this->conexao, $sSelect);
         $aAulas = [];
         
+        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
+            $oAula = new ModelAula();
+            $oAula->setCodigo($aLinha['id_aula']);
+            $oAula->setHorarioInicio($aLinha['horario_inicio']);
+            $oAula->setHorarioFim($aLinha['horario_fim']);
+            $oAula->getDisciplinaProfessorTurma()->setCodigo($aLinha['id_discproftur']);
+            $oAula->getDisciplinaProfessorTurma()->getDisciplina()->setCodigo($aLinha['id_disciplina']);
+            $oAula->getDisciplinaProfessorTurma()->getDisciplina()->setNome($aLinha['disciplina']);
+            $oAula->getDisciplinaProfessorTurma()->getProfessor()->getUsuario()->setCodigo($aLinha['id_professor']);
+            $oAula->getDisciplinaProfessorTurma()->getProfessor()->setNome($aLinha['professor']);
+            $oAula->getDisciplinaProfessorTurma()->getTurma()->setCodigo($aLinha['id_turma']);
+            $oAula->getDisciplinaProfessorTurma()->getTurma()->setNome($aLinha['turma']);
+            
+            $aAulas[] = $oAula;
+        }
+        return $aAulas;
+    }
+
+    public function listarComFiltro($sIndice, $sValor) {
+        $sSelect = 'SELECT AULA.*, disciplinaprofessorturma.*, disciplina.nome AS disciplina, turma.nome AS turma, pessoa.nome AS professor
+                      FROM AULA
+                      JOIN disciplinaprofessorturma
+                        ON AULA.id_discproftur = disciplinaprofessorturma.id_discproftur
+                      JOIN disciplina
+                        ON disciplinaprofessorturma.id_disciplina = disciplina.id_disciplina
+                      JOIN professor
+                        ON disciplinaprofessorturma.id_professor = professor.id_professor
+                      JOIN pessoa
+                        ON professor.id_professor = pessoa.id_pessoa
+                      JOIN turma
+                        ON disciplinaprofessorturma.id_turma = turma.id_turma
+                     WHERE '.$sIndice.' = \''.$sValor.'\'
+                     ORDER BY 1';
+                
+        $oResultado = pg_query($this->conexao, $sSelect);
+        $aAulas = [];        
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
             $oAula = new ModelAula();
             $oAula->setCodigo($aLinha['id_aula']);

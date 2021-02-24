@@ -20,11 +20,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/view/ViewConsultaAula.php</file>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/controller/ControllerTurma.php</file>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/view/ViewPadrao.php</file>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/controller/ControllerAula.php</file>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaAula.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/view/ViewConsultaPresenca.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/controller/ControllerConsultaNota.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/view/ViewConsultaNota.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaNota.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/controller/ControllerConsultaPresenca.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaPresenca.php</file>
         </group>
     </open-files>
 </project-private>

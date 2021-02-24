@@ -24,7 +24,12 @@ class ControllerConsultaDisciplina extends ControllerPadrao {
             $sIndice = Redirecionador::getParametro('indice');
             $sValor = Redirecionador::getParametro('valor'); 
             $this->ViewConsultaDisciplina->setDisciplinas($this->PersistenciaDisciplina->listarComFiltro($sIndice, $sValor));   
-        } else {
+        } 
+        else if(Redirecionador::getParametro('professor')) {
+            $iCodigoProfessor = Redirecionador::getParametro('professor');            
+            $this->ViewConsultaDisciplina->setDisciplinas($this->PersistenciaDisciplina->listarDisciplinasPorProfessor($iCodigoProfessor));   
+        }
+        else {
             $this->ViewConsultaDisciplina->setDisciplinas($this->PersistenciaDisciplina->listarRegistros());
         }
         $this->ViewConsultaDisciplina->imprime();

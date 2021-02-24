@@ -71,6 +71,32 @@ class PersistenciaProfessor extends PersistenciaPadrao{
         }
         return $aProfessores;
     }
+    
+    public function listarProfessoresPorDisciplina($iDisciplina) {
+        $sSelect = 'SELECT * 
+                      FROM PROFESSOR
+                      JOIN PESSOA 
+                        ON id_professor = id_pessoa 
+                      JOIN DISCIPLINAPROFESSORTURMA
+			ON DISCIPLINAPROFESSORTURMA.id_professor = PROFESSOR.id_professor
+                     WHERE id_disciplina = ' . $iDisciplina;
+        $oResultado = pg_query($this->conexao, $sSelect);
+        $aProfessores = [];
+        
+        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
+            $oProfessor = new ModelProfessor();
+            $oProfessor->getUsuario()->setCodigo($aLinha['id_professor']);
+            $oProfessor->setNome($aLinha['nome']);
+            $oProfessor->setCpf($aLinha['cpf']);
+            $oProfessor->setContato($aLinha['contato']);
+            $oProfessor->setEspecialidade($aLinha['especialidade']);
+            $oProfessor->setSalario($aLinha['salario']);
+            $oProfessor->setData_nascimento($aLinha['data_nascimento']);
+            
+            $aProfessores[] = $oProfessor;
+        }
+        return $aProfessores;        
+    }
 
     public function listarTudo() {
         $sSelect = 'SELECT tbprofessor.procodigo,

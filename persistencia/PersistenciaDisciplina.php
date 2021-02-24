@@ -68,7 +68,7 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
             $oDisciplina = new ModelDisciplina();
             $oDisciplina->setCodigo($aLinha['id_disciplina']);
             $oDisciplina->setNome($aLinha['nome']);
-            $oDisciplina->setCredito($aLinha['carga_horaria']);
+            $oDisciplina->setCargaHoraria($aLinha['carga_horaria']);
             
             $aDisciplinas[] = $oDisciplina;
         }
@@ -78,9 +78,9 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
     public function listarDisciplinasPorProfessor($codigo) {
         $sSelect = 'SELECT DISCIPLINA.* 
                       FROM DISCIPLINA 
-                      JOIN PROFESSORDISCIPLINA ON
-                           TBDISCIPLINA.ID_DISCIPLINA = TBPROFESSORDISCIPLINA.ID_DISCIPLINA
-                     WHERE PROFESSORDISCIPLINA.ID_PROFESSOR = '.$codigo;
+                      JOIN DISCIPLINAPROFESSORTURMA ON
+                           DISCIPLINA.ID_DISCIPLINA = DISCIPLINAPROFESSORTURMA.ID_DISCIPLINA
+                     WHERE DISCIPLINAPROFESSORTURMA.ID_PROFESSOR = '.$codigo;
         $oResultado = pg_query($this->conexao, $sSelect);
         $aDisciplinas = [];
         
@@ -88,15 +88,13 @@ class PersistenciaDisciplina extends PersistenciaPadrao{
             $oDisciplina = new ModelDisciplina();
             $oDisciplina->setCodigo($aLinha['id_disciplina']);
             $oDisciplina->setNome($aLinha['nome']);
-            $oDisciplina->setCredito($aLinha['carga_horaria']);
+            $oDisciplina->setCargaHoraria($aLinha['carga_horaria']);
             
             $aDisciplinas[] = $oDisciplina;
         }
        
         return $aDisciplinas;
     }
-    
-    
     
     public function listarDisciplinasPorTurma($codigo) {
         $sSelect = 'SELECT DISCIPLINA.* 

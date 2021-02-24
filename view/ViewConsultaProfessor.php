@@ -34,7 +34,7 @@ class ViewConsultaProfessor extends ViewPadrao {
                     <a href="index.php?pg=professor" style="color:white; font-size:18px; margin-right: 20px"> Cadastrar</a>
                     <a href="" onclick="alterar(event, \'professor\');" style="color:white; font-size:18px; margin-right: 20px"> Editar</a>
                     <a href="" onclick="excluir(event, \'professor\')" style="color:white; font-size:18px; margin-right: 20px"> Excluir</a>
-                    <a href="" onclick="" style="color:white; font-size:18px; margin-right: 20px"> Disciplinas</a>
+                    <a href="" onclick="consultarDisciplinaProfessor(event)" style="color:white; font-size:18px; margin-right: 20px"> Disciplinas</a>
                 </div>
             </div>
             

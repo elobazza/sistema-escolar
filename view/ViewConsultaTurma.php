@@ -37,8 +37,8 @@ class ViewConsultaTurma extends ViewPadrao {
                             <a href="index.php?pg=turma" style="color:white; font-size:18px; margin-right: 20px"> Cadastrar</a>
                             <a href="" onclick="alterar(event, \'turma\')" style="color:white; font-size:18px; margin-right: 20px"> Editar</a>
                             <a href="" onclick="excluir(event, \'turma\')" style="color:white; font-size:18px; margin-right: 20px"> Excluir</a>
-                            <a href="" onclick="" style="color:white; font-size:18px; margin-right: 20px"> Professores/Disciplinas</a>
-                            <a href="#" style="color:white; font-size:18px; margin-right: 20px"> Aulas</a>
+                            <a href="" onclick="consultarTurmaProfessorDisciplina(event)" style="color:white; font-size:18px; margin-right: 20px"> Professores/Disciplinas</a>
+                            <a href="" onclick="consultarAulaTurma(event)" style="color:white; font-size:18px; margin-right: 20px"> Aulas</a>
                             <a href="" onclick="consultarAlunoTurma(event)" style="color:white; font-size:18px; margin-right: 20px"> Alunos</a>
                         </div>
                     </div>
