@@ -27,7 +27,7 @@ class PersistenciaPresenca extends PersistenciaPadrao{
         
     }
     
-    public function listarRegistrosProfessor() {
+    public function listarRegistrosProfessor($codigo) {
         $sSelect = 'select aula.id_aula, disciplina.nome AS disciplina, turma.nome AS turma
                       from presenca
                       join aula

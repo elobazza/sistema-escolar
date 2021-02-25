@@ -128,8 +128,8 @@ abstract class ViewPadrao {
                                           <div class="dropdown-menu" aria-labelledby="dropdownMenuRegistersButton">
                                             <a class="dropdown-item" href="index.php?pg=consultaDisciplinaProfessorTurma">Disciplinas x Turmas</a>
                                             <a class="dropdown-item" href="index.php?pg=consultaAula">Aulas</a>
-                                            <a class="dropdown-item" href="index.php?pg=consultaPresenca">Presenças</a>
-                                            <a class="dropdown-item" href="index.php?pg=consultaNota">Notas</a>
+                                            <a class="dropdown-item" href="index.php?pg=consultaPresenca&visu=0">Presenças</a>
+                                            <a class="dropdown-item" href="index.php?pg=consultaNota&visu=0">Notas</a>
                                             <a class="dropdown-item" href="index.php?pg=consultaTurma">Todas as Turmas</a>
                                           </div>
                                       </li>

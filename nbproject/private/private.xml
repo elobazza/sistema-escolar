@@ -20,12 +20,16 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/view/ViewConsultaPresenca.php</file>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/controller/ControllerConsultaNota.php</file>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/view/ViewConsultaNota.php</file>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaNota.php</file>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/controller/ControllerConsultaPresenca.php</file>
-            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaPresenca.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/view/ViewVisualizaPresenca.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/controller/ControllerConsultaPresenca.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/view/ViewConsultaPresenca.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/model/ModelNota.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaPresenca.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/script/ScriptsGerais.js</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaAluno.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/controller/ControllerConsultaNota.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/view/ViewPadrao.php</file>
+            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/model/ModelPessoa.php</file>
         </group>
     </open-files>
 </project-private>

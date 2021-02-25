@@ -45,6 +45,22 @@ function excluir(event, pagina) {
     }
 }
 
+function visualizar(event, pagina) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.href='index.php?pg=' + pagina + '&visu=1&codigo='+ parseInt(codigo);
+    }
+}
+
+function registrar(event, pagina) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.href='index.php?pg=' + pagina + '&codigo='+ parseInt(codigo);
+    }
+}
+
 function consultarAlunoTurma(event) {
     event.preventDefault();
     var codigo = pegarCodigo();

@@ -7,14 +7,14 @@
  */
 class ViewConsultaPresenca extends ViewPadrao {
     
-    private $presencas = [];
+    private $disciplinaProfessorTurmas = [];
     
-    function getPresencas() {
-        return $this->presencas;
+    function getDisciplinaProfessorTurmas() {
+        return $this->disciplinaProfessorTurmas;
     }
 
-    function setPresencas(array $presencas) {
-        $this->presencas = $presencas;
+    function setDisciplinaProfessorTurmas(array $disciplinaProfessorTurmas) {
+        $this->disciplinaProfessorTurmas = $disciplinaProfessorTurmas;
     }
     
     protected function getConteudo() {        
@@ -27,8 +27,8 @@ class ViewConsultaPresenca extends ViewPadrao {
                     <b><p class="titulo">REGISTRAR PRESENÇA</p></b>
                     <div style="background-color:#4a6891; height: 50px; width: 100%; margin-top: 30px; padding-top:10px">
                         <div class="container">
-                            <a href="" onclick="" style="color:white; font-size:18px; margin-right: 20px"> Visualizar Presencas</a>
-                            <a href="" onclick="" style="color:white; font-size:18px; margin-right: 20px"> Registrar Presencas</a>
+                            <a href="" onclick="visualizar(event, \'consultaPresenca\')" style="color:white; font-size:18px; margin-right: 20px"> Visualizar Presenças</a>
+                            <a href="" onclick="registrar(event, \'presenca\')" style="color:white; font-size:18px; margin-right: 20px"> Registrar Presenças</a>
                         </div>
                     </div>
                   ' 
@@ -59,11 +59,11 @@ class ViewConsultaPresenca extends ViewPadrao {
     private function createSelectListagemProfessor() {
         $sResult = "";
         
-        foreach ($this->presencas as $oPresenca) { 
+        foreach ($this->disciplinaProfessorTurmas as $oDiscProfTur) { 
             $sResult .= ' <tr class="">
-                            <td><input type="checkbox" name="linha" value=" '. $oPresenca->getAula()->getCodigo() .'"/></td>
-                            <td>' . $oPresenca->getAula()->getDisciplinaProfessorTurma()->getTurma()->getNome() . '</td>
-                            <td>' . $oPresenca->getAula()->getDisciplinaProfessorTurma()->getDisciplina()->getNome() . '</td>
+                            <td><input type="checkbox" name="linha" value="'. $oDiscProfTur->getCodigo() .'"/></td>
+                            <td>' . $oDiscProfTur->getTurma()->getNome() . '</td>
+                            <td>' . $oDiscProfTur->getDisciplina()->getNome() . '</td>
                         </tr>';
         }
         return $sResult;

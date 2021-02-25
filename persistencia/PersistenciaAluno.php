@@ -131,6 +131,43 @@ class PersistenciaAluno extends PersistenciaPadrao{
         return $aAlunos;
     }
     
+    public function getAlunosTurmaProfDisc($codigo) {
+        $sSelect = 'SELECT DISTINCT aluno.*, pessoa.*
+                      FROM ALUNO 
+                      JOIN PESSOA 
+                        ON id_aluno = id_pessoa 
+                      JOIN USUARIO
+                        ON id_pessoa = id_usuario 
+                      JOIN TURMA
+                        ON TURMA.id_turma = ALUNO.id_turma
+                      JOIN DISCIPLINAPROFESSORTURMA
+                        ON DISCIPLINAPROFESSORTURMA.id_turma = TURMA.id_turma
+                      LEFT JOIN AULA
+                        ON aula.ID_DISCPROFTUR = DISCIPLINAPROFESSORTURMA.ID_DISCPROFTUR
+                      LEFT JOIN PRESENCA
+                        ON aula.id_aula = presenca.id_aula
+                     WHERE DISCIPLINAPROFESSORTURMA.ID_DISCPROFTUR= '.$codigo.'
+                 ';
+        
+        $oResultadoAluno = pg_query($this->conexao, $sSelect);
+        
+        $aAlunos = [];
+        
+        while ($aLinha = pg_fetch_array($oResultadoAluno, null, PGSQL_ASSOC)) {            
+            $oAluno = new ModelAluno();
+            $oAluno->getUsuario()->setCodigo($aLinha['id_aluno']);
+            $oAluno->setNome($aLinha['nome']);
+            $oAluno->setCpf($aLinha['cpf']);
+            $oAluno->setContato($aLinha['contato']);
+            $oAluno->setDataNascimento($aLinha['data_nascimento']);
+            $oAluno->setMatricula($aLinha['matricula']);
+            
+            array_push($aAlunos, $oAluno);
+        }
+        
+        return $aAlunos;
+    }
+    
     public function listarTudo() {
         $sSelect = 'SELECT id_aluno,
                            pessoa.nome,  
