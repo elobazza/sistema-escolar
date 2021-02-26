@@ -17,6 +17,8 @@ class ModelNota {
     
     private $codigo;
     private $nota;
+    private $data;
+    private $descricao;
 
     /**
      * @return ModelAluno
@@ -60,5 +62,21 @@ class ModelNota {
 
     function setNota($nota) {
         $this->nota = $nota;
+    }
+    
+    function getData() {
+        return $this->data;
+    }
+
+    function getDescricao() {
+        return $this->descricao;
+    }
+
+    function setData($data) {
+        $this->data = $data;
+    }
+
+    function setDescricao($descricao) {
+        $this->descricao = $descricao;
     }
 }

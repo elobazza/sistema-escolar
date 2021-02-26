@@ -31,7 +31,7 @@ class ViewCadastroProfessor extends ViewPadrao {
                         <label class="titulo-formulario">CADASTRO DE PROFESSOR</label>
                         <input class="campo" type="text" name="nome" placeholder="Nome" id="nome" maxlength="50">
                         <input class="campo" type="text" name="cpf" placeholder="CPF" id="cpf" maxlength="14">
-                        <input class="campo" type="text" name="data_nascimento" placeholder="Data de Nascimento" id="data_nascimento" maxlength="10">
+                        <input class="campo" type="data" name="data_nascimento" placeholder="Data de Nascimento" id="data_nascimento" maxlength="10">
                         <input class="campo" type="text" name="contato" placeholder="Contato" id="contato" maxlength="30">
                         <input class="campo" type="text" name="especialidade" placeholder="Especialidade" id="especialidade" maxlength="30">
                         <input class="campo" type="text" name="salario" placeholder="Salario" id="salario" maxlength="30">
@@ -57,7 +57,7 @@ class ViewCadastroProfessor extends ViewPadrao {
                         <input class="campo" name="nome" type="text" id="nome" maxlength="50" value="'.$this->professor->getNome().'" >
                         <input class="campo" name="cpf" type="text" id="cpf" maxlength="14" value="'.$this->professor->getCpf().'">
                         <input class="campo" name="contato" type="text" id="contato"  maxlength="30" value="'.$this->professor->getContato().'">
-                        <input class="campo" name="data_nascimento" type="text" id="data_nascimento"  maxlength="30" value="'.$this->professor->getDataNascimento().'">
+                        <input class="campo" name="data_nascimento" type="date" id="data_nascimento"  maxlength="30" value="'.$this->professor->getDataNascimento().'">
                         <input class="campo" type="text" name="especialidade" id="especialidade" maxlength="30" value="'.$this->professor->getEspecialidade().'">
                         <input class="campo" type="text" name="salario" id="salario" maxlength="30" value="'.$this->professor->getSalario().'">
 

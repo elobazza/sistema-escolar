@@ -84,6 +84,8 @@ abstract class ViewPadrao {
                                             <a class="dropdown-item" href="index.php?pg=consultaDisciplina">Disciplinas</a>
                                             <a class="dropdown-item" href="index.php?pg=consultaTurma">Turmas</a>
                                             <a class="dropdown-item" href="index.php?pg=consultaAula">Aulas</a>
+                                            <a class="dropdown-item" href="index.php?pg=consultaPresenca">Presenças</a>
+                                            <a class="dropdown-item" href="index.php?pg=consultaNota">Notas</a>
                                             <a class="dropdown-item" href="index.php?pg=consultaDisciplinaProfessorTurma">Vínculos</a>
                                           </div>
                                       </li>

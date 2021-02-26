@@ -43,7 +43,7 @@ class ViewCadastroAluno extends ViewPadrao {
                         <input class="campo" type="text" name="matricula" placeholder="Matrícula" id="matricula" maxlength="50">
                         <input class="campo" type="text" name="cpf" placeholder="CPF" id="cpf" maxlength="14">
                         <input class="campo" type="text" name="contato" placeholder="Contato" id="contato" maxlength="30">
-                        <input class="campo" type="text" name="data_nascimento" placeholder="Data de Nascimento" id="data_nascimento" maxlength="10">
+                        <input class="campo" type="date" name="data_nascimento" placeholder="Data de Nascimento" id="data_nascimento" maxlength="10">
                         <input class="campo" type="text" name="login" placeholder="Login" id="login" maxlength="30">
                         <input class="campo" type="password" name="senha" placeholder="Senha" id="senha" maxlength="30">
                     
@@ -67,7 +67,7 @@ class ViewCadastroAluno extends ViewPadrao {
                         <input class="campo" name="nome"    type="text"   id="nome" maxlength="50" value="'.$this->aluno->getNome().'" >
                         <input class="campo" name="cpf"     type="text"   id="cpf" maxlength="14" value="'.$this->aluno->getCpf().'">
                         <input class="campo" name="contato" type="text"   id="contato"  maxlength="30" value="'.$this->aluno->getContato().'">
-                        <input class="campo" name="data_nascimento" type="text" id="data_nascimento"  maxlength="30" value="'.$this->aluno->getDataNascimento().'">
+                        <input class="campo" name="data_nascimento" type="date" id="data_nascimento"  maxlength="30" value="'.$this->aluno->getDataNascimento().'">
                         <label class="label-select">Turma</label>
                         '.$this->createSelectAlteracao().'
                             

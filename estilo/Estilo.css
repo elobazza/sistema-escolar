@@ -46,6 +46,15 @@ nav {
     border: 1px solid #C0C0C0;
 }
 
+.campo-nota{
+    width: 70px;
+    padding: 8px;	
+    font-size: 12px;
+    font-weight: lighter;
+    color:  #5E5A46;
+    border: 1px solid #C0C0C0;
+}
+
 .label-select {
     width: 60%;	
     margin-left: 20%; 

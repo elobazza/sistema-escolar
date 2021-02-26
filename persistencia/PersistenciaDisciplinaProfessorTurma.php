@@ -115,5 +115,4 @@ class PersistenciaDisciplinaProfessorTurma extends PersistenciaPadrao {
         }
         return $aDiscProfTurmas;
     }
-    
 }

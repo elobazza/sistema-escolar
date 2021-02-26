@@ -10,13 +10,17 @@ class ControllerNota extends ControllerPadrao{
     /** @var PersistenciaNota $PersistenciaNota */
     private $PersistenciaNota;
     
+    /** @var PersistenciaAluno $PersistenciaAluno */
+    private $PersistenciaAluno;
+    
     /** @var ViewCadastroNota $ViewCadastroNota */
     private $ViewCadastroNota;
     
     function __construct() {
-        $this->ModelNota        = new ModelNota();
-        $this->PersistenciaNota = new PersistenciaNota();
-        $this->ViewCadastroNota = new ViewCadastroNota();
+        $this->ModelNota         = new ModelNota();
+        $this->PersistenciaNota  = new PersistenciaNota();
+        $this->PersistenciaAluno = new PersistenciaAluno();
+        $this->ViewCadastroNota  = new ViewCadastroNota();
     }
 
     public function processaAlterar() {
@@ -49,18 +53,16 @@ class ControllerNota extends ControllerPadrao{
     }
 
     public function processaExibir() {
-        $oPersistenciaAluno = new PersistenciaAluno();
-        $this->ViewCadastroNota->setAlunos($oPersistenciaAluno->listarRegistros());
+        $this->ViewCadastroNota->setAlunos($this->PersistenciaAluno->listarRegistros());
+        $this->ViewCadastroNota->setCodProfessorDisciplinaTurma(Redirecionador::getParametro('notaTurma'));
         
-        $oPersistenciaDisciplina = new PersistenciaDisciplina();
-        $this->ViewCadastroNota->setDisciplinas($oPersistenciaDisciplina->listarRegistros());
-        if(Redirecionador::getParametro('indice') && Redirecionador::getParametro('valor')){
-            $sIndice = Redirecionador::getParametro('indice');
-            $sValor = Redirecionador::getParametro('valor'); 
-            $this->ViewCadastroNota->setNotas($this->PersistenciaNota->listarComFiltro($sIndice, $sValor));   
-        } else {
-            $this->ViewCadastroNota->setNotas($this->PersistenciaNota->listarTudo());
-        }
+//        if(Redirecionador::getParametro('indice') && Redirecionador::getParametro('valor')){
+//            $sIndice = Redirecionador::getParametro('indice');
+//            $sValor = Redirecionador::getParametro('valor'); 
+//            $this->ViewCadastroNota->setNotas($this->PersistenciaNota->listarComFiltro($sIndice, $sValor));   
+//        } else {
+//            $this->ViewCadastroNota->setNotas($this->PersistenciaNota->listarTudo());
+//        }
         $this->ViewCadastroNota->imprime();
     }
 

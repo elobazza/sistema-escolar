@@ -1,8 +1,7 @@
 <?php
 
 /**
- * 
- * @author mduda
+ * @author Eloísa Bazzanella, Maria Eduarda Buzana
  */
 class ViewConsultaDisciplinaProfessorTurma extends ViewPadrao {
     

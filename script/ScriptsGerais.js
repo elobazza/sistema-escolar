@@ -101,6 +101,30 @@ function consultarAulaTurma(event) {
     }
 }
 
+function registrarNota(event) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.assign('index.php?pg=nota&notaTurma='+ parseInt(codigo));        
+    }
+}
+
+function consultarNotaTurma(event) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.assign('index.php?pg=consultaNota&notaTurma='+ parseInt(codigo));        
+    }
+}
+
+function consultarNotaAluno(event, turmaDisc) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.assign('index.php?pg=consultaNota&turmaDisc=' + turmaDisc + '&notaAluno='+ parseInt(codigo));        
+    }
+}
+
 function pegarCodigo() {
     var selecionados = document.getElementsByClassName("selected");
     if(selecionados.length < 1){
