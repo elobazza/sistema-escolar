@@ -49,6 +49,17 @@ class PersistenciaAluno extends PersistenciaPadrao{
         }
     }
     
+    public function listarMediasPorAluno() {
+        $sSelect = 'select id_aluno, sum(nota)/count(nota) as media FROM nota group by id_aluno';
+        $oResultadoMedia = pg_query($this->conexao, $sSelect);
+        $aMedias = [];
+        
+        while ($aLinha = pg_fetch_array($oResultadoMedia, null, PGSQL_ASSOC)){
+            $aMedias[$aLinha['id_aluno']] = $aLinha['media'];
+        }
+        return $aMedias;        
+    }
+    
     public function listarRegistros() {
         $sSelect = 'SELECT ALUNO.*, PESSOA.*, TURMA.nome AS turma
                       FROM ALUNO 

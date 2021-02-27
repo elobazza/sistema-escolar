@@ -20,20 +20,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/view/ViewCadastroNota.php</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/controller/ControllerNota.php</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/view/ViewCadastroAluno.php</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/view/ViewCadastroTurma.php</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/script/ScriptsGerais.js</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/view/ViewCadastroProfessor.php</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/view/ViewCadastroEscola.php</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/model/ModelNota.php</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/view/ViewConsultaNotaTurma.php</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaNota.php</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/view/ViewConsultaNota.php</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/controller/ControllerConsultaNota.php</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaDisciplinaProfessorTurma.php</file>
-            <file>file:/C:/Users/eloba/Documents/GitHub/Sistema-Escolar/estilo/Estilo.css</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/controller/ControllerConsultaNota.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaPadrao.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/view/ViewConsultaNotaTurma.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/controller/ControllerNota.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaAluno.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/view/ViewConsultaNota.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/persistencia/PersistenciaNota.php</file>
+            <file>file:/C:/Users/mduda/Documents/GitHub/Sistema-Escolar/view/ViewCadastroNota.php</file>
         </group>
     </open-files>
 </project-private>

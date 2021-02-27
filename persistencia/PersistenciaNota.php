@@ -42,7 +42,7 @@ class PersistenciaNota extends PersistenciaPadrao{
             'nota'
         ];
         $aValores = [
-            $this->ModelNota->getAluno()->getCodigo(),
+            $this->ModelNota->getAluno()->getUsuario()->getCodigo(),
             $this->ModelNota->getDisciplinaProfessorTurma()->getCodigo(),
             $this->ModelNota->getData(),
             $this->ModelNota->getDescricao(),
@@ -68,7 +68,7 @@ class PersistenciaNota extends PersistenciaPadrao{
         $aNotas = [];        
         while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
             $oNota = new ModelNota();
-            $oNota->getAluno()->getUsuario()->setCodigo($aLinha['id_pessoa']);
+            $oNota->getAluno()->getUsuario()->setCodigo($aLinha['id_aluno']);
             $oNota->getAluno()->setNome($aLinha['aluno']);
             $oNota->setData($aLinha['data']);
             $oNota->setDescricao($aLinha['descricao']);

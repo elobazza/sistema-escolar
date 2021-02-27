@@ -5,14 +5,23 @@
 class ViewConsultaNotaTurma extends ViewPadrao {
     
     private $alunos = [];
+    private $medias = [];
     private $codProfessorDisciplinaTurma;
     
     function getAlunos() {
         return $this->alunos;
     }
+    
+    function getMedias() {
+        return $this->medias;
+    }
 
     function setAlunos($alunos) {
         $this->alunos = $alunos;
+    }
+    
+    function setMedias($medias) {
+        $this->medias = $medias;
     }
     
     function getCodProfessorDisciplinaTurma() {
@@ -80,7 +89,7 @@ class ViewConsultaNotaTurma extends ViewPadrao {
                             <td><input type="checkbox" name="linha" value=" '. $oAluno->getUsuario()->getCodigo() .'"/></td>
                             <td>' . $oAluno->getMatricula() . '</td>
                             <td>' . $oAluno->getNome() . '</td>
-                            <td> 10 </td>
+                            <td>' . floatval($this->getMedias()[$oAluno->getUsuario()->getCodigo()]) . '</td>
                         </tr>';
         }
         return $sResult;

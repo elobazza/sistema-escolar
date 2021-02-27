@@ -25,7 +25,7 @@ class ViewCadastroNota extends ViewPadrao {
 
     function getConteudoCadastrar(){
         return '<b><p class="titulo">REGISTROS DE NOTAS DA TURMA </p></b>    
-            <form action="index.php?pg=nota&acao=insere" method="POST">
+            <form id="form" action="index.php?pg=nota&acao=insere" method="POST">
 			
                 ' . $this->montaTabela() . '
 
@@ -43,8 +43,7 @@ class ViewCadastroNota extends ViewPadrao {
     }
     
     public function montaTabela(){
-        return '<form method="get">
-                    <table class="table table-striped table-selectable">
+        return '<table class="table table-striped table-selectable">
                         <tr>    
                             <th></th>
                             <th>Matricula</th>
@@ -54,8 +53,7 @@ class ViewCadastroNota extends ViewPadrao {
                         <tbody>
                         '.$this->createSelect().'
                         </tbody>
-                    </table>
-                </form>';
+                    </table>';
     }
     
     private function createSelect() {
@@ -66,7 +64,7 @@ class ViewCadastroNota extends ViewPadrao {
                             <td></td>
                             <td>' . $oAluno->getMatricula() . '</td>
                             <td>' . $oAluno->getNome() . '</td>
-                            <td><input type="text" class="campo-nota" name="nota" value=" '. $oAluno->getUsuario()->getCodigo() .'"/></td>
+                            <td><input type="text" class="campo-nota" name="A' . $oAluno->getUsuario()->getCodigo() . '" value=""/></td>
                         </tr>';
         }
         return $sResult;

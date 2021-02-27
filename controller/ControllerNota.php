@@ -67,15 +67,37 @@ class ControllerNota extends ControllerPadrao{
     }
 
     public function processaInserir() {
-        if(!empty(Redirecionador::getParametro('nota')) && !empty(Redirecionador::getParametro('aluno')) && !empty(Redirecionador::getParametro('disciplina'))){
-            $this->ModelNota->setNota(Redirecionador::getParametro('nota'));
-            $this->ModelNota->getAluno()->setCodigo(Redirecionador::getParametro('aluno'));
-            $this->ModelNota->getDisciplina()->setCodigo(Redirecionador::getParametro('disciplina'));
-
-            $this->PersistenciaNota->setModelNota($this->ModelNota);
-            $this->PersistenciaNota->inserirRegistro();
+        if(!empty(Redirecionador::getParametro('data')) && !empty(Redirecionador::getParametro('descricao'))){
+            $aAlunos         = $this->PersistenciaAluno->listarRegistros();
+            $oModelNota      = new ModelNota();
+            $bSucessoInserir = true;
+            
+            $oModelNota->getDisciplinaProfessorTurma()->setCodigo(Redirecionador::getParametro('id_discproftur'));
+            $oModelNota->setDescricao(Redirecionador::getParametro('descricao'));
+            $oModelNota->setData(Redirecionador::getParametro('data'));
+            
+            foreach ($aAlunos as $oAluno) {
+                if(Redirecionador::getParametro('A' . $oAluno->getUsuario()->getCodigo())) {
+                    $fNota = Redirecionador::getParametro('A' . $oAluno->getUsuario()->getCodigo());                    
+                } else {
+                    $fNota = 0;                    
+                }
+                $oModelNota->setNota($fNota);
+                $oModelNota->setAluno($oAluno);
+                
+                $this->PersistenciaNota->setModelNota($oModelNota);
+                $bSucesso = $this->PersistenciaNota->inserirRegistro();
+//                $bSucessoInserir = $bSucesso && $bSucessoInserir;
+            }
+            if($bSucessoInserir) {
+                header('Location:index.php?pg=consultaNota&message=sucessoinclusao');
+            } else {
+                header('Location:index.php?pg=consultaNota&message=erroinclusao');
+            }
+            $this->processaExibir();
+        } else {
+            header('Location:index.php?pg=consultaNota&message=erroinclusao');            
         }
-        $this->processaExibir();
     }
 
 }
