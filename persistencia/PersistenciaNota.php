@@ -49,7 +49,7 @@ class PersistenciaNota extends PersistenciaPadrao{
             $this->ModelNota->getNota()
         ];
         
-        parent::inserir('nota', $aColunas, $aValores);
+        return parent::inserir('nota', $aColunas, $aValores);
     }
     
     public function listarNotasAluno($id_discproftur, $id_aluno) {

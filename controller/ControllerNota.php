@@ -76,6 +76,7 @@ class ControllerNota extends ControllerPadrao{
             $oModelNota->setDescricao(Redirecionador::getParametro('descricao'));
             $oModelNota->setData(Redirecionador::getParametro('data'));
             
+            $bSucessoInserirTudo = true;
             foreach ($aAlunos as $oAluno) {
                 if(Redirecionador::getParametro('A' . $oAluno->getUsuario()->getCodigo())) {
                     $fNota = Redirecionador::getParametro('A' . $oAluno->getUsuario()->getCodigo());                    
@@ -87,9 +88,10 @@ class ControllerNota extends ControllerPadrao{
                 
                 $this->PersistenciaNota->setModelNota($oModelNota);
                 $bSucesso = $this->PersistenciaNota->inserirRegistro();
-//                $bSucessoInserir = $bSucesso && $bSucessoInserir;
+                $bSucessoInserirTudo = $bSucesso && $bSucessoInserir;
             }
-            if($bSucessoInserir) {
+            
+            if($bSucessoInserirTudo) {
                 header('Location:index.php?pg=consultaNota&message=sucessoinclusao');
             } else {
                 header('Location:index.php?pg=consultaNota&message=erroinclusao');
