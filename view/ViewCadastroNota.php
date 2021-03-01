@@ -35,8 +35,8 @@ class ViewCadastroNota extends ViewPadrao {
                     <input type="date" class="campo" id="data" name="data" value=""/>
                     
                     <div id="limpar" onclick="limpar()">Limpar</div>
-                    <input type="submit" class="cadastrar" id="cadastrar-aluno" value="Cadastrar">                    
-                    <input type="submit" class="cadastrar-peq" id="cadastrar-aluno" value="Cadastrar">
+                    <input type="submit" class="cadastrar" id="cadastrar-nota" value="Cadastrar">                    
+                    <input type="submit" class="cadastrar-peq" id="cadastrar-nota" value="Cadastrar">
 		</div>
                 
            </form>';

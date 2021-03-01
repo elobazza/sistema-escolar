@@ -34,7 +34,12 @@ class ViewTelaPrincipal extends ViewPadrao {
                             <div class="caixinha"></div>
                         </div>
                         <div class="caixa-tela-principal">
-                            <div class="caixinha"></div>
+                            <div class="caixinha">
+                                <a class="texto-caixinha" href="index.php?pg=consultaAviso">
+                                    <img src="../images/aviso.png" height="70px"><br>
+                                    Mural de Avisos
+                                </a>
+                            </div>
                             <div class="caixinha"></div>
                             <div class="caixinha"></div>                
                             <div class="caixinha"></div>                
@@ -80,7 +85,12 @@ class ViewTelaPrincipal extends ViewPadrao {
                                     Consultar Turmas
                                 </a>
                             </div>
-                            <div class="caixinha"></div>
+                            <div class="caixinha">
+                                <a class="texto-caixinha" href="index.php?pg=consultaAviso">
+                                    <img src="../images/aviso.png" height="70px"><br>
+                                    Mural de Avisos
+                                </a>
+                            </div>
                             <div class="caixinha"></div>                
                             <div class="caixinha"></div>                
                         </div>
@@ -95,13 +105,29 @@ class ViewTelaPrincipal extends ViewPadrao {
                     <div class="container">
                         <div class="caixa-tela-principal">
                             <div class="caixinha">
-                                
+                                <a class="texto-caixinha" href="index.php?pg=consultaAviso">
+                                    <img src="../images/aviso.png" height="70px"><br>
+                                    Mural de Avisos
+                                </a>
                             </div>
                             <div class="caixinha">
-                                
+                                <a class="texto-caixinha" href="index.php?pg=consultaNota">
+                                    <img src="../images/nota.png" height="70px"><br>
+                                    Notas
+                                </a>
                             </div>
-                            <div class="caixinha"></div>
-                            <div class="caixinha"></div>
+                            <div class="caixinha">
+                                <a class="texto-caixinha" href="index.php?pg=consultaPresenca">
+                                    <img src="../images/presenca.png" height="70px"><br>
+                                    Presenças
+                                </a>
+                            </div>
+                            <div class="caixinha">
+                                <a class="texto-caixinha" href="index.php?pg=consultaAula">
+                                    <img src="../images/aula.png" height="70px"><br>
+                                    Consultar Aulas
+                                </a>
+                            </div>
                         </div>
                         <div class="caixa-tela-principal">
                             <div class="caixinha"></div>
@@ -111,7 +137,6 @@ class ViewTelaPrincipal extends ViewPadrao {
                         </div>
                     </div>
                   ';
-                
                 break;
             }
         }

@@ -125,6 +125,11 @@ function consultarNotaAluno(event, turmaDisc) {
     }
 }
 
+function consultaAviso(event) {
+    event.preventDefault();
+    window.location.assign('index.php?pg=consultaAviso');        
+}
+
 function pegarCodigo() {
     var selecionados = document.getElementsByClassName("selected");
     if(selecionados.length < 1){
