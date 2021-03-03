@@ -38,7 +38,7 @@ class ControllerConsultaNota extends ControllerPadrao {
 
     public function processaExibir() {
        switch($_SESSION['tipo']) {
-            case 1: case 2:
+            case 1: case 2: case 3:
                 if(Redirecionador::getParametro('notaTurma')) {
                     $this->ViewConsultaNotaTurma->setAlunos($this->PersistenciaAluno->listarRegistros());
                     $this->ViewConsultaNotaTurma->setMedias($this->PersistenciaAluno->listarMediasPorAluno());
@@ -51,11 +51,10 @@ class ControllerConsultaNota extends ControllerPadrao {
                     $this->ViewConsultaNotaAluno->imprime();
                 } else {
                     $this->ViewConsultaNota->setDisciplinaProfessorTurmas($this->PersistenciaDisciplinaProfessorTurma->listarRegistros());
+                    $this->ViewConsultaNota->setMedias($this->PersistenciaDisciplinaProfessorTurma->listarMedias());
                     $this->ViewConsultaNota->imprime();
                 }
-                break;
-            case 3: 
-                break;            
+                break;          
         }
     }
 

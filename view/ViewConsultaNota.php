@@ -52,7 +52,15 @@ class ViewConsultaNota extends ViewPadrao {
                 break;
             }
             case 3: {
-             
+                return '     
+                    <b><p class="titulo">CONSULTA DE NOTAS</p></b>
+                    <div style="background-color:#4a6891; height: 50px; width: 100%; margin-top: 30px; padding-top:10px">
+                        <div class="container">
+                            <a href="" onclick="consultarNotaFromAluno(event, '. $_SESSION['id'] . ')" style="color:white; font-size:18px; margin-right: 20px"> Visualizar Notas</a>
+                        </div>
+                    </div>
+                  ' 
+                . $this->montaTabela();
                 break;
             }
         }
@@ -83,9 +91,14 @@ class ViewConsultaNota extends ViewPadrao {
                             <td><input type="checkbox" name="linha" value=" '. $oDiscProfTur->getCodigo() .'"/></td>
                             <td>' . $oDiscProfTur->getTurma()->getNome() . '</td>
                             <td>' . $oDiscProfTur->getDisciplina()->getNome() . '</td>
-                            <td>' . $oDiscProfTur->getProfessor()->getNome() . '</td>
-                            <td> 10 </td>
-                        </tr>';
+                            <td>' . $oDiscProfTur->getProfessor()->getNome() . '</td>';
+            
+            if(array_key_exists($oDiscProfTur->getCodigo(), $this->getMedias())) {
+                $sResult .= '<td>' . floatval($this->getMedias()[$oDiscProfTur->getCodigo()]) . '</td>';
+            } else {
+                $sResult .= '<td>0</td>';
+            }
+                $sResult .= '</tr>';
         }
         return $sResult;
     }

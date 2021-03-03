@@ -44,7 +44,7 @@ class PersistenciaDisciplinaProfessorTurma extends PersistenciaPadrao {
         ];        
         return parent::inserir('disciplinaprofessorturma', $aColunas, $aValores);
     }
-    
+        
     public function listarRegistros() {
         $sSelect = 'SELECT disciplinaprofessorturma.*, disciplina.nome AS disciplina, turma.nome AS turma, pessoa.nome AS professor, pessoa.cpf 
                       FROM disciplinaprofessorturma
@@ -61,6 +61,11 @@ class PersistenciaDisciplinaProfessorTurma extends PersistenciaPadrao {
             case 2: {
                 $sSelect .= 'WHERE professor.id_professor = '. $_SESSION['id'] .' ';
                 break;
+            }
+            case 3: {
+                $sSelect .= 'JOIN aluno 
+                               ON turma.id_turma = aluno.id_turma
+                            WHERE id_aluno =' . $_SESSION['id'] . ' ';
             }
         }
         $sSelect .= 'ORDER BY id_discproftur ';
@@ -82,6 +87,17 @@ class PersistenciaDisciplinaProfessorTurma extends PersistenciaPadrao {
             $aDiscProfTurmas[] = $oDiscProfTurma;
         }
         return $aDiscProfTurmas;
+    }
+    
+    public function listarMedias() {
+        $sSelect = 'select id_discproftur, sum(nota)/count(nota) as media FROM nota group by id_discproftur';
+        $oResultadoMedia = pg_query($this->conexao, $sSelect);
+        $aMedias = [];
+        
+        while ($aLinha = pg_fetch_array($oResultadoMedia, null, PGSQL_ASSOC)){
+            $aMedias[$aLinha['id_discproftur']] = $aLinha['media'];
+        }
+        return $aMedias;        
     }
     
     public function listarComFiltro($sIndice, $sValor) {

@@ -16,12 +16,8 @@ class ViewConsultaNotaAluno extends ViewPadrao {
 
     protected function getConteudo() {        
         switch($_SESSION['tipo']) {
-            case 1: case 2: {
+            case 1: case 2: case 3: {
                 return '<b><p class="titulo">CONSULTA DE NOTAS DO ALUNO</p></b>'. $this->montaTabela();
-                break;
-            }
-            case 3: {
-             
                 break;
             }
         }

@@ -125,6 +125,14 @@ function consultarNotaAluno(event, turmaDisc) {
     }
 }
 
+function consultarNotaFromAluno(event, codigoAluno) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.assign('index.php?pg=consultaNota&turmaDisc=' + parseInt(codigo) + '&notaAluno='+ codigoAluno);        
+    }
+}
+
 function consultaAviso(event) {
     event.preventDefault();
     window.location.assign('index.php?pg=consultaAviso');        

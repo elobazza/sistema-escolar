@@ -66,6 +66,12 @@ class PersistenciaAula extends PersistenciaPadrao {
                 $sSelect .= ' WHERE PESSOA.ID_PESSOA = '. $_SESSION['id'] .'';
                 break;
             }
+            case 3: {
+                $sSelect .= ' JOIN aluno
+                                ON turma.id_turma = aluno.id_turma
+                             WHERE aluno.ID_ALUNO = '. $_SESSION['id'] .'';
+                break;
+            }
         }
         
         $oResultado = pg_query($this->conexao, $sSelect);
@@ -113,6 +119,7 @@ class PersistenciaAula extends PersistenciaPadrao {
             $oAula->setCodigo($aLinha['id_aula']);
             $oAula->setHorarioInicio($aLinha['horario_inicio']);
             $oAula->setHorarioFim($aLinha['horario_fim']);
+            $oAula->setDiaSemana($aLinha['dia_semana']);
             $oAula->getDisciplinaProfessorTurma()->setCodigo($aLinha['id_discproftur']);
             $oAula->getDisciplinaProfessorTurma()->getDisciplina()->setCodigo($aLinha['id_disciplina']);
             $oAula->getDisciplinaProfessorTurma()->getDisciplina()->setNome($aLinha['disciplina']);

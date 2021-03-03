@@ -34,14 +34,11 @@ class ViewConsultaAula extends ViewPadrao {
                 . $this->montaTabela();
                 break;
             }
-            case 2: {
+            case 2: case 3: {
                 return '     
                     <b><p class="titulo">CONSULTA DE AULAS</p></b>
                   ' 
                 . $this->montaTabela();
-                break;
-            }
-            case 3: {
                 break;
             }
         }
