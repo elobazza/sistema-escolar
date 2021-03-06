@@ -17,6 +17,7 @@ class ModelPresenca {
     
     private $codigo;
     private $presenca;
+    private $data;
 
     /**
      * @return ModelAluno
@@ -46,6 +47,10 @@ class ModelPresenca {
         return $this->presenca;
     }
     
+    function getData() {
+        return $this->data;
+    }
+    
     function setAluno(ModelAluno $Aluno) {
         $this->Aluno = $Aluno;
     }
@@ -60,6 +65,10 @@ class ModelPresenca {
 
     function setPresenca($presenca) {
         $this->presenca = $presenca;
+    }
+    
+    function setData($data) {
+        $this->data = $data;
     }
     
 }

@@ -1,13 +1,22 @@
 $(document).ready(function () {
-     $(".table-selectable tr").click(function(e) {
-        var selecionar = !$(this).hasClass("selected");
-        $(this).parent().find("tr.selected").removeClass("selected");
-        $(this).parent().find("input[type='checkbox']").prop('checked', false);
-        if (selecionar) {
-          $(this).addClass("selected");
-          $(this).find("input[type='checkbox']").prop('checked', true);
+    $(".table-selectable tr").click(function(e) {
+        if(document.URL.indexOf('presenca') <= 0) {
+            var selecionar = !$(this).hasClass("selected");
+            $(this).parent().find("tr.selected").removeClass("selected");
+            $(this).parent().find("input[type='checkbox']").prop('checked', false);
+            if (selecionar) {
+              $(this).addClass("selected");
+              $(this).find("input[type='checkbox']").prop('checked', true);
+            }            
+        } else {
+            debugger;
+            if($(this).find("input[type='checkbox']").val() == "on") {
+                $(this).find("input[type='checkbox']").val("off");
+            } else {
+                $(this).find("input[type='checkbox']").val("on");
+            }
         }
-      });      
+    });      
 }); 
 
 function limpar() {

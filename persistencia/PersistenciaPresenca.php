@@ -24,7 +24,20 @@ class PersistenciaPresenca extends PersistenciaPadrao{
     }
 
     public function inserirRegistro() {
+        $aColunas = [
+            'id_aluno',
+            'id_aula',
+            'data',
+            'presenca'
+        ];
+        $aValores = [
+            $this->ModelPresenca->getAluno()->getUsuario()->getCodigo(),
+            $this->ModelPresenca->getAula()->getCodigo(),
+            $this->ModelPresenca->getData(),
+            $this->ModelPresenca->getPresenca()
+        ];
         
+        return parent::inserir('presenca', $aColunas, $aValores);
     }
     
     public function listarRegistrosProfessor($codigo) {
@@ -53,6 +66,30 @@ class PersistenciaPresenca extends PersistenciaPadrao{
         return $aPresencas;        
     }
     
+    public function listarPresencaAluno($id_aula, $id_aluno) {
+        $sSelect = 'SELECT pessoa.nome AS aluno, presenca.*
+                      from presenca
+                      join aluno
+                        on presenca.id_aluno = aluno.id_aluno
+                      join pessoa 
+                        on aluno.id_aluno = pessoa.id_pessoa
+                     where presenca.id_aula = ' .$id_aula . '
+                       and presenca.id_aluno = ' . $id_aluno . ';';
+        
+        $oResultado = pg_query($this->conexao, $sSelect);
+        $aPresencas = [];        
+        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)){
+            $oPresenca = new ModelPresenca();
+            $oPresenca->getAula()->setCodigo($aLinha['id_aula']);
+            $oPresenca->getAluno()->setNome($aLinha['aluno']);
+            $oPresenca->setData($aLinha['data']);
+            $oPresenca->setPresenca($aLinha['presenca']);
+            $oPresenca->setCodigo($aLinha['id_presenca']);
+          
+            $aPresencas[] = $oPresenca;
+        }
+        return $aPresencas;
+    }    
     
     public function listarRegistros() {
         

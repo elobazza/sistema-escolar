@@ -68,8 +68,7 @@ class PersistenciaAluno extends PersistenciaPadrao{
         $oResultadoAluno = pg_query($this->conexao, $sSelect);
         $aAlunos = [];
         
-        while ($aLinha = pg_fetch_array($oResultadoAluno, null, PGSQL_ASSOC)){
-            
+        while ($aLinha = pg_fetch_array($oResultadoAluno, null, PGSQL_ASSOC)){            
             $oAluno = new ModelAluno();
             $oTurma = new ModelTurma();
             $oAluno->getUsuario()->setCodigo($aLinha['id_aluno']);
