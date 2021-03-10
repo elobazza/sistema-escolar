@@ -36,7 +36,6 @@ class ViewConsultaNota extends ViewPadrao {
                     </div>
                   ' 
                 . $this->montaTabela();
-                break;
             }
             case 2: {
                 return '     
@@ -49,7 +48,6 @@ class ViewConsultaNota extends ViewPadrao {
                     </div>
                   ' 
                 . $this->montaTabela();
-                break;
             }
             case 3: {
                 return '     
@@ -61,7 +59,6 @@ class ViewConsultaNota extends ViewPadrao {
                     </div>
                   ' 
                 . $this->montaTabela();
-                break;
             }
         }
     }
@@ -98,7 +95,7 @@ class ViewConsultaNota extends ViewPadrao {
             } else {
                 $sResult .= '<td>0</td>';
             }
-                $sResult .= '</tr>';
+            $sResult .= '</tr>';
         }
         return $sResult;
     }

@@ -25,8 +25,9 @@ class ControllerAviso extends ControllerPadrao {
 
     public function processaInserir() {
         if(!empty(Redirecionador::getParametro('titulo')) && !empty(Redirecionador::getParametro('mensagem'))){
-            $this->ModelAviso->setData('01/03/2021');
-            $this->ModelAviso->setHora('10:53');
+            date_default_timezone_set('America/Sao_Paulo');
+            $this->ModelAviso->setData(date("d/m/y"));
+            $this->ModelAviso->setHora(date("H:i:s"));
             $this->ModelAviso->setMensagem(Redirecionador::getParametro('mensagem'));        
             $this->ModelAviso->setTitulo(Redirecionador::getParametro('titulo'));        
 

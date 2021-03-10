@@ -32,7 +32,6 @@ class ViewVisualizaPresenca extends ViewPadrao {
             }
             case 3: {
              
-                break;
             }
         }
     }

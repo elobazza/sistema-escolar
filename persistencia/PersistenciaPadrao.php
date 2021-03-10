@@ -15,8 +15,8 @@ abstract class PersistenciaPadrao {
      * Construtor da Persistência - Realiza a conexão com o Banco de Dados.
      */
     function __construct() {
-        $this->conexao = pg_connect('host=localhost port=5432 dbname=escola user=postgres password=0000');
-//        $this->conexao = pg_connect('host=localhost port=5432 dbname=escola user=postgres password=admin');
+//        $this->conexao = pg_connect('host=localhost port=5432 dbname=escola user=postgres password=0000');
+        $this->conexao = pg_connect('host=localhost port=5432 dbname=escola user=postgres password=admin');
     }
     
     /**

@@ -46,7 +46,6 @@ class ViewTelaPrincipal extends ViewPadrao {
                         </div>
                     </div>
                   ';
-                break;
             }
             
             case 2: {
@@ -97,7 +96,6 @@ class ViewTelaPrincipal extends ViewPadrao {
                     </div>
                   ';
              
-                break;
             }
             
             case 3: {
@@ -137,7 +135,6 @@ class ViewTelaPrincipal extends ViewPadrao {
                         </div>
                     </div>
                   ';
-                break;
             }
         }
         

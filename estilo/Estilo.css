@@ -260,7 +260,6 @@ nav {
     align-items: center;
 }
 
-
 .coluna{
     padding-right: 50px;
     padding-top: 10px;
@@ -304,15 +303,12 @@ a{
     }
     .cadastrar-peq{
         display: block;
+        width: 60%;
     }
   
     .container{
         width: 75%;	
     }   
-
-    .cadastrar-peq{
-        width: 60%;
-    }
 
     .limpar{
         width: 60%;
@@ -444,6 +440,6 @@ a{
     }
 }
 
-/*.table-selectable {
+.table-selectable {
     margin-bottom: 120px;
-}*/
+}

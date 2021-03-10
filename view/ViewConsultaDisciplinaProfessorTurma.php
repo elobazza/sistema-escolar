@@ -31,7 +31,6 @@ class ViewConsultaDisciplinaProfessorTurma extends ViewPadrao {
 
                   ' 
                 . $this->montaTabela();
-                break;
             }
             default: {
                 return '     

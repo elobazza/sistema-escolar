@@ -44,7 +44,6 @@ class ViewConsultaNotaTurma extends ViewPadrao {
                     </div>
                   ' 
                 . $this->montaTabela();
-                break;
             }
             case 2: {
                 return '     
@@ -56,11 +55,9 @@ class ViewConsultaNotaTurma extends ViewPadrao {
                     </div>
                   ' 
                 . $this->montaTabela();
-                break;
             }
             case 3: {
              
-                break;
             }
         }
     }

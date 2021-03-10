@@ -111,7 +111,6 @@ abstract class ViewPadrao {
                                 </div>
                             </div>
                         </nav>';
-                    break;
                 } 
 
                 case 2 : {
@@ -162,7 +161,6 @@ abstract class ViewPadrao {
                                 </div>
                             </div>
                         </nav>';
-                    break;
                 }
             
                 case 3: {
