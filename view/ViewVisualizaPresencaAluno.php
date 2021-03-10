@@ -12,13 +12,8 @@ class ViewVisualizaPresencaAluno extends ViewPadrao {
         $this->presencas = $presencas;
     }
 
-    protected function getConteudo() {        
-        switch($_SESSION['tipo']) {
-            case 1: case 2: case 3: {
-                return '<b><p class="titulo">CONSULTA DE PRESENÇAS DO ALUNO</p></b>'. $this->montaTabela();
-                break;
-            }
-        }
+    protected function getConteudo() { 
+        return '<b><p class="titulo">CONSULTA DE PRESENÇAS DO ALUNO</p></b>'. $this->montaTabela();
     }
     
     public function montaTabela(){

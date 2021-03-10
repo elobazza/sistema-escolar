@@ -53,22 +53,15 @@ class ControllerNota extends ControllerPadrao{
     }
 
     public function processaExibir() {
-        $this->ViewCadastroNota->setAlunos($this->PersistenciaAluno->listarRegistros());
+        $this->ViewCadastroNota->setAlunos($this->PersistenciaAluno->getAlunosTurmaProfDisc(Redirecionador::getParametro('notaTurma')));
         $this->ViewCadastroNota->setCodProfessorDisciplinaTurma(Redirecionador::getParametro('notaTurma'));
         
-//        if(Redirecionador::getParametro('indice') && Redirecionador::getParametro('valor')){
-//            $sIndice = Redirecionador::getParametro('indice');
-//            $sValor = Redirecionador::getParametro('valor'); 
-//            $this->ViewCadastroNota->setNotas($this->PersistenciaNota->listarComFiltro($sIndice, $sValor));   
-//        } else {
-//            $this->ViewCadastroNota->setNotas($this->PersistenciaNota->listarTudo());
-//        }
         $this->ViewCadastroNota->imprime();
     }
 
     public function processaInserir() {
         if(!empty(Redirecionador::getParametro('data')) && !empty(Redirecionador::getParametro('descricao'))){
-            $aAlunos         = $this->PersistenciaAluno->listarRegistros();
+            $aAlunos         = $this->PersistenciaAluno->getAlunosTurmaProfDisc(Redirecionador::getParametro('id_discproftur'));
             $oModelNota      = new ModelNota();
             $bSucessoInserir = true;
             

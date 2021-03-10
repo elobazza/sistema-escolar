@@ -20,7 +20,15 @@ class ViewConsultaPresenca extends ViewPadrao {
     protected function getConteudo() {        
         switch($_SESSION['tipo']) {
             case 1: {
-                break;
+                return '     
+                    <b><p class="titulo">REGISTRAR PRESENÇA</p></b>
+                    <div style="background-color:#4a6891; height: 50px; width: 100%; margin-top: 30px; padding-top:10px">
+                        <div class="container">
+                            <a href="" onclick="visualizar(event, \'consultaPresenca\')" style="color:white; font-size:18px; margin-right: 20px"> Visualizar Presenças</a>
+                        </div>
+                    </div>
+                  ' 
+                . $this->montaTabelaProfessor();
             }
             case 2: {
                 return '     
@@ -35,8 +43,15 @@ class ViewConsultaPresenca extends ViewPadrao {
                 . $this->montaTabelaProfessor();
             }
             case 3: {
-             
-                break;
+                return '     
+                    <b><p class="titulo">REGISTRAR PRESENÇA</p></b>
+                    <div style="background-color:#4a6891; height: 50px; width: 100%; margin-top: 30px; padding-top:10px">
+                        <div class="container">
+                            <a href="" onclick="consultarPresencaFromAluno(event, '. $_SESSION['id'] . ')" style="color:white; font-size:18px; margin-right: 20px"> Visualizar Presenças</a>
+                        </div>
+                    </div>
+                  ' 
+                . $this->montaTabelaProfessor();
             }
         }
     }

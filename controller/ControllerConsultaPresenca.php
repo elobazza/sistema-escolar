@@ -32,12 +32,10 @@ class ControllerConsultaPresenca extends ControllerPadrao {
         $this->ViewVisualizaPresenca= new ViewVisualizaPresenca();
     }
 
-    public function processaExibir() {            
+    public function processaExibir() {
         if(Redirecionador::getParametro('visu') == 1) {
            switch($_SESSION['tipo']) {
-                case 1: 
-                    break;
-                case 2: 
+                case 1: case 2: 
                     $this->ViewVisualizaPresenca->setAlunos($this->PersistenciaAluno->getAlunosTurmaProfDisc(Redirecionador::getParametro('codigo')));
                     break;
                 case 3: 
@@ -46,13 +44,9 @@ class ControllerConsultaPresenca extends ControllerPadrao {
             $this->ViewVisualizaPresenca->imprime();
         } else {
            switch($_SESSION['tipo']) {
-                case 1: 
-                    break;
-                case 2: 
+                case 1: case 2: case 3: 
                     $this->ViewConsultaPresenca->setDisciplinaProfessorTurmas($this->PersistenciaDisciplinaProfessorTurma->listarRegistros());
-                    break;
-                case 3: 
-                    break;            
+                    break;          
             }
             $this->ViewConsultaPresenca->imprime();
         }

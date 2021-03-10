@@ -7,6 +7,9 @@ class ControllerConsultaPresencaIndividual  extends ControllerPadrao {
     
     /** @var PersistenciaPresenca $PersistenciaPresenca */
     private $PersistenciaPresenca;
+    
+    /** @var PersistenciaAula $PersistenciaAula */
+    private $PersistenciaAula;
         
     /** @var ViewVisualizaPresenca $ViewVisualizaPresenca */
     private $ViewVisualizaPresenca;
@@ -14,20 +17,16 @@ class ControllerConsultaPresencaIndividual  extends ControllerPadrao {
     function __construct() {
         $this->ModelPresenca         = new ModelPresenca();
         $this->PersistenciaPresenca  = new PersistenciaPresenca();
+        $this->PersistenciaAula      = new PersistenciaAula();
         $this->ViewVisualizaPresenca = new ViewVisualizaPresencaAluno();
     }
 
     public function processaExibir() {            
         if(Redirecionador::getParametro('codigo')) {
-           switch($_SESSION['tipo']) {
-                case 1: 
-                    break;
-                case 2:
-                    $this->ViewVisualizaPresenca->setPresencas($this->PersistenciaPresenca->listarPresencaAluno(21, Redirecionador::getParametro('codigo')));
-                    break;
-                case 3: 
-                    break;            
-            }
+            $aAulas = $this->PersistenciaAula->listarComFiltro('AULA.id_discproftur', Redirecionador::getParametro('discproftur'));
+            if(count($aAulas) > 0) {
+                $this->ViewVisualizaPresenca->setPresencas($this->PersistenciaPresenca->listarPresencaAluno($aAulas[0]->getCodigo(), Redirecionador::getParametro('codigo')));                        
+            }  
             $this->ViewVisualizaPresenca->imprime();
         } 
     }

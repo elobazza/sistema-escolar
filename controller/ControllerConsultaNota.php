@@ -40,7 +40,7 @@ class ControllerConsultaNota extends ControllerPadrao {
        switch($_SESSION['tipo']) {
             case 1: case 2: case 3:
                 if(Redirecionador::getParametro('notaTurma')) {
-                    $this->ViewConsultaNotaTurma->setAlunos($this->PersistenciaAluno->listarRegistros());
+                    $this->ViewConsultaNotaTurma->setAlunos($this->PersistenciaAluno->getAlunosTurmaProfDisc(Redirecionador::getParametro('notaTurma')));
                     $this->ViewConsultaNotaTurma->setMedias($this->PersistenciaAluno->listarMediasPorAluno());
                     $this->ViewConsultaNotaTurma->setCodProfessorDisciplinaTurma(Redirecionador::getParametro('notaTurma'));
                     $this->ViewConsultaNotaTurma->imprime();

@@ -19,15 +19,12 @@ class ViewVisualizaPresenca extends ViewPadrao {
     
     protected function getConteudo() {        
         switch($_SESSION['tipo']) {
-            case 1: {
-                break;
-            }
-            case 2: {
+            case 2: case 1: {
                 return '     
                     <b><p class="titulo">LISTA DE PRESENÇA</p></b>
                     <div style="background-color:#4a6891; height: 50px; width: 100%; margin-top: 30px; padding-top:10px">
                         <div class="container">
-                            <a href="" onclick="visualizar(event, \'consultaPresencaIndividual\')" style="color:white; font-size:18px; margin-right: 20px"> Visualizar Presença Individual</a>
+                            <a href="" onclick="consultarPresencaIndividual(event, \'' . Redirecionador::getParametro('codigo') .'\')" style="color:white; font-size:18px; margin-right: 20px"> Visualizar Presença Individual</a>
                             </div>
                     </div>
                   ' 

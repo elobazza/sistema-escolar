@@ -142,6 +142,22 @@ function consultarNotaFromAluno(event, codigoAluno) {
     }
 }
 
+function consultarPresencaFromAluno(event, codigoAluno) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.assign('index.php?pg=consultaPresencaIndividual&codigo=' + codigoAluno + '&discproftur=' + parseInt(codigo));      
+    }
+}
+
+function consultarPresencaIndividual(event, iCodigoDiscProfTur) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.assign('index.php?pg=consultaPresencaIndividual&codigo=' + parseInt(codigo) + '&discproftur=' + iCodigoDiscProfTur);
+    }
+}
+
 function consultaAviso(event) {
     event.preventDefault();
     window.location.assign('index.php?pg=consultaAviso');        

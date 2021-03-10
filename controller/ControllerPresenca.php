@@ -37,7 +37,7 @@ class ControllerPresenca extends ControllerPadrao {
         $aAulas = $this->PersistenciaAula->listarComFiltro('AULA.id_discproftur', Redirecionador::getParametro('codigo'));
         
         if(count($aAulas) > 0) {
-            $this->ViewPresenca->setAlunos($this->PersistenciaAluno->listarRegistros());
+            $this->ViewPresenca->setAlunos($this->PersistenciaAluno->getAlunosTurmaProfDisc(Redirecionador::getParametro('codigo')));
             $this->ViewPresenca->setAula($aAulas[0]->getCodigo());
 
             $this->ViewPresenca->imprime();
@@ -46,7 +46,7 @@ class ControllerPresenca extends ControllerPadrao {
 
     public function processaInserir() {
         if(!empty(Redirecionador::getParametro('data'))){
-            $aAlunos         = $this->PersistenciaAluno->listarRegistros();
+            $aAlunos         = $this->PersistenciaAluno->getAlunosFromAula(Redirecionador::getParametro('id_aula'));
             $oModelPresenca  = new ModelPresenca();
             $bSucessoInserir = true;
             
