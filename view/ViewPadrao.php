@@ -99,7 +99,7 @@ abstract class ViewPadrao {
                                               Relatórios
                                           </a>
                                           <div class="dropdown-menu" aria-labelledby="dropdownMenuReportButton">
-                                            <a class="dropdown-item" href="#">Boletins</a>
+                                            <a class="dropdown-item" href="index.php?pg=boletim">Boletins</a>
                                           </div>
                                       </li>
                                     </ul>
@@ -149,7 +149,7 @@ abstract class ViewPadrao {
                                               Relatórios
                                           </a>
                                           <div class="dropdown-menu" aria-labelledby="dropdownMenuReportButton">
-                                            <a class="dropdown-item" href="#">Boletins</a>
+                                            <a class="dropdown-item" href="index.php?pg=boletim">Boletins</a>
                                           </div>
                                       </li>
                                     </ul>
@@ -198,7 +198,7 @@ abstract class ViewPadrao {
                                               Relatórios
                                           </a>
                                           <div class="dropdown-menu" aria-labelledby="dropdownMenuReportButton">
-                                            <a class="dropdown-item" href="#">Boletins</a>
+                                            <a class="dropdown-item" href="index.php?pg=boletim">Boletins</a>
                                           </div>
                                       </li>
                                     </ul>
