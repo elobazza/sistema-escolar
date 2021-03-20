@@ -37,6 +37,7 @@ class ControllerConsultaPresenca extends ControllerPadrao {
            switch($_SESSION['tipo']) {
                 case 1: case 2: 
                     $this->ViewVisualizaPresenca->setAlunos($this->PersistenciaAluno->getAlunosTurmaProfDisc(Redirecionador::getParametro('codigo')));
+                    $this->ViewVisualizaPresenca->setTaxaPresencas($this->PersistenciaPresenca->getPresencas(Redirecionador::getParametro('codigo')));
                     break;
                 case 3: 
                     break;            

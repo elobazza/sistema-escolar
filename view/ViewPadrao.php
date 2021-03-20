@@ -100,6 +100,7 @@ abstract class ViewPadrao {
                                           </a>
                                           <div class="dropdown-menu" aria-labelledby="dropdownMenuReportButton">
                                             <a class="dropdown-item" href="index.php?pg=boletim">Boletins</a>
+                                            <a class="dropdown-item" href="index.php?pg=desempenhoProfessor">Desempenho Professores</a>
                                           </div>
                                       </li>
                                     </ul>
@@ -150,6 +151,7 @@ abstract class ViewPadrao {
                                           </a>
                                           <div class="dropdown-menu" aria-labelledby="dropdownMenuReportButton">
                                             <a class="dropdown-item" href="index.php?pg=boletim">Boletins</a>
+                                            <a class="dropdown-item" href="index.php?pg=desempenhoProfessor">Meu Desempenho</a>
                                           </div>
                                       </li>
                                     </ul>

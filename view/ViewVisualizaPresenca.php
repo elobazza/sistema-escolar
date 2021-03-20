@@ -1,13 +1,12 @@
 <?php
 
 /**
- * Description of ViewConsultaPresenca
- * 
  * @author Maria Eduarda e Eloísa
  */
 class ViewVisualizaPresenca extends ViewPadrao {
     
     private $alunos = [];
+    private $taxaPresencas = [];
     
     function getAlunos() {
         return $this->alunos;
@@ -15,6 +14,14 @@ class ViewVisualizaPresenca extends ViewPadrao {
 
     function setAlunos($alunos) {
         $this->alunos = $alunos;
+    }
+    
+    function getTaxaPresencas() {
+        return $this->taxaPresencas;
+    }
+
+    function setTaxaPresencas($taxaPresencas) {
+        $this->taxaPresencas = $taxaPresencas;
     }
     
     protected function getConteudo() {        
@@ -53,13 +60,14 @@ class ViewVisualizaPresenca extends ViewPadrao {
     
     private function createSelectListagemProfessor() {
         $sResult = "";
-        
+        $contador = 0;
         foreach ($this->alunos as $oAluno) { 
             $sResult .= ' <tr class="">
                             <td><input type="checkbox" name="linha" value="'. $oAluno->getUsuario()->getCodigo() .'"/></td>
                             <td>' . $oAluno->getNome() . '</td>
-                            <td></td>
+                            <td>' . floatval($this->taxaPresencas[$contador]) .  '% </td>
                         </tr>';
+            $contador++;
         }
         return $sResult;
     }

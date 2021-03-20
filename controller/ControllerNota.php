@@ -76,6 +76,7 @@ class ControllerNota extends ControllerPadrao{
                 } else {
                     $fNota = 0;                    
                 }
+                
                 $oModelNota->setNota($fNota);
                 $oModelNota->setAluno($oAluno);
                 

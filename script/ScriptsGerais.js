@@ -163,6 +163,22 @@ function consultaAviso(event) {
     window.location.assign('index.php?pg=consultaAviso');        
 }
 
+function verBoletim(event) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.assign('index.php?pg=boletim&aluno='+ parseInt(codigo));        
+    }
+}
+
+function visualizarDesempenho(event) {
+    event.preventDefault();
+    var codigo = pegarCodigo();
+    if(codigo) {
+        window.location.assign('index.php?pg=desempenhoProfessor&professor='+ parseInt(codigo));        
+    }
+}
+
 function pegarCodigo() {
     var selecionados = document.getElementsByClassName("selected");
     if(selecionados.length < 1){

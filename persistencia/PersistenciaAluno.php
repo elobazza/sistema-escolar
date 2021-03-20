@@ -87,12 +87,14 @@ class PersistenciaAluno extends PersistenciaPadrao{
     }
     
     public function selecionar($codigo) {
-        $sSelect = 'SELECT * 
+        $sSelect = 'SELECT aluno.*, pessoa.*, usuario.*, turma.nome as nome_turma 
                       FROM ALUNO 
                       JOIN PESSOA 
                         ON id_aluno = id_pessoa 
                       JOIN USUARIO
                         ON id_pessoa = id_usuario 
+                      JOIN TURMA
+                        ON aluno.id_turma = turma.id_turma
                      WHERE ID_ALUNO = '.$codigo.'';
         $oResultadoAluno = pg_query($this->conexao, $sSelect);
         $oAluno = new ModelAluno();
@@ -105,7 +107,9 @@ class PersistenciaAluno extends PersistenciaPadrao{
             $oAluno->setContato($aLinha['contato']);
             $oAluno->setNome($aLinha['nome']);
             $oAluno->setDataNascimento($aLinha['data_nascimento']);
+            $oAluno->getEscola()->getUsuario()->setCodigo($aLinha['id_escola']);
             $oTurma->setCodigo($aLinha['id_turma']);
+            $oTurma->setNome($aLinha['nome_turma']);
             $oAluno->setTurma($oTurma);
            }
         return $oAluno;

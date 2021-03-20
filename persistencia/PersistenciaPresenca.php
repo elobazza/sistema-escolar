@@ -94,5 +94,55 @@ class PersistenciaPresenca extends PersistenciaPadrao{
     public function listarRegistros() {
         
     }
+    
+    public function getPresencas($codigo) {
+        $sSelect = '
+            SELECT DISTINCT aluno.id_aluno,
+				disciplinaprofessorturma.id_discproftur,
+                   round((select cast(count(presenca.presenca) as numeric) 
+                                       from presenca
+                                        join aula
+                                          on presenca.id_aula = aula.id_aula
+                                       where presenca.id_aluno = aluno.id_aluno
+                                         and aula.id_discproftur = disciplinaprofessorturma.id_discproftur
+                                         and presenca.presenca = true) 
+                                /  
+                                (select case when frequencia > 0 
+                                            then frequencia 
+                                            else 1
+                                            end 
+                                      from (select cast(count(presenca.presenca) as numeric) as frequencia
+                                              from presenca
+                                              join aula
+                                                on presenca.id_aula = aula.id_aula
+                                             where presenca.id_aluno = aluno.id_aluno
+                                               and aula.id_discproftur = disciplinaprofessorturma.id_discproftur) as sf) 
+           * 100, 2) as presenca    
+              FROM ALUNO 
+              JOIN PESSOA 
+                ON id_aluno = id_pessoa 
+              JOIN USUARIO
+                ON id_pessoa = id_usuario 
+              JOIN TURMA
+                ON TURMA.id_turma = ALUNO.id_turma
+              JOIN DISCIPLINAPROFESSORTURMA
+                ON DISCIPLINAPROFESSORTURMA.id_turma = TURMA.id_turma
+              LEFT JOIN AULA
+                ON aula.ID_DISCPROFTUR = DISCIPLINAPROFESSORTURMA.ID_DISCPROFTUR
+              LEFT JOIN PRESENCA
+                ON aula.id_aula = presenca.id_aula
+             WHERE DISCIPLINAPROFESSORTURMA.ID_DISCPROFTUR= '.$codigo;
+        
+        $oResultado = pg_query($this->conexao, $sSelect);
+        
+        $aPresencas = [];
+        
+        while ($aLinha = pg_fetch_array($oResultado, null, PGSQL_ASSOC)) {            
+         
+            array_push($aPresencas, $aLinha['presenca']);
+        }
+        
+        return $aPresencas;
+    }
 
 }
