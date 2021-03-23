@@ -29,7 +29,7 @@ class PersistenciaBoletim extends PersistenciaPadrao {
                                         join aula
                                           on presenca.id_aula = aula.id_aula
                                        where presenca.id_aluno = aluno.id_aluno
-                                         and aula.id_discproftur = disciplinaprofessorturma.id_discproftur
+                                         and aula.id_discproftur = discproftur.id_discproftur
                                          and presenca.presenca = true) 
                                 /  
                                 (select case when frequencia > 0 
@@ -41,7 +41,7 @@ class PersistenciaBoletim extends PersistenciaPadrao {
                                               join aula
                                                 on presenca.id_aula = aula.id_aula
                                              where presenca.id_aluno = aluno.id_aluno
-                                               and aula.id_discproftur = disciplinaprofessorturma.id_discproftur) as sf) 
+                                               and aula.id_discproftur = discproftur.id_discproftur) as sf) 
            * 100, 2) as presenca    
                       FROM aluno 
            		   JOIN presenca 
@@ -92,7 +92,7 @@ class PersistenciaBoletim extends PersistenciaPadrao {
                            round((select cast(sum(nota.nota)/count(nota) as numeric) 
                                        from nota
                                       where nota.id_aluno = aluno.id_aluno
-								        and nota.id_discproftur = discproftur.id_discproftur), 2) as nota,
+                                        and nota.id_discproftur = discproftur.id_discproftur), 2) as nota,
                            round((select cast(count(presenca.presenca) as numeric) 
                                        from presenca
                                         join aula

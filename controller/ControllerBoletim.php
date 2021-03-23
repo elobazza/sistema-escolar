@@ -43,6 +43,7 @@ class ControllerBoletim extends ControllerPadrao {
                 $oModelAluno = $this->PersistenciaAluno->selecionar(Redirecionador::getParametro('aluno'));
                 $this->ViewConsultaBoletim->setAluno($oModelAluno);
                 $this->ViewConsultaBoletim->setEscola($this->PersistenciaEscola->selecionar($oModelAluno->getEscola()->getUsuario()->getCodigo()));
+                $this->ViewConsultaBoletim->setBoletins($this->PersistenciaBoletim->listar(Redirecionador::getParametro('aluno')));
                 $this->ViewConsultaBoletim->imprime();
             }
         }        
